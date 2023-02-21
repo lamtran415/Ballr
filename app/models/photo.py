@@ -25,5 +25,6 @@ class Photo(db.Model):
             "description": self.description,
             "url": self.url,
 
-            "user": {"first_name": self.user.first_name, "last_name": self.user.last_name}
+            "user": {"first_name": self.user.first_name, "last_name": self.user.last_name},
+            "comment": [comment.to_dict() for comment in self.comment]
         }

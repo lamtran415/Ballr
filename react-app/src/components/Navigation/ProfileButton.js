@@ -45,26 +45,27 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
+            <li>{`Hello ${user.first_name}!`}</li>
             <li>{user.email}</li>
             <li>
               <button onClick={handleLogout}>Log Out</button>
             </li>
           </>
         ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+          // <>
+          //   <OpenModalButton
+          //     buttonText="Log In"
+          //     onItemClick={closeMenu}
+          //     modalComponent={<LoginFormModal />}
+          //   />
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
+          //   <OpenModalButton
+          //     buttonText="Sign Up"
+          //     onItemClick={closeMenu}
+          //     modalComponent={<SignupFormModal />}
+          //   />
+          // </>
+          null
         )}
       </ul>
     </>
