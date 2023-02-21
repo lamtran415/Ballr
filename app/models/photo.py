@@ -9,7 +9,7 @@ class Photo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer,  db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     title = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String, nullable=False)
+    description = db.Column(db.String)
     url = db.Column(db.String, nullable=False)
 
     user = db.relationship("User", back_populates="photo")
