@@ -20,6 +20,16 @@ const createIndividualPhoto = (photo) => ({
     photo
 })
 
+const editIndividualPhoto = (photo) => ({
+    type: EDIT_PHOTO,
+    photo
+})
+
+const deleteIndividualPhoto = (photo) => ({
+    type: DELETE_PHOTO,
+    photo
+})
+
 // Photos Thunks
 export const getAllPhotosThunk = () => async (dispatch) => {
     const res = await fetch('/api/photos')
@@ -62,6 +72,37 @@ export const createPhotoThunk = (photo) => async (dispatch) => {
     return res;
 }
 
+export const editPhotoThunk = (photo, photoId) => async (dispatch) => {
+    const res = await fetch(`/api/photos/${photoId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(photo)
+    });
+    if (res.ok) {
+        const editPhoto = await res.json();
+        dispatch(editIndividualPhoto(editPhoto));
+        return editPhoto
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."]
+    }
+    return res;
+}
+
+export const deletePhotoThunk = (photoId) => async (dispatch) => {
+    const res = await fetch(`/api/photos/${photoId}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        dispatch(deleteIndividualPhoto(photoId))
+    }
+    return res;
+}
+
 const initialState = {}
 
 const photosReducer = (state = initialState, action) => {
@@ -81,8 +122,17 @@ const photosReducer = (state = initialState, action) => {
         case CREATE_PHOTO: {
             const newPhotoState = {...state};
             newPhotoState[action.photo.id] = action.photo;
-            console.log("FROM REDUCER =================> newPhotoState", newPhotoState)
             return newPhotoState;
+        }
+        case EDIT_PHOTO: {
+            const editPhotoState = {...state};
+            editPhotoState[action.photo.id] = action.photo;
+            return editPhotoState
+        }
+        case DELETE_PHOTO: {
+            const deletePhotoState = {...state};
+            delete deletePhotoState[action.photo.id]
+            return deletePhotoState
         }
         default: {
             return state

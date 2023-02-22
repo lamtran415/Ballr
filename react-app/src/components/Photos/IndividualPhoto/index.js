@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getPhotoDetailsThunk } from "../../../store/photoReducer";
+import OpenModalButton from "../../OpenModalButton";
+import DeletePhoto from "../DeletePhoto";
+import EditPhoto from "../EditPhoto";
 import './IndividualPhoto.css';
 
 const IndividualPhoto = () => {
@@ -10,7 +13,29 @@ const IndividualPhoto = () => {
     const history = useHistory();
     const [isLoaded, setIsLoaded] = useState(false);
     const individualPhoto = useSelector(state => state.photos[photoId]);
-    console.log(individualPhoto, "WHAT AM I ????????????????????????????")
+	const sessionUser = useSelector(state => state.session.user);
+
+    let session;
+    if (sessionUser !== null) {
+        session = (
+            <div className="edit-delete-button">
+                {sessionUser?.id === individualPhoto?.user_id ?
+                    <OpenModalButton
+                    buttonText="Edit Photo"
+                    modalComponent={<EditPhoto individualPhoto={individualPhoto}/>}
+                    />
+                    : null
+                }
+                {sessionUser?.id === individualPhoto?.user_id ?
+                    <OpenModalButton
+                    buttonText="Delete Photo"
+                    modalComponent={<DeletePhoto individualPhoto={individualPhoto}/>}
+                    />
+                    : null
+                }
+            </div>
+        )
+    }
 
     useEffect(() => {
         dispatch(getPhotoDetailsThunk(photoId))
@@ -26,6 +51,7 @@ const IndividualPhoto = () => {
                 <div className="upper-photo-details-page">
                     <img className="photo-detail-image" src={individualPhoto?.url}/>
                 </div>
+                {session}
                 <div className="photo-description-container">
                     <i className="fas fa-user fa-2x" />
                     <div className="photo-description-user">
