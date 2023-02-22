@@ -1,0 +1,47 @@
+.all-photos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(224, 224, 224);
+    /* padding-top: 50px; */
+}
+
+.photo-information {
+    display: none;
+}
+
+.wrapper-all-photos {
+    max-width: 1550px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.each-photo {
+    width: 380px;
+    height: 300px;
+    object-fit: fill;
+    padding-left: 5px;
+}
+
+.explore-div {
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+    height: 50px;
+    padding-left: 200px;
+}
+
+.explore-word {
+    align-items: center;
+    box-sizing: border-box;
+    color: #000;
+    display: flex;
+    font-size: 12pt;
+    font-weight: 600;
+    line-height: 170%;
+    opacity: .75;
+}
