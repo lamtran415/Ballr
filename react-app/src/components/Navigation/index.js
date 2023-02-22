@@ -8,9 +8,9 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<div>
+		<div className='whole-navigation-container'>
 			<div>
-				<NavLink exact to="/">Home</NavLink>
+				<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}>ballr</NavLink>
 			</div>
 			{isLoaded && (
 				<>
@@ -29,7 +29,8 @@ function Navigation({ isLoaded }){
 						</> : null
 					}
 					{sessionUser ?
-						<div>
+						<div className='navlink-profile-button'>
+							<NavLink exact to="/photos/upload" className="upload-icon"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 							<ProfileButton user={sessionUser} />
 						</div>
 						: null

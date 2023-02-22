@@ -39,18 +39,17 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} className="profile-button">
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <div className={`${ulClassName} user-list`} ref={ulRef}>
         {user ? (
-          <>
-            <li>{`Hello ${user.first_name}!`}</li>
-            <li>{user.email}</li>
-            <li>
+          <div>
+            <div className="greeting-div">{`Hello ${user.first_name}!`}</div>
+            <div className="email-div">{user.email}</div>
+            <div>
               <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
+            </div>
+          </div>
         ) : (
           // <>
           //   <OpenModalButton
@@ -67,7 +66,7 @@ function ProfileButton({ user }) {
           // </>
           null
         )}
-      </ul>
+      </div>
     </>
   );
 }

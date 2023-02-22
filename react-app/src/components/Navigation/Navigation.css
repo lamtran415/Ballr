@@ -5,3 +5,62 @@
 .hidden {
   display: none;
 }
+
+.whole-navigation-container {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    background-color: rgba(21,21,23,.95);
+    height: 50px;
+}
+
+.icon-navlink {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 180px;
+}
+
+.profile-button {
+  margin-right: 180px;
+  height: 32px;
+  width: 32px;
+  background-image: url(https://combo.staticflickr.com/pw/images/buddyicon03.png#197638499@N08);
+  background-position: center;
+  background-size: contain;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.navlink-profile-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-icon {
+  color: white;
+  font-size: 25px;
+  margin-right: 30px;
+}
+
+.user-list{
+  background-color: white;
+  top: 55px;
+  right: 200px;
+  width: 300px;
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.greeting-div {
+  font-size: 20px;
+  padding-bottom: 5px;
+}
+
+.email-div {
+  padding-bottom: 5px;
+}

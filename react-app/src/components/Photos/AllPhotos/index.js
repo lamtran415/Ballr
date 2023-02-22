@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { getAllPhotosThunk } from "../../../store/photoReducer";
 import './AllPhotos.css'
 
 const AllPhotos = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     useEffect(() => {
         dispatch(getAllPhotosThunk());
     }, [dispatch]);
 
     const allPhotos = Object.values(useSelector((state) => state.photos))
-    console.log("NEED THIS TO SEE WHAT TO KEY INTO.............. ======>", allPhotos)
 
     if (!allPhotos) {
         return null;
@@ -21,14 +19,12 @@ const AllPhotos = () => {
 
     return (
         <>
-            <nav>Explore</nav>
-            <div>Explore</div>
+            <div className="explore-div"><span className="explore-word">Explore</span></div>
             <div className="all-photos-container">
                 <div className="wrapper-all-photos">
                     {allPhotos.map((photo) => (
-                        <div className="photo-card-wrapper">
+                        <NavLink style={{textDecoration: 'none'}} className="photo-card-wrapper" key={photo.id} to={`/photos/${photo.id}`}>
                             <div
-                                key={photo.id}
                                 className='photo-card'
                             >
                                 <img
@@ -44,7 +40,7 @@ const AllPhotos = () => {
                                         <div>{photo.comment.length}</div>
                                     </div>
                             </div>
-                        </div>
+                        </NavLink>
                     ))}
                 </div>
             </div>

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, session, redirect
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import Photo, Comment, db
 from app.forms.photo_form import PhotoForm
 from app.forms.comment_form import CommentForm
@@ -29,7 +29,7 @@ def create_photo():
 
     if form.validate_on_submit():
         photo = Photo(
-            user_id = data['user_id'],
+            user_id = current_user.id,
             title = data['title'],
             description = data['description'],
             url = data['url']
