@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import AllPhotos from "./components/Photos/AllPhotos";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/photos">
-
+            <AllPhotos />
           </Route>
         </Switch>
       )}

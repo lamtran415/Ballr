@@ -8,19 +8,19 @@ from .auth_routes import validation_errors_to_error_messages
 photos_routes = Blueprint('photos_routes', __name__)
 
 # GET All Photos ROUTE --- /photos
-@photos_routes('/')
+@photos_routes.route('/')
 def photos_feed():
     photos = Photo.query.all()
     return {"photos": [photo.to_dict() for photo in photos]}, 200
 
 # GET Individual Photo ROUTE --- /photos/:photoId
-@photos_routes('/<int:photoId>')
+@photos_routes.route('/<int:photoId>')
 def photo_details(photoId):
     photo = Photo.query.get(photoId)
     return photo.to_dict(), 200
 
 # POST Photo Route --- /photos
-@photos_routes('/', methods = ['POST'])
+@photos_routes.route('/', methods = ['POST'])
 @login_required
 def create_photo():
     form = PhotoForm()
@@ -41,7 +41,7 @@ def create_photo():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # PUT Individual Photo Route --- /photos/:photoId
-@photos_routes('/<int:photoId>', methods=['PUT'])
+@photos_routes.route('/<int:photoId>', methods=['PUT'])
 @login_required
 def edit_photo(photoId):
     form = PhotoForm()
@@ -59,7 +59,7 @@ def edit_photo(photoId):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 # DELETE Individual Photo Route --- /photos/:photoId
-@photos_routes('/<int:photoId>', methods=['DELETE'])
+@photos_routes.route('/<int:photoId>', methods=['DELETE'])
 @login_required
 def delete_photo(photoId):
     photo = Photo.query.get(photoId)
