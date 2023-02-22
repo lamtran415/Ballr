@@ -66,3 +66,29 @@ def delete_photo(photoId):
     db.session.delete(photo)
     db.session.commit()
     return 'Photo deleted successfully', 200
+
+# GET All Comments for Photo Route --- /photos/:photoId/comments
+@photos_routes.route('/<int:photoId>/comments')
+def all_comments(photoId):
+    comments = Comment.query.filter(Comment.photo_id == photoId)
+    return {"comments": [comment.to_dict() for comment in comments]}, 200
+
+# POST Comment for Photo Route --- /photos/:photoId/comments
+@photos_routes.route('/<int:photoId>/comments', methods=['POST'])
+@login_required
+def create_comment(photoId):
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    data = form.data
+
+    if form.validate_on_submit():
+        new_comment = Comment(
+            user_id = current_user.id,
+            photo_id = photoId,
+            comment = data['comment']
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
