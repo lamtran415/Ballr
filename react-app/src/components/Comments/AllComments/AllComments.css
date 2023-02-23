@@ -1,0 +1,23 @@
+
+.comment-information {
+    max-width: 550px;
+
+}
+
+.flex-comment-div {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.flex-comment-div:hover {
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+}
+
+.right-comment-side {
+    margin-left: 20px;
+}
+
+.comment-name-info {
+    color: #006DAC;
+}

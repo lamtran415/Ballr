@@ -68,8 +68,10 @@ const IndividualPhoto = () => {
                         </div>
                     </div>
                 </div>
-                <AllComments individualPhoto={individualPhoto} />
-                <CreateComment individualPhoto={individualPhoto} sessionUser={sessionUser} />
+                <div className="comment-section-container">
+                    <AllComments individualPhoto={individualPhoto} />
+                    <CreateComment individualPhoto={individualPhoto} sessionUser={sessionUser} />
+                </div>
             </div>
         )}
         </>
