@@ -1,44 +1,48 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { createPhotoThunk } from "../../../store/photoReducer";
-import './CreatePhoto.css'
+import { useHistory } from "react-router-dom"
+import { useModal } from "../../../context/Modal";
+import { editPhotoThunk } from "../../../store/photoReducer";
+import './EditPhoto.css'
 
-const CreatePhoto = () => {
+const EditPhoto = ({individualPhoto}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [url, setUrl] = useState("")
+    const [title, setTitle] = useState(individualPhoto.title);
+    const [description, setDescription] = useState(individualPhoto.description);
+    const [url, setUrl] = useState(individualPhoto.url);
     const [errors, setErrors] = useState([]);
 	const sessionUser = useSelector(state => state.session.user);
+    const { closeModal } = useModal();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
 
-        const newPhoto = {
+        const editPhoto = {
+            id: individualPhoto.id,
             user_id: sessionUser.id,
             title,
             description,
             url
         }
 
-    const photo = await dispatch(createPhotoThunk(newPhoto))
-    if (Array.isArray(photo)) {
-            setErrors(photo)
+        const photo = await dispatch(editPhotoThunk(editPhoto, individualPhoto.id))
+        if (Array.isArray(photo)) {
+            setErrors(photo);
         } else {
-            history.push(`/photos/${photo.id}`)
+            history.push(`/photos/${individualPhoto.id}`);
+            closeModal()
         }
     }
-
     return (
-        <div className="upload-page-container">
-            <form className="upload-form-container" onSubmit={handleSubmit}>
+        <div className="edit-modal-container">
+            <h4>Edit Photo?</h4>
+            <form className="edit-form-container" onSubmit={handleSubmit}>
                 <ul className="errors-map">
                         {errors?.length > 0 ? errors.map((error) => <li key={error}>{error}</li>) : null}
                 </ul>
-                <div className="label-tag-container">
+                <div className="edit-label-container">
                     <label >
                         Title
                         <input
@@ -71,11 +75,11 @@ const CreatePhoto = () => {
                             required
                         />
                     </label>
+                    <button type="submit">Submit</button>
                 </div>
-                <button className="create-photo-btn" type="submit">Upload</button>
             </form>
         </div>
     )
 }
 
-export default CreatePhoto;
+export default EditPhoto
