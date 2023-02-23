@@ -37,7 +37,7 @@ const EditPhoto = ({individualPhoto}) => {
     }
     return (
         <div className="edit-modal-container">
-            <h1>Hi {sessionUser.first_name}, did you want to make changes?</h1>
+            <h4>Edit Photo?</h4>
             <form className="edit-form-container" onSubmit={handleSubmit}>
                 <ul className="errors-map">
                         {errors?.length > 0 ? errors.map((error) => <li key={error}>{error}</li>) : null}
