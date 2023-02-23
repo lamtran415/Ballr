@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getPhotoDetailsThunk } from "../../../store/photoReducer";
+import AllComments from "../../Comments/AllComments";
+import CreateComment from "../../Comments/CreateComment";
 import OpenModalButton from "../../OpenModalButton";
 import DeletePhoto from "../DeletePhoto";
 import EditPhoto from "../EditPhoto";
@@ -49,7 +51,7 @@ const IndividualPhoto = () => {
             <div className="photo-details-container">
                 <div className="explore-button" onClick={() => history.push('/photos')}><i className="fas fa-arrow-left fa-inverse"></i> Back to explore</div>
                 <div className="upper-photo-details-page">
-                    <img className="photo-detail-image" src={individualPhoto?.url}/>
+                    <img className="photo-detail-image" src={individualPhoto?.url} alt=""/>
                 </div>
                 {session}
                 <div className="photo-description-container">
@@ -66,6 +68,8 @@ const IndividualPhoto = () => {
                         </div>
                     </div>
                 </div>
+                <AllComments individualPhoto={individualPhoto} />
+                <CreateComment individualPhoto={individualPhoto} sessionUser={sessionUser} />
             </div>
         )}
         </>

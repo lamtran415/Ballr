@@ -92,3 +92,4 @@ def create_comment(photoId):
         db.session.commit()
         return new_comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
