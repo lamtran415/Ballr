@@ -1,13 +1,15 @@
 .photo-details-container {
-    /* max-width: 1550px; */
     margin: 0 auto;
+    background-color: rgb(230, 230, 230);
 }
 
 .upper-photo-details-page {
     background-color: #212124;
     display: flex;
     justify-content: center;
-    padding: 50px 0;
+    align-items: center;
+    padding-top: 70px;
+    padding-bottom: 35px;
     height: 700px;
 }
 
@@ -21,6 +23,35 @@
 
 .photo-detail-image {
     max-width: 1080px;
-    height: auto;
+    max-height: 667px;
     object-fit: cover;
+}
+
+.comment-section-container, .photo-description-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.photo-description-container {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px rgb(190, 190, 190) solid;
+}
+
+.photo-description-user {
+    margin-left: 20px;
+}
+
+.photo-user-name {
+    font-size: 18px;
+}
+
+.photo-title-div {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 9px 0;
+}
+
+.actual-description-div {
+    max-width: 550px;
 }
