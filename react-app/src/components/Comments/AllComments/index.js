@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getAllCommentsThunk } from "../../../store/commentReducer";
+import OpenModalButton from "../../OpenModalButton";
+import DeleteComment from "../DeleteComment";
 import EditComment from "../EditComment";
 
 const AllComments = ({individualPhoto}) => {
@@ -41,7 +43,14 @@ const AllComments = ({individualPhoto}) => {
                             </div>
                         }
                         {sessionUser !== null && sessionUser.id === comment.user_id && editingCommentId !== comment.id ?
-                            <button onClick={() => setEditingCommentId(comment.id)}>Edit</button>
+                            <>
+                                <i className="fas fa-edit" onClick={() => setEditingCommentId(comment.id)}></i>
+                                <OpenModalButton
+                                    buttonText={<i className="fas fa-trash-alt"></i>}
+                                    modalComponent={<DeleteComment individualPhoto={individualPhoto} commentInfo={comment}/>}
+                                />
+                            </>
+
                             : null
                         }
                     </div>

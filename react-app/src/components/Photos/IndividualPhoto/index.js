@@ -23,14 +23,14 @@ const IndividualPhoto = () => {
             <div className="edit-delete-button">
                 {sessionUser?.id === individualPhoto?.user_id ?
                     <OpenModalButton
-                    buttonText="Edit Photo"
+                    buttonText={<i className="fas fa-edit"></i>}
                     modalComponent={<EditPhoto individualPhoto={individualPhoto}/>}
                     />
                     : null
                 }
                 {sessionUser?.id === individualPhoto?.user_id ?
                     <OpenModalButton
-                    buttonText="Delete Photo"
+                    buttonText={<i className="fas fa-trash-alt"></i>}
                     modalComponent={<DeletePhoto individualPhoto={individualPhoto}/>}
                     />
                     : null

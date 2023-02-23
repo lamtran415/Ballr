@@ -1,13 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createPhotoCommentThunk } from "../../../store/commentReducer";
+import { createPhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
 
 const CreateComment = ({ individualPhoto, sessionUser }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,10 +27,18 @@ const CreateComment = ({ individualPhoto, sessionUser }) => {
       setErrors(data);
     } else {
       history.push(`/photos/${individualPhoto.id}`);
+      setIsLoaded(true)
     }
 
     setComment("")
   };
+
+  useEffect(() => {
+      return () => {
+        dispatch(getAllCommentsThunk(individualPhoto.id));
+        setIsLoaded(false);
+      }
+  }, [dispatch, individualPhoto.id, isLoaded])
 
   return (
     <>

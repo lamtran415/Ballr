@@ -89,7 +89,7 @@ export const deletePhotoCommentThunk = (commentId) => async (dispatch) => {
     })
 
     if (res.ok) {
-        await dispatch(deleteCommentForPhoto(commentId))
+        dispatch(deleteCommentForPhoto(commentId))
     }
 
     return res;
