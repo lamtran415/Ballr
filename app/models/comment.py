@@ -13,8 +13,6 @@ class Comment(db.Model):
 
     user = db.relationship("User", back_populates="comment")
     photo = db.relationship("Photo", back_populates="comment")
-    # review_image = db.relationship("ReviewImage", back_populates="review", cascade="all, delete")
-
 
     def to_dict(self):
         return {
