@@ -31,8 +31,25 @@ const AllComments = ({individualPhoto}) => {
                             </div>
                         </div>
                         <div className="right-comment-side">
-                            <div className="comment-name-info">
-                                {comment.user.first_name} {comment.user.last_name}
+                            <div className="name-buttons-container">
+                                <div className="comment-name-info">
+                                    {comment.user.first_name} {comment.user.last_name}
+
+                                </div>
+                                <div className="edit-delete-comment-button">
+                                    {sessionUser !== null && sessionUser.id === comment.user_id && editingCommentId !== comment.id ?
+                                    <>
+                                        <i className="fas fa-edit edit-comment-button" onClick={() => setEditingCommentId(comment.id)}></i>
+                                        <OpenModalButton
+                                            className="delete-comment-modal"
+                                            buttonText={<i className="fas fa-trash-alt"></i>}
+                                            modalComponent={<DeleteComment individualPhoto={individualPhoto} commentInfo={comment}/>}
+                                        />
+                                    </>
+
+                                        : null
+                                    }
+                                </div>
                             </div>
                             {editingCommentId === comment.id ?
                                 <EditComment
@@ -45,17 +62,6 @@ const AllComments = ({individualPhoto}) => {
                                 <div className="actual-comment">
                                     {comment.comment}
                                 </div>
-                            }
-                            {sessionUser !== null && sessionUser.id === comment.user_id && editingCommentId !== comment.id ?
-                                <>
-                                    <i className="fas fa-edit" onClick={() => setEditingCommentId(comment.id)}></i>
-                                    <OpenModalButton
-                                        buttonText={<i className="fas fa-trash-alt"></i>}
-                                        modalComponent={<DeleteComment individualPhoto={individualPhoto} commentInfo={comment}/>}
-                                    />
-                                </>
-
-                                : null
                             }
                         </div>
                     </div>
