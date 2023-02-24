@@ -14,13 +14,48 @@
     width: 100%;
     background-color: rgba(21,21,23,.95);
     height: 50px;
+    top: 0;
+    flex-wrap: nowrap;
+    z-index: 1;
 }
 
 .icon-navlink {
-  color: white;
+  color: rgb(231, 231, 231);
   font-weight: bold;
   font-size: 30px;
   margin-left: 180px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.ballr-logo-icon {
+  height: 20px;
+}
+
+.login-signup-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin-right: 180px;
+}
+
+.log-in-button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.sign-up-button {
+  font-size: 14px;
+  font-weight: bold;
+  background-color: rgb(236, 236, 236);
+  border-color: transparent;
+  border-radius: 3px;
+  padding: 5px 15px;
+  cursor: pointer;
 }
 
 .profile-button {

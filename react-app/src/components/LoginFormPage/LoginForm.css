@@ -1,0 +1,72 @@
+.whole-login-page-container {
+    background-image: url("https://images.hdqwalls.com/download/basketball-ring-1920x1080.jpg");
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+}
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    background-color: white;
+    position: relative;
+    height: 400px;
+    width: 352px;
+    margin: auto;
+    bottom: -25%;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.logo-image-form {
+    height: 20px;
+    margin-top: 10px;
+}
+
+.log-in-ballr {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.login-form-container button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 40px;
+    width: 304px;
+    font-size: 15px;
+    border: solid rgb(151, 151, 151);
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: #128FDC;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.login-form-container input {
+    display: flex;
+    height: 45px;
+    width: 290px;
+    font-size: 1em;
+    border: solid rgb(151, 151, 151);
+    border-width: 1px;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.log-in-button-div {
+    margin-top: 20px;
+    border-bottom: 1px lightgray solid;
+}
+
+.not-a-member-div {
+    margin-top: 20px;
+    font-size: 11px;
+}

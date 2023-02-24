@@ -14,8 +14,6 @@ class Photo(db.Model):
 
     user = db.relationship("User", back_populates="photo")
     comment = db.relationship("Comment", back_populates="photo", cascade="all, delete")
-    # review_image = db.relationship("ReviewImage", back_populates="review", cascade="all, delete")
-
 
     def to_dict(self):
         return {

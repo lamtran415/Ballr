@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import AllPhotos from "./components/Photos/AllPhotos";
 import IndividualPhoto from "./components/Photos/IndividualPhoto";
 import CreatePhoto from "./components/Photos/CreatePhoto";
+import SplashPage from "./components/SplashPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,10 +22,13 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route exact path = "/">
+            <SplashPage />
+          </Route>
+          <Route exact path="/login" >
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path="/photos">

@@ -32,13 +32,13 @@ const AllPhotos = () => {
                                     src={photo.url}
                                     alt=""
                                 />
-                            </div>
-                            <div className="photo-information">
-                                    <div className="photo-title">{photo.title}</div>
-                                    <div className="user-comment-section">
-                                        <div>By: {photo.user.first_name} {photo.user.last_name}</div>
-                                        <div>{photo.comment.length}</div>
-                                    </div>
+                                <div className="photo-information">
+                                        <div className="photo-title">{photo.title}</div>
+                                        <div className="user-comment-section">
+                                            <div className="user-name-div">by {photo.user.first_name} {photo.user.last_name}</div>
+                                            <div className="number-of-comments"><i className="far fa-comment fa-2x"></i><span className="comment-length">{photo.comment.length}</span></div>
+                                        </div>
+                                </div>
                             </div>
                         </NavLink>
                     ))}
