@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editPhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
+import "./EditComment.css"
 
 const EditComment = ({ individualPhoto, sessionUser, commentInfo, setEditingCommentId }) => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const EditComment = ({ individualPhoto, sessionUser, commentInfo, setEditingComm
             onChange={(e) => setComment(e.target.value)}
             required
           />
-            <button className="edit-comment-button" type="submit">Done</button>
+            <button className="edit-form-comment-button" type="submit">Done</button>
         </div>
       </form>
     </>

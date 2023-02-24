@@ -6,3 +6,7 @@ body {
 #root {
     font-family: Helvetica, sans-serif, Arial
 }
+
+#modal-content {
+    border-radius: 4px;
+}
