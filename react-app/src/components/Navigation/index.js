@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import BallrIcon from './LogoIcon/ballr-logo.png'
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -10,20 +11,23 @@ function Navigation({ isLoaded }){
 	return (
 		<div className='whole-navigation-container'>
 			<div>
-				<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}>ballr</NavLink>
+				{
+					sessionUser ?
+					<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={BallrIcon}/>ballr</NavLink>
+				:
+					<NavLink exact to="/" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={BallrIcon}/>ballr</NavLink>
+				}
 			</div>
 			{isLoaded && (
 				<>
 					{!sessionUser ?
 						<>
-							<div>
+							<div className='login-signup-container'>
 								<NavLink exact to="/login">
-									<button>Log In</button>
+									<button className='log-in-button'>Log In</button>
 								</NavLink>
-							</div>
-							<div>
 								<NavLink exact to="/signup">
-									<button>Sign In</button>
+									<button className='sign-up-button'>Sign Up</button>
 								</NavLink>
 							</div>
 						</> : null
