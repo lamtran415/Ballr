@@ -41,7 +41,7 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
+    <div className="whole-profile-button-container">
       <button onClick={openMenu} className="profile-button">
       </button>
       <div className={`${ulClassName} user-list`} ref={ulRef}>
@@ -70,7 +70,7 @@ function ProfileButton({ user }) {
           null
         )}
       </div>
-    </>
+    </div>
   );
 }
 

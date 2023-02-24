@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { deletePhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
+import "./DeleteComment.css";
 
 const DeleteComment = ({individualPhoto, commentInfo}) => {
     const dispatch = useDispatch();
@@ -27,14 +28,18 @@ const DeleteComment = ({individualPhoto, commentInfo}) => {
 
     return (
         <div className="delete-modal-container">
-        <div className="delete-pop-up">
-            <h2>Delete this photo</h2>
-            <p>Are you sure you want to delete this comment?</p>
-            <form onSubmit={handleSubmit}>
-                <button className="delete-button" type="submit">Delete</button>
-            </form>
+            <div className="delete-pop-up">
+                <div className="delete-header-close-button">
+                    <div className="delete-header">Delete Comment</div>
+                    <span className="close-edit-button" onClick={() => closeModal()}><i className="fas fa-times"></i></span>
+                </div>
+                <p className="delete-text-p-tag">Are you sure you want to delete this comment?</p>
+                <form className="delete-form-container" onSubmit={handleSubmit}>
+                    <button className="cancel-button" onClick={() => closeModal()}>Cancel</button>
+                    <button className="delete-button" type="submit">Delete</button>
+                </form>
+            </div>
         </div>
-    </div>
     )
 }
 

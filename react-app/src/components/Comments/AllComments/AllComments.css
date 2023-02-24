@@ -1,6 +1,5 @@
-
 .comment-information {
-    max-width: 550px;
+    max-width: 525px;
 
 }
 
@@ -18,6 +17,28 @@
     margin-left: 20px;
 }
 
+.name-buttons-container {
+    display: flex;
+}
+
 .comment-name-info {
     color: #006DAC;
 }
+
+.edit-delete-comment-button {
+    margin-left: 325px;
+}
+
+.edit-comment-button {
+    margin-right: 1px;
+    color: gray;
+    cursor: pointer;
+}
+
+.delete-comment-modal {
+    border: none;
+    color: gray;
+    font-size: 15px;
+    cursor: pointer;
+}
+

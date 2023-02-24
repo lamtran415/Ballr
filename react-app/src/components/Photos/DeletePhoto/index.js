@@ -17,10 +17,14 @@ const DeletePhoto = ({individualPhoto}) => {
     return (
         <div className="delete-modal-container">
             <div className="delete-pop-up">
-                <h2>Delete this photo?</h2>
-                <p>(Are you sure you want to delete this photo?)</p>
-                <form onSubmit={handleSubmit}>
-                <button className="delete-button" type="submit">Confirm Delete</button>
+                <div className="delete-header-close-button">
+                    <div className="delete-header">Delete Photo</div>
+                    <span className="close-edit-button" onClick={() => closeModal()}><i className="fas fa-times"></i></span>
+                </div>
+                <p className="delete-text-p-tag">Are you sure you want to delete this photo?</p>
+                <form className="delete-form-container" onSubmit={handleSubmit}>
+                    <button className="cancel-button" onClick={() => closeModal()}>Cancel</button>
+                    <button className="delete-button" type="submit">Delete</button>
                 </form>
             </div>
         </div>
