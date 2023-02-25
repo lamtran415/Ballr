@@ -70,3 +70,15 @@
     margin-top: 20px;
     font-size: 11px;
 }
+
+.login-errors-map {
+    color: red;
+    margin-right: 120px;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 17px;
+}
+
+.login-error-div {
+    padding-bottom: 1px;
+}

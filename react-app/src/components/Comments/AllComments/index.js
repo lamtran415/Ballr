@@ -21,13 +21,12 @@ const AllComments = ({individualPhoto}) => {
 
     return (
         <div className="whole-comments-container">
-            <h5>Comments</h5>
             <div className="comment-information">
                 {commentsArr.map((comment) => (
                     <div className="flex-comment-div" key={comment.id}>
                         <div className="left-comment-side">
                             <div className="comment-image">
-                                <i className="fas fa-user-circle fa-2x" />
+                                <i className="fas fa-user-circle fa-2x" style={{"color": "#128FDC"}}/>
                             </div>
                         </div>
                         <div className="right-comment-side">

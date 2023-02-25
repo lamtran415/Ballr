@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPhotoThunk } from "../../../store/photoReducer";
+import BallrIcon from '../../Navigation/LogoIcon/ballr-logo.png'
 import './CreatePhoto.css'
 
 const CreatePhoto = () => {
@@ -26,7 +27,9 @@ const CreatePhoto = () => {
 
     const photo = await dispatch(createPhotoThunk(newPhoto))
     if (Array.isArray(photo)) {
-            setErrors(photo)
+        const errorMessages = Object.values(photo);
+        const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
+        setErrors(formattedErrorMessages);
         } else {
             history.push(`/photos/${photo.id}`)
         }
@@ -35,9 +38,10 @@ const CreatePhoto = () => {
     return (
         <div className="upload-page-container">
             <form className="upload-form-container" onSubmit={handleSubmit}>
-                <ul className="errors-map">
-                        {errors?.length > 0 ? errors.map((error) => <li key={error}>{error}</li>) : null}
-                </ul>
+                <img className="logo-image-form" src={BallrIcon} alt=""/>
+                <div className="errors-map upload-error-map">
+                        {errors?.length > 0 ? errors.map((error) => <div className="upload-errors-div" key={error}>{error}</div>) : null}
+                </div>
                 <div className="label-tag-container">
                     <label >
                         Title
@@ -52,7 +56,7 @@ const CreatePhoto = () => {
                     </label>
                     <label>
                         Description
-                        <input
+                        <textarea
                             type="text"
                             name="description"
                             value={description}

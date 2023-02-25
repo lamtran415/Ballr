@@ -23,7 +23,9 @@ function SignupFormPage() {
     if (password === confirmPassword) {
         const data = await dispatch(signUp(firstName, lastName, email, password));
         if (data) {
-          setErrors(data)
+          const errorMessages = Object.values(data);
+          const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
+          setErrors(formattedErrorMessages);
         }
     } else {
         setErrors(['Confirm Password field must be the same as the Password field']);
@@ -35,9 +37,9 @@ function SignupFormPage() {
       <form className="signup-form-container" onSubmit={handleSubmit}>
       <img className="logo-image-form" src={BallrIcon} alt=""/>
         <div className="sign-up-div">Sign Up for Ballr</div>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+        <div className="sign-up-errors-map">
+          {errors.map((error, idx) => <div className="sign-up-errors-div" key={idx}>{error}</div>)}
+        </div>
         <label>
           {/* First name */}
           <input
@@ -61,7 +63,7 @@ function SignupFormPage() {
         <label>
           {/* Email */}
           <input
-            type="text"
+            type="email"
             value={email}
             placeholder="Email address"
             onChange={(e) => setEmail(e.target.value)}

@@ -74,7 +74,7 @@
 .each-photo {
     width: 380px;
     height: 300px;
-    object-fit: cover;
+    object-fit: fill;
     object-position: center;
     padding-left: 5px;
 }

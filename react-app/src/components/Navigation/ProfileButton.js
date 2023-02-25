@@ -50,7 +50,7 @@ function ProfileButton({ user }) {
             <div className="greeting-div">{`Hello ${user.first_name}!`}</div>
             <div className="email-div">{user.email}</div>
             <div>
-              <button onClick={handleLogout}>Log Out</button>
+              <div className="log-out-button" onClick={handleLogout}>Log Out</div>
             </div>
           </div>
         ) : (

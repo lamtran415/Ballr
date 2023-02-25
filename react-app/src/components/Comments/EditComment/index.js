@@ -25,7 +25,9 @@ const EditComment = ({ individualPhoto, sessionUser, commentInfo, setEditingComm
       editPhotoCommentThunk(commentDetails, commentInfo.id)
     );
     if (Array.isArray(data)) {
-      setErrors(data);
+      const errorMessages = Object.values(data);
+      const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
+      setErrors(formattedErrorMessages);
     } else {
         history.push(`/photos/${individualPhoto.id}`);
         setEditingCommentId(null)
@@ -45,9 +47,9 @@ const EditComment = ({ individualPhoto, sessionUser, commentInfo, setEditingComm
   return (
     <>
       <form className="edit-comment-container" onSubmit={handleSubmit}>
-        <ul className="errors-map">
-          {errors?.length > 0 ? errors.map((error) => <li key={error}>{error}</li>) : null}
-        </ul>
+        <div className="errors-map">
+          {errors?.length > 0 ? errors.map((error) => <div key={error}>{error}</div>) : null}
+        </div>
         <div className="edit-comment-input-container">
           <textarea
             type="text"
