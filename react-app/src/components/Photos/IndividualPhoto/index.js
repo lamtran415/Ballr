@@ -49,13 +49,13 @@ const IndividualPhoto = () => {
         <>
         {isLoaded && (
             <div className="photo-details-container">
-                <div className="explore-button" onClick={() => history.push('/photos')}><i className="fas fa-arrow-left fa-inverse"></i> Back to explore</div>
+                <div className="explore-button" onClick={() => history.push('/photos')}><i className="fas fa-arrow-left fa-inverse fa-s"></i> <span className="back-explore-button">Back to explore</span></div>
                 <div className="upper-photo-details-page">
                     <img className="photo-detail-image" src={individualPhoto?.url} alt=""/>
                 </div>
                 {session}
                 <div className="photo-description-container">
-                    <i className="fas fa-user fa-2x" />
+                    <i className="fas fa-user fa-2x" style={{"color": "orange"}}/>
                     <div className="photo-description-user">
                         <div className="photo-user-name">
                             {`${individualPhoto?.user.first_name} ${individualPhoto?.user.last_name}`}

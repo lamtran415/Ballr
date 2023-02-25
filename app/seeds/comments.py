@@ -13,8 +13,14 @@ def seed_comments():
     comment8 = Comment(user_id=2, photo_id=8, comment="My daughter looks up to this superstar." )
     comment9 = Comment(user_id=1, photo_id=9, comment='This is a tough one, Barry Bonds will always be the King.')
     comment10 = Comment(user_id=3, photo_id=10, comment="At the end of the day, you've gotta feel some way. So why not feel unbeatable? Why not feel untouchable?")
+    comment11 = Comment(user_id=3, photo_id=11, comment="What a clutch shot!")
+    comment12 = Comment(user_id=1, photo_id=12, comment="These guys make it look easy.")
+    comment13 = Comment(user_id=3, photo_id=13, comment="The energy in this stadium is electric!")
+    comment14 = Comment(user_id=1, photo_id=14, comment="This team is dominating!")
+    comment15 = Comment(user_id=1, photo_id=15, comment="The form on this athlete is incredible.")
+    comment16 = Comment(user_id=3, photo_id=16, comment="This match was a nail-biter until the very end.")
 
-    all_comments = [comment1, comment2, comment3, comment4, comment5, comment6, comment7, comment8, comment9, comment10]
+    all_comments = [comment1, comment2, comment3, comment4, comment5, comment6, comment7, comment8, comment9, comment10, comment11, comment12, comment13, comment14, comment15, comment16]
     add_comments = [db.session.add(comment) for comment in all_comments]
     db.session.commit()
 

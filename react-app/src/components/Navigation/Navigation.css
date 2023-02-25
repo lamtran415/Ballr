@@ -28,7 +28,8 @@
 }
 
 .ballr-logo-icon {
-  height: 20px;
+  padding-top: 5px;
+  height: 35px;
 }
 
 .login-signup-container {
@@ -87,15 +88,27 @@
   top: 55px;
   right: 200px;
   width: 300px;
-  border-radius: 15px;
-  padding: 15px;
+  border-radius: 5px;
+  padding-bottom: 5px;
 }
 
 .greeting-div {
   font-size: 20px;
-  padding-bottom: 5px;
+  padding: 10px 10px;
 }
 
 .email-div {
   padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.log-out-button {
+  font-size: 14px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.log-out-button:hover {
+  background-color: rgb(235, 235, 235);
 }
