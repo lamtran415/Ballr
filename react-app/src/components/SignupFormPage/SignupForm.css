@@ -11,7 +11,7 @@
     align-items: center;
     background-color: white;
     position: relative;
-    height: 600px;
+    height: 605px;
     width: 352px;
     margin: auto;
     bottom: -20%;
@@ -66,4 +66,15 @@
 
 .tos-privacy {
     color: #006DAC;
+}
+
+.sign-up-errors-map {
+    width: 300px;
+    color: red;
+    font-size: 12px;
+    padding: 17px;
+}
+
+.sign-up-errors-div {
+    padding-bottom: 1px;
 }

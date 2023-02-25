@@ -19,7 +19,9 @@ function LoginFormPage() {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      const errorMessages = Object.values(data);
+      const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
+      setErrors(formattedErrorMessages);
     }
   };
 
@@ -28,15 +30,15 @@ function LoginFormPage() {
       <form className="login-form-container" onSubmit={handleSubmit}>
       <img className="logo-image-form" src={BallrIcon} alt=""/>
       <div className="log-in-ballr">Log in to Ballr</div>
-        <ul>
+        <div className="login-errors-map">
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <div className="login-error-div" key={idx}>{error}</div>
           ))}
-        </ul>
+        </div>
         <label>
           {/* Email */}
           <input
-            type="text"
+            type="email"
             value={email}
             placeholder="Email address"
             onChange={(e) => setEmail(e.target.value)}

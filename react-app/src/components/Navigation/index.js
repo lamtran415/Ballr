@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import BallrIcon from './LogoIcon/ballr-logo.png'
+import MainLogo from './LogoIcon/main-ballr-logo.png'
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -13,9 +14,9 @@ function Navigation({ isLoaded }){
 			<div>
 				{
 					sessionUser ?
-					<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={BallrIcon}/>ballr</NavLink>
+					<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
 				:
-					<NavLink exact to="/" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={BallrIcon}/>ballr</NavLink>
+					<NavLink exact to="/" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
 				}
 			</div>
 			{isLoaded && (

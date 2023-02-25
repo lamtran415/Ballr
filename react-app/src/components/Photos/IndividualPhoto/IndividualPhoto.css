@@ -14,11 +14,20 @@
 }
 
 .explore-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     position: absolute;
-    top: 60px;
-    left: 15px;
+    top: 70px;
+    left: 20px;
     color: white;
+}
+
+.back-explore-button {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 10px;
+    font-size: 13px;
 }
 
 .photo-detail-image {

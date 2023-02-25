@@ -29,7 +29,9 @@ const EditPhoto = ({individualPhoto}) => {
 
         const photo = await dispatch(editPhotoThunk(editPhoto, individualPhoto.id))
         if (Array.isArray(photo)) {
-            setErrors(photo);
+            const errorMessages = Object.values(photo);
+            const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
+            setErrors(formattedErrorMessages);
         } else {
             history.push(`/photos/${individualPhoto.id}`);
             closeModal()
@@ -37,11 +39,14 @@ const EditPhoto = ({individualPhoto}) => {
     }
     return (
         <div className="edit-modal-container">
-            <div>Edit Photo</div>
-            <form className="edit-form-container" onSubmit={handleSubmit}>
-                <ul className="errors-map">
-                        {errors?.length > 0 ? errors.map((error) => <li key={error}>{error}</li>) : null}
-                </ul>
+            <div className="edit-header-close-button">
+                <div className="edit-photo-header">Edit Photo</div>
+                <span className="close-edit-button" onClick={() => closeModal()}><i className="fas fa-times"></i></span>
+            </div>
+                <form className="edit-form-container" onSubmit={handleSubmit}>
+                <div className="errors-map">
+                        {errors?.length > 0 ? errors.map((error) => <div key={error}>{error}</div>) : null}
+                </div>
                 <div className="edit-label-container">
                     <label >
                         Title
@@ -56,7 +61,7 @@ const EditPhoto = ({individualPhoto}) => {
                     </label>
                     <label>
                         Description
-                        <input
+                        <textarea
                             type="text"
                             name="description"
                             value={description}
@@ -75,7 +80,7 @@ const EditPhoto = ({individualPhoto}) => {
                             required
                         />
                     </label>
-                    <button type="submit">Submit</button>
+                    <button className="edit-photo-button" type="submit">Edit</button>
                 </div>
             </form>
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
+import "./CreateComment.css"
 
 const CreateComment = ({ individualPhoto, sessionUser }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,9 @@ const CreateComment = ({ individualPhoto, sessionUser }) => {
       createPhotoCommentThunk(commentDetails, individualPhoto.id)
     );
     if (Array.isArray(data)) {
-      setErrors(data);
+      const errorMessages = Object.values(data);
+      const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
+      setErrors(formattedErrorMessages);
     } else {
       history.push(`/photos/${individualPhoto.id}`);
       setIsLoaded(true)
@@ -42,11 +45,10 @@ const CreateComment = ({ individualPhoto, sessionUser }) => {
 
   return (
     <>
-      <h4>Add a Comment</h4>
       <form className="create-comment-container" onSubmit={handleSubmit}>
-        <ul className="errors-map">
-          {errors?.length > 0 ? errors.map((error) => <li key={error}>{error}</li>) : null}
-        </ul>
+        <div className="errors-map">
+          {errors?.length > 0 ? errors.map((error) => <div key={error}>{error}</div>) : null}
+        </div>
         <div className="comment-input-container">
           <textarea
             type="text"
@@ -56,7 +58,7 @@ const CreateComment = ({ individualPhoto, sessionUser }) => {
             onChange={(e) => setComment(e.target.value)}
             required
           />
-            <button className="comment-button" type="submit" onClick={handleSubmit}>Comment</button>
+            <button className="create-comment-button" type="submit" onClick={handleSubmit}>Comment</button>
         </div>
       </form>
     </>
