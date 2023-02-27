@@ -10,7 +10,7 @@ const AllComments = ({individualPhoto}) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllCommentsThunk(individualPhoto.id))
+        dispatch(getAllCommentsThunk(individualPhoto?.id))
     }, [dispatch, individualPhoto.id])
 
     const sessionUser = useSelector(state => state.session.user)

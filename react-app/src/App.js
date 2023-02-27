@@ -9,6 +9,7 @@ import AllPhotos from "./components/Photos/AllPhotos";
 import IndividualPhoto from "./components/Photos/IndividualPhoto";
 import CreatePhoto from "./components/Photos/CreatePhoto";
 import SplashPage from "./components/SplashPage";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/photos/:photoId">
             <IndividualPhoto />
+          </Route>
+          <Route>
+            <ErrorPage />
           </Route>
         </Switch>
       )}

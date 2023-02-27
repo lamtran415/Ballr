@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
-import BallrIcon from './LogoIcon/ballr-logo.png'
 import MainLogo from './LogoIcon/main-ballr-logo.png'
 
 function Navigation({ isLoaded }){
@@ -11,11 +10,12 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div className='whole-navigation-container'>
-			<div>
+			{/* <div className='inner-navigation-container'> */}
+			<div className='navlink-container'>
 				{
 					sessionUser ?
 					<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
-				:
+					:
 					<NavLink exact to="/" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
 				}
 			</div>
@@ -42,6 +42,7 @@ function Navigation({ isLoaded }){
 					}
 				</>
 			)}
+			{/* </div> */}
 		</div>
 	);
 }
