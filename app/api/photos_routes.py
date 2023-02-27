@@ -17,6 +17,8 @@ def photos_feed():
 @photos_routes.route('/<int:photoId>')
 def photo_details(photoId):
     photo = Photo.query.get(photoId)
+    if photo is None:
+        return {"error": "Photo not found"}, 404
     return photo.to_dict(), 200
 
 # POST Photo Route --- /photos
@@ -92,4 +94,3 @@ def create_comment(photoId):
         db.session.commit()
         return new_comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-
