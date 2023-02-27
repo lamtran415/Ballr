@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { getPhotoDetailsThunk } from "../../../store/photoReducer";
 import AllComments from "../../Comments/AllComments";
 import CreateComment from "../../Comments/CreateComment";
@@ -17,12 +17,14 @@ const IndividualPhoto = () => {
     const individualPhoto = useSelector(state => state.photos[photoId]);
 	const sessionUser = useSelector(state => state.session.user);
 
+
     let session;
     if (sessionUser !== null) {
         session = (
             <div className="edit-delete-button">
                 {sessionUser?.id === individualPhoto?.user_id ?
                     <OpenModalButton
+                    className="edit-photo-modal-button"
                     buttonText={<i className="fas fa-edit"></i>}
                     modalComponent={<EditPhoto individualPhoto={individualPhoto}/>}
                     />
@@ -30,6 +32,7 @@ const IndividualPhoto = () => {
                 }
                 {sessionUser?.id === individualPhoto?.user_id ?
                     <OpenModalButton
+                    className="delete-photo-modal-button"
                     buttonText={<i className="fas fa-trash-alt"></i>}
                     modalComponent={<DeletePhoto individualPhoto={individualPhoto}/>}
                     />
@@ -43,15 +46,27 @@ const IndividualPhoto = () => {
         dispatch(getPhotoDetailsThunk(photoId))
             .then(() => (setIsLoaded(true)))
 
-    }, [dispatch, photoId])
+        }, [dispatch, photoId])
 
-    return (
-        <>
+    if (!individualPhoto) {
+        return (
+            <div className="whole-error-page-container">
+            {sessionUser ? <Link className="error-home-link" to='/photos'>Go Home</Link> : <Link className="error-home-link" to="/">Go Home</Link>}
+        </div>
+        )
+    };
+
+        return (
+            <>
         {isLoaded && (
             <div className="photo-details-container">
                 <div className="explore-button" onClick={() => history.push('/photos')}><i className="fas fa-arrow-left fa-inverse fa-s"></i> <span className="back-explore-button">Back to explore</span></div>
                 <div className="upper-photo-details-page">
-                    <img className="photo-detail-image" src={individualPhoto?.url} alt=""/>
+                    <img className="photo-detail-image"
+                        src={individualPhoto?.url}
+                        alt=""
+                        onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
+                    />
                 </div>
                 {session}
                 <div className="photo-description-container">
@@ -70,7 +85,7 @@ const IndividualPhoto = () => {
                 </div>
                 <div className="comment-section-container">
                     <AllComments individualPhoto={individualPhoto} />
-                    <CreateComment individualPhoto={individualPhoto} sessionUser={sessionUser} />
+                    {sessionUser ? <CreateComment individualPhoto={individualPhoto} sessionUser={sessionUser} /> : null}
                 </div>
             </div>
         )}
