@@ -45,3 +45,8 @@
     font-size: 15px;
     cursor: pointer;
 }
+
+.actual-comment {
+    width: 450px;
+    word-wrap: break-word;
+}
