@@ -77,6 +77,7 @@ function SignupFormPage() {
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
+            minLength={4}
             required
           />
         </label>
@@ -91,7 +92,7 @@ function SignupFormPage() {
           />
         </label>
         <button type="submit">Sign Up</button>
-        <div className="policy-div">By signing up, you agree with Ballr's <span className="tos-privacy">Terms of Services</span> and <span className="tos-privacy">Privacy Policy.</span> </div>
+        <div className="policy-div">By signing up, you agree with Ballr's <a className="tos-privacy" href="https://www.flickr.com/help/terms">Terms of Services</a> and <a className="tos-privacy" href="https://www.flickr.com/help/privacy">Privacy Policy.</a> </div>
         <div className="not-a-member-div">Already a Flickr member? <NavLink exact to='/login' style={{ textDecoration: "none", color: "#006DAC"}}>Log in here</NavLink></div>
       </form>
     </div>
