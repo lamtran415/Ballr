@@ -34,7 +34,7 @@ const IndividualPhoto = () => {
                     <OpenModalButton
                     className="delete-photo-modal-button"
                     buttonText={<i className="fas fa-trash-alt"></i>}
-                    modalComponent={<DeletePhoto individualPhoto={individualPhoto}/>}
+                    modalComponent={<DeletePhoto individualPhoto={individualPhoto} sessionUser={sessionUser}/>}
                     />
                     : null
                 }
