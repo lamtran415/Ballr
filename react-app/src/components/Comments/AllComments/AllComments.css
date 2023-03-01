@@ -12,11 +12,6 @@
     margin-bottom: 15px;
 }
 
-.flex-comment-div:hover {
-    background-color: rgb(240, 240, 240);
-    border-radius: 5px;
-}
-
 .right-comment-side {
     margin-left: 20px;
 }
@@ -26,27 +21,29 @@
 }
 
 .comment-name-info {
-    color: #006DAC;
+    width: 200px;
+    color: gray;
 }
 
 .edit-delete-comment-button {
-    margin-left: 325px;
+    margin-left: 295px;
 }
 
 .edit-comment-button {
     margin-right: 1px;
-    color: gray;
+    color: rgb(168, 168, 168);
     cursor: pointer;
 }
 
 .delete-comment-modal {
     border: none;
-    color: gray;
+    color: rgb(168, 168, 168);
+    background-color: transparent;
     font-size: 15px;
     cursor: pointer;
 }
 
 .actual-comment {
-    width: 450px;
+    width: 540px;
     word-wrap: break-word;
 }

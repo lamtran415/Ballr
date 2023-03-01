@@ -37,8 +37,12 @@
     object-fit: cover;
 }
 
+.user-info-and-comment-section {
+    margin-right: 350px;
+}
+
 .comment-section-container, .photo-description-container {
-    max-width: 1000px;
+    max-width: 600px;
     margin: auto;
 }
 
