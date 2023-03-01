@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import './LoginForm.css';
 import BallrIcon from '../Navigation/LogoIcon/ballr-logo.png'
 
 
 function LoginFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +29,7 @@ function LoginFormPage() {
   return (
     <div className="whole-login-page-container">
       <form className="login-form-container" onSubmit={handleSubmit}>
-      <img className="logo-image-form" src={BallrIcon} alt=""/>
+      <img className="logo-image-form" src={BallrIcon} alt="" onClick={() => history.push('/')}/>
       <div className="log-in-ballr">Log in to Ballr</div>
         <div className="login-errors-map">
           {errors.map((error, idx) => (
