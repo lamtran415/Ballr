@@ -38,7 +38,7 @@ const CreatePhoto = () => {
     return (
         <div className="upload-page-container">
             <form className="upload-form-container" onSubmit={handleSubmit}>
-                <img className="logo-image-form" src={BallrIcon} alt=""/>
+                <img className="logo-image-form" src={BallrIcon} alt="" onClick={() => history.push('/photos')}/>
                 <div className="errors-map upload-error-map">
                         {errors?.length > 0 ? errors.map((error) => <div className="upload-errors-div" key={error}>{error}</div>) : null}
                 </div>
