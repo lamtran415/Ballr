@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 import BallrIcon from '../Navigation/LogoIcon/ballr-logo.png'
@@ -8,6 +8,7 @@ import BallrIcon from '../Navigation/LogoIcon/ballr-logo.png'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -35,7 +36,7 @@ function SignupFormPage() {
   return (
     <div className="whole-signup-page-container">
       <form className="signup-form-container" onSubmit={handleSubmit}>
-      <img className="logo-image-form" src={BallrIcon} alt=""/>
+      <img className="logo-image-form" src={BallrIcon} alt="" onClick={() => history.push('/')}/>
         <div className="sign-up-div">Sign Up for Ballr</div>
         <div className="sign-up-errors-map">
           {errors.map((error, idx) => <div className="sign-up-errors-div" key={idx}>{error}</div>)}
@@ -92,7 +93,7 @@ function SignupFormPage() {
           />
         </label>
         <button type="submit">Sign Up</button>
-        <div className="policy-div">By signing up, you agree with Ballr's <a className="tos-privacy" href="https://www.flickr.com/help/terms">Terms of Services</a> and <a className="tos-privacy" href="https://www.flickr.com/help/privacy">Privacy Policy.</a> </div>
+        <div className="policy-div">By signing up, you agree with Ballr's <a className="tos-privacy" href="https://www.flickr.com/help/terms" target='_blank'>Terms of Services</a> and <a className="tos-privacy" href="https://www.flickr.com/help/privacy" target='_blank'>Privacy Policy.</a> </div>
         <div className="not-a-member-div">Already a Flickr member? <NavLink exact to='/login' style={{ textDecoration: "none", color: "#006DAC"}}>Log in here</NavLink></div>
       </form>
     </div>

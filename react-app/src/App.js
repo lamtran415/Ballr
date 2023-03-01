@@ -10,6 +10,7 @@ import IndividualPhoto from "./components/Photos/IndividualPhoto";
 import CreatePhoto from "./components/Photos/CreatePhoto";
 import SplashPage from "./components/SplashPage";
 import ErrorPage from "./components/ErrorPage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

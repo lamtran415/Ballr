@@ -57,7 +57,7 @@ const IndividualPhoto = () => {
     };
 
         return (
-            <>
+            <div className="whole-individual-photo-container">
         {isLoaded && (
             <div className="photo-details-container">
                 <div className="explore-button" onClick={() => history.push('/photos')}><i className="fas fa-arrow-left fa-inverse fa-s"></i> <span className="back-explore-button">Back to explore</span></div>
@@ -89,7 +89,7 @@ const IndividualPhoto = () => {
                 </div>
             </div>
         )}
-        </>
+        </div>
     )
 }
 

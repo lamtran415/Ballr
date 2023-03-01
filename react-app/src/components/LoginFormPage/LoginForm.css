@@ -1,6 +1,6 @@
 .whole-login-page-container {
     background-image: url("https://images.hdqwalls.com/download/basketball-ring-1920x1080.jpg");
-    height: 100vh;
+    height: 95.2vh;
     background-position: center;
     background-size: cover;
 }
@@ -23,6 +23,7 @@
 .logo-image-form {
     height: 20px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .log-in-ballr {
