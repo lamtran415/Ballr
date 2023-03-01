@@ -26,13 +26,13 @@ const AllPhotos = () => {
                         <NavLink style={{textDecoration: 'none'}} className="photo-card-wrapper" key={photo.id} to={`/photos/${photo.id}`}>
                             <div
                                 className='photo-card'
-                            >
+                                >
                                 <img
                                     className="each-photo"
                                     src={photo.url}
                                     alt=""
                                     onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
-                                />
+                                    />
                                 <div className="photo-information">
                                         <div className="photo-title">{photo.title}</div>
                                         <div className="user-comment-section">

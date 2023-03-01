@@ -57,7 +57,7 @@ const IndividualPhoto = () => {
     };
 
         return (
-            <div className="whole-individual-photo-container">
+        <div className="whole-individual-photo-container">
         {isLoaded && (
             <div className="photo-details-container">
                 <div className="explore-button" onClick={() => history.push('/photos')}><i className="fas fa-arrow-left fa-inverse fa-s"></i> <span className="back-explore-button">Back to explore</span></div>
@@ -69,23 +69,25 @@ const IndividualPhoto = () => {
                     />
                 </div>
                 {session}
-                <div className="photo-description-container">
-                    <i className="fas fa-user fa-2x" style={{"color": "orange"}}/>
-                    <div className="photo-description-user">
-                        <div className="photo-user-name">
-                            {`${individualPhoto?.user.first_name} ${individualPhoto?.user.last_name}`}
-                        </div>
-                        <div className="photo-title-div">
-                            {individualPhoto?.title}
-                        </div>
-                        <div className="actual-description-div">
-                            {individualPhoto?.description}
+                <div className="user-info-and-comment-section">
+                    <div className="photo-description-container">
+                        <i className="fas fa-user fa-2x" style={{"color": "orange"}}/>
+                        <div className="photo-description-user">
+                            <div className="photo-user-name">
+                                {`${individualPhoto?.user.first_name} ${individualPhoto?.user.last_name}`}
+                            </div>
+                            <div className="photo-title-div">
+                                {individualPhoto?.title}
+                            </div>
+                            <div className="actual-description-div">
+                                {individualPhoto?.description}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div className="comment-section-container">
-                    <AllComments individualPhoto={individualPhoto} />
-                    {sessionUser ? <CreateComment individualPhoto={individualPhoto} sessionUser={sessionUser} /> : null}
+                    <div className="comment-section-container">
+                        <AllComments individualPhoto={individualPhoto} />
+                        {sessionUser ? <CreateComment individualPhoto={individualPhoto} sessionUser={sessionUser} /> : null}
+                    </div>
                 </div>
             </div>
         )}
