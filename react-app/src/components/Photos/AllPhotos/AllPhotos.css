@@ -17,9 +17,18 @@
     padding-top: 50px;
 }
 
+
 .photo-card {
     position: relative;
     overflow: hidden;
+}
+
+.each-photo {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    object-position:center;
+    padding-left: 5px;
 }
 
 .photo-information {
@@ -68,15 +77,6 @@
 .comment-length {
     margin-left: 4px;
     font-size: 14px;
-}
-
-
-.each-photo {
-    width: 380px;
-    height: 300px;
-    object-fit: cover;
-    object-position: center;
-    padding-left: 5px;
 }
 
 .explore-div {
