@@ -61,7 +61,7 @@ Sign up entering your first name, last name, email, and confirm password.
 
 ## Photos Page
 Once logged in, you are able to view all the photos avaiable on the website as well as click on each individual photo for more details.
-![image](https://user-images.githubusercontent.com/114116854/222051415-69daa582-ee40-4712-b802-2d46071e71d4.png)
+![image](https://user-images.githubusercontent.com/114116854/222289958-594c98b5-3f53-4ffb-bc4e-8b8942d20d04.png)
 ![image](https://user-images.githubusercontent.com/114116854/222051456-40b147c7-9176-4e4b-aa40-8ed4fa159d6e.png)
 
 ## Create a Photo
