@@ -20,12 +20,32 @@
     margin: auto;
 }
 
+.navlink-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .icon-navlink {
   color: rgb(231, 231, 231);
   font-weight: bold;
   font-size: 30px;
   margin-left: 180px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.you-explore-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-navlink {
+  color: rgb(231, 231, 231);
+  font-weight: bold;
+  font-size: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 15px;
 }
 
 .ballr-logo-icon {

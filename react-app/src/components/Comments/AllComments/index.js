@@ -23,7 +23,7 @@ const AllComments = ({individualPhoto}) => {
         <div className="whole-comments-container">
             <div className="comment-information">
                 {commentsArr.map((comment) => (
-                    <div className="flex-comment-div" key={comment.id}>
+                    <div className="flex-comment-div" key={comment?.id}>
                         <div className="left-comment-side">
                             <div className="comment-image">
                                 <i className="fas fa-user-circle fa-2x" style={{"color": "#128FDC"}}/>
@@ -32,11 +32,11 @@ const AllComments = ({individualPhoto}) => {
                         <div className="right-comment-side">
                             <div className="name-buttons-container">
                                 <div className="comment-name-info">
-                                    {comment.user.first_name} {comment.user.last_name}
+                                    {comment?.user.first_name} {comment?.user.last_name}
 
                                 </div>
                                 <div className="edit-delete-comment-button">
-                                    {sessionUser !== null && sessionUser.id === comment.user_id && editingCommentId !== comment.id ?
+                                    {sessionUser !== null && sessionUser?.id === comment?.user_id && editingCommentId !== comment?.id ?
                                     <>
                                         <i className="fas fa-edit edit-comment-button" onClick={() => setEditingCommentId(comment.id)}></i>
                                         <OpenModalButton

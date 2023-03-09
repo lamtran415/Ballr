@@ -19,11 +19,11 @@ const AllPhotos = () => {
 
     return (
         <>
-            <div className="explore-div"><span className="explore-word">Explore</span></div>
+            {/* <div className="explore-div"><span className="explore-word">Explore</span></div> */}
             <div className="all-photos-container">
                 <div className="wrapper-all-photos">
                     {allPhotos.map((photo) => (
-                        <NavLink style={{textDecoration: 'none'}} className="photo-card-wrapper" key={photo.id} to={`/photos/${photo.id}`}>
+                        <NavLink style={{textDecoration: 'none'}} className="photo-card-wrapper" key={photo?.id} to={`/photos/${photo?.id}`}>
                             <div
                                 className='photo-card'
                                 >

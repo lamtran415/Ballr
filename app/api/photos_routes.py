@@ -94,3 +94,9 @@ def create_comment(photoId):
         db.session.commit()
         return new_comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# GET User Photos ROUTE --- /photos/users/:userId
+@photos_routes.route('/users/<int:userId>')
+def users_photo(userId):
+    photos = Photo.query.filter_by(user_id = userId).all()
+    return {"photos": [photo.to_dict() for photo in photos]}, 200

@@ -14,7 +14,14 @@ function Navigation({ isLoaded }){
 			<div className='navlink-container'>
 				{
 					sessionUser ?
-					<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
+					<>
+						<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
+						<span className='you-explore-buttons'>
+							<NavLink exact to={`/photos/users/${sessionUser.id}`} className="button-navlink" style={{ textDecoration: "none" }}>You</NavLink>
+							<NavLink exact to="/photos" className="button-navlink" style={{ textDecoration: "none" }}>Explore</NavLink>
+
+						</span>
+					</>
 					:
 					<NavLink exact to="/" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
 				}

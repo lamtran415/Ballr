@@ -3,6 +3,7 @@ const LOAD_PHOTO = 'photos/LOAD_PHOTO';
 const CREATE_PHOTO = 'photos/CREATE_PHOTO';
 const EDIT_PHOTO = 'photos/EDIT_PHOTO';
 const DELETE_PHOTO = 'photos/DELETE_PHOTO';
+const LOAD_USER_PHOTOS = 'photos/LOAD_USER_PHOTOS'
 
 // Photos Action Creators
 const loadAllPhotos = (photos) => ({
@@ -28,6 +29,11 @@ const editIndividualPhoto = (photo) => ({
 const deleteIndividualPhoto = (photo) => ({
     type: DELETE_PHOTO,
     photo
+})
+
+const loadUserPhotos = (photos) => ({
+    type:LOAD_USER_PHOTOS,
+    photos
 })
 
 // Photos Thunks
@@ -113,6 +119,18 @@ export const deletePhotoThunk = (photoId) => async (dispatch) => {
     return res;
 }
 
+export const loadUserPhotoThunk = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/photos/users/${userId}`)
+
+    if (res.ok) {
+        const userPhotos = await res.json();
+        dispatch(loadUserPhotos(userPhotos));
+        return userPhotos;
+    }
+
+    return res;
+}
+
 const initialState = {};
 
 const photosReducer = (state = initialState, action) => {
@@ -144,6 +162,13 @@ const photosReducer = (state = initialState, action) => {
             delete deletePhotoState[action.photo.id];
             return deletePhotoState;
         }
+        case LOAD_USER_PHOTOS: {
+            const userPhotos = {};
+            action.photos.photos.forEach(photo => {
+                userPhotos[photo.id] = photo;
+            })
+            return userPhotos
+          }
         default: {
             return state;
         }

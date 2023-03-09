@@ -11,6 +11,7 @@ import CreatePhoto from "./components/Photos/CreatePhoto";
 import SplashPage from "./components/SplashPage";
 import ErrorPage from "./components/ErrorPage";
 import Footer from "./components/Footer/Footer";
+import UserPhotos from "./components/Photos/UserPhotos";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/photos/:photoId">
             <IndividualPhoto />
+          </Route>
+          <Route exact path ="/photos/users/:userId">
+            <UserPhotos />
           </Route>
           <Route>
             <ErrorPage />
