@@ -1,0 +1,64 @@
+.albums-back-button {
+    margin-top: 50px;
+    padding: 20px 0;
+    color: black;
+    cursor: pointer;
+    margin-left: 10.5%;
+    display: flex;
+    align-items: center;
+}
+
+.whole-album-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.album-header-container {
+    width: 1510px;
+    /* margin-top: 50px; */
+    background-color: rgb(224, 224, 224);
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    margin-bottom: 5px;
+}
+
+.album-header-information-container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    /* font-weight: bold; */
+}
+
+.album-each-photo {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position:center;
+    padding-left: 5px;
+}
+
+.album-user-comment-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 280px;
+}
+
+.album-description, .album-photo-length {
+    padding: 10px 0;
+}
+
+.album-description {
+    font-size: 25px;
+    font-style: italic;
+}
+
+.album-photo-length, .album-user-names {
+    font-size: 10px;
+}

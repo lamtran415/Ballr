@@ -71,9 +71,9 @@ const IndividualPhoto = () => {
                 {session}
                 <div className="user-info-and-comment-section">
                     <div className="photo-description-container">
-                        <i className="fas fa-user fa-2x" style={{"color": "orange"}}/>
+                        <i className="fas fa-user fa-2x" style={{"color": "orange", "cursor": "pointer"}} onClick={() => history.push(`/photos/users/${individualPhoto.user_id}`)}/>
                         <div className="photo-description-user">
-                            <div className="photo-user-name">
+                            <div className="photo-user-name" onClick={() => history.push(`/photos/users/${individualPhoto.user_id}`)}>
                                 {`${individualPhoto?.user.first_name} ${individualPhoto?.user.last_name}`}
                             </div>
                             <div className="photo-title-div">

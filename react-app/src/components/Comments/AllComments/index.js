@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom";
 import { getAllCommentsThunk } from "../../../store/commentReducer";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteComment from "../DeleteComment";
@@ -8,6 +9,7 @@ import './AllComments.css'
 
 const AllComments = ({individualPhoto}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getAllCommentsThunk(individualPhoto?.id))
@@ -16,6 +18,7 @@ const AllComments = ({individualPhoto}) => {
     const sessionUser = useSelector(state => state.session.user)
     const comments = useSelector(state => state.comments)
     const commentsArr = Object.values(comments)
+    console.log("COMMENTS ARR =================>", commentsArr)
     const [editingCommentId, setEditingCommentId] = useState(null);
     if (!commentsArr) return null;
 
@@ -26,12 +29,12 @@ const AllComments = ({individualPhoto}) => {
                     <div className="flex-comment-div" key={comment?.id}>
                         <div className="left-comment-side">
                             <div className="comment-image">
-                                <i className="fas fa-user-circle fa-2x" style={{"color": "#128FDC"}}/>
+                                <i className="fas fa-user-circle fa-2x" style={{"color": "#128FDC", "cursor" : "pointer"}} onClick={() => history.push(`/photos/users/${commentsArr[0].user_id}`)}/>
                             </div>
                         </div>
                         <div className="right-comment-side">
                             <div className="name-buttons-container">
-                                <div className="comment-name-info">
+                                <div className="comment-name-info" onClick={() => history.push(`/photos/users/${commentsArr[0].user_id}`)}>
                                     {comment?.user.first_name} {comment?.user.last_name}
 
                                 </div>

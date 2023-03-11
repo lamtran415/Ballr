@@ -1,7 +1,18 @@
 from app.models import db, Album, environment, SCHEMA
+from .photos import photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10, photo11, photo12, photo13, photo14, photo15, photo16
 
 def seed_albums():
-    pass
+    album1 = Album(
+        name='Favorite Athletes', user_id=1, description="I love these players!")
+    album2 = Album(
+        name="Marnie's Favorites", user_id=2, description="These are the best players ever!")
+    album3 = Album(
+        name='Bobbie Team', user_id=3, description="My favorite sport athletes")
+
+    db.session.add(album1)
+    db.session.add(album2)
+    db.session.add(album3)
+    db.session.commit()
 
 
 

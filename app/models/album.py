@@ -11,7 +11,7 @@ class Album(db.Model):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
 
-    user = db.relationship("User", back_populates="album")
+    user = db.relationship("User", back_populates="albums")
     photo = db.relationship("Photo", secondary="album_photos", back_populates="album")
 
     if environment == "production":

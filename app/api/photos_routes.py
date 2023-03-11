@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, session, redirect
 from flask_login import login_required, current_user
-from app.models import Photo, Comment, db
+from app.models import Photo, Comment, Album, db
 from app.forms.photo_form import PhotoForm
 from app.forms.comment_form import CommentForm
 from .auth_routes import validation_errors_to_error_messages
@@ -100,3 +100,22 @@ def create_comment(photoId):
 def users_photo(userId):
     photos = Photo.query.filter_by(user_id = userId).all()
     return {"photos": [photo.to_dict() for photo in photos]}, 200
+
+#GET User Albums Page -- /photos/users/:userId/albums
+@photos_routes.route('/users/<int:userId>/albums')
+def users_albums(userId):
+    albums = Album.query.filter_by(user_id = userId).all()
+    return {"albums": [album.to_dict() for album in albums]}, 200
+
+#GET User Albums Photos -- /photos/users/:userId/albums/:albumId
+@photos_routes.route('/users/<int:userId>/albums/<int:albumId>')
+def albums_photos(userId, albumId):
+    album = Album.query.filter_by(user_id=userId, id=albumId).first()
+    if album:
+        return album.to_dict(), 200
+    else:
+        return {'message': 'Album not found'}, 404
+    # album = Album.query.get(albumId)
+    # if album is None:
+    #     return {"error": "Album not found"}, 404
+    # return album.to_dict(), 200
