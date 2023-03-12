@@ -18,7 +18,6 @@ const AllComments = ({individualPhoto}) => {
     const sessionUser = useSelector(state => state.session.user)
     const comments = useSelector(state => state.comments)
     const commentsArr = Object.values(comments)
-    console.log("COMMENTS ARR =================>", commentsArr)
     const [editingCommentId, setEditingCommentId] = useState(null);
     if (!commentsArr) return null;
 

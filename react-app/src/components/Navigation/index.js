@@ -16,8 +16,14 @@ function Navigation({ isLoaded }){
 					sessionUser ?
 					<>
 						<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
+						<div className="dropdown-content">
+							<NavLink exact to={`/photos/users/${sessionUser.id}`} className="photostream-album-click photostream" style={{ textDecoration: "none" }}>Photostream</NavLink>
+							<NavLink exact to={`/photos/users/${sessionUser.id}/albums`} className="photostream-album-click photostream-album" style={{ textDecoration: "none" }}>Albums</NavLink>
+						</div>
 						<span className='you-explore-buttons'>
-							<NavLink exact to={`/photos/users/${sessionUser.id}`} className="button-navlink" style={{ textDecoration: "none" }}>You</NavLink>
+							<NavLink exact to={`/photos/users/${sessionUser.id}`} className="button-navlink hover-you-dropdown" style={{ textDecoration: "none" }}>You</NavLink>
+							<div>
+							</div>
 							<NavLink exact to="/photos" className="button-navlink" style={{ textDecoration: "none" }}>Explore</NavLink>
 
 						</span>

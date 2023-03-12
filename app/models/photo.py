@@ -14,13 +14,13 @@ class Photo(db.Model):
 
     user = db.relationship("User", back_populates="photo")
     comment = db.relationship("Comment", back_populates="photo", cascade="all, delete")
-    album = db.relationship("Album", secondary="album_photos", back_populates="photo")
+    album = db.relationship("Album", secondary="album_photos", back_populates="photos")
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
-        albums = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", back_populates="photo")
+        albums = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", back_populates="photos")
     else:
-        album = db.relationship('Album', secondary='album_photos', back_populates="photo")
+        album = db.relationship('Album', secondary='album_photos', back_populates="photos")
 
     def to_dict(self):
         return {

@@ -1,8 +1,11 @@
+import { useId } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getUserAlbumsThunk } from "../../../store/albumsReducer";
 import { loadUserPhotoThunk } from "../../../store/photoReducer";
+import OpenModalButton from "../../OpenModalButton";
+import CreateAlbum from "../CreateAlbum";
 import './UserAlbums.css'
 
 const UserAlbums = () => {
@@ -45,24 +48,34 @@ const UserAlbums = () => {
                     <NavLink to={`/photos/users/${userId}/albums`} className="photo-album-navlink">Albums</NavLink>
                 </div>
             </div>
+            <div className="new-album-button-container">
+                {sessionUser.id === +userId ?
+                    <OpenModalButton
+                        className="new-album-button"
+                        buttonText={<><i className="fas fa-plus-square" style={{color: 'gray', fontSize: "22px", marginRight: "5px"}}></i> <span className="new-album-text">New album</span></>}
+                        modalComponent={<CreateAlbum userPhotos={userPhotos} userId={userId}/>}
+                    />
+                    : null
+                }
+            </div>
             <div className="all-albums-container">
-                <div className="user-wrapper-all-albums">
+                <div className="album-wrapper-all-albums">
                     {userAlbums.map((album) => (
                         <NavLink style={{textDecoration: 'none'}} className="photo-card-wrapper" key={album.id} to={`/photos/users/${userId}/albums/${album.id}`}>
                             <div
                                 className='photo-card'
                                 >
                                 <img
-                                    className="each-photo"
-                                    src={album.photo[0]?.url}
+                                    className="album-each-photo"
+                                    src={album.photos[0]?.url}
                                     alt=""
                                     onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
                                     />
                                 <div className="album-information">
                                         <div className="photo-title">{album?.name}</div>
-                                        <div className="user-comment-section">
+                                        <div className="album-user-comment-section">
                                             <div className="user-name-div">by {album?.user.first_name} {album?.user.last_name}</div>
-                                            <div className="number-of-comments"><span className="album-photo-number">{album.photo?.length} Photo(s)</span></div>
+                                            <div className="number-of-comments"><span className="album-photo-number">{album.photos?.length} Photo(s)</span></div>
                                         </div>
                                 </div>
                             </div>

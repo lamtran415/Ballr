@@ -1,5 +1,6 @@
 const GET_USER_ALBUMS = 'albums/GET_USER_ALBUMS';
 const LOAD_ALBUM_PHOTOS = 'albums/LOAD_ALBUM_PHOTOS';
+const CREATE_NEW_ALBUM = 'albums/CREATE_NEW_ALBUM'
 
 // Action Creators
 const loadAlbumsForUser = (albums) => ({
@@ -7,9 +8,14 @@ const loadAlbumsForUser = (albums) => ({
     albums
 })
 
-const loadAlbumsPhoto = (albums) => ({
+const loadAlbumsPhoto = (album) => ({
     type: LOAD_ALBUM_PHOTOS,
-    albums
+    album
+})
+
+const createNewAlbum = (album) => ({
+    type: CREATE_NEW_ALBUM,
+    album
 })
 
 // Thunks
@@ -36,6 +42,29 @@ export const getUserAlbumDetailsThunk = (userId, albumId) => async (dispatch) =>
     return res;
 }
 
+export const createUserAlbumThunk = (userId, albumDetails) => async (dispatch) => {
+    const res = await fetch(`/api/photos/users/${userId}/albums`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(albumDetails)
+    })
+
+    if (res.ok) {
+        const newAlbum = await res.json();
+        dispatch(createNewAlbum(newAlbum));
+        return newAlbum;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."]
+    }
+
+    return res;
+}
+
 const initialState = {};
 
 const albumsReducer = (state = initialState, action) => {
@@ -49,9 +78,13 @@ const albumsReducer = (state = initialState, action) => {
         }
         case LOAD_ALBUM_PHOTOS: {
             const loadAlbumPhotos = {...state};
-            console.log("FROM REDUCER =========>", loadAlbumPhotos)
-            // loadAlbumPhotos[action.album.id] = action.album;
+            loadAlbumPhotos[action.album.id] = action.album;
             return loadAlbumPhotos;
+        }
+        case CREATE_NEW_ALBUM: {
+            const createNewAlbum = {...state};
+            createNewAlbum[action.album.id] = action.album;
+            return createNewAlbum;
         }
         default: {
             return state;
