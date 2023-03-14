@@ -18,7 +18,7 @@ class Photo(db.Model):
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
-        albums = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", back_populates="photos")
+        album = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", back_populates="photos")
     else:
         album = db.relationship('Album', secondary='album_photos', back_populates="photos")
 
