@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
+import { useHistory } from "react-router-dom";
 import { getAllCommentsThunk } from "../../../store/commentReducer";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteComment from "../DeleteComment";
@@ -8,6 +9,7 @@ import './AllComments.css'
 
 const AllComments = ({individualPhoto}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(getAllCommentsThunk(individualPhoto?.id))
@@ -23,20 +25,20 @@ const AllComments = ({individualPhoto}) => {
         <div className="whole-comments-container">
             <div className="comment-information">
                 {commentsArr.map((comment) => (
-                    <div className="flex-comment-div" key={comment.id}>
+                    <div className="flex-comment-div" key={comment?.id}>
                         <div className="left-comment-side">
                             <div className="comment-image">
-                                <i className="fas fa-user-circle fa-2x" style={{"color": "#128FDC"}}/>
+                                <i className="fas fa-user-circle fa-2x" style={{"color": "#128FDC", "cursor" : "pointer"}} onClick={() => history.push(`/photos/users/${commentsArr[0].user_id}`)}/>
                             </div>
                         </div>
                         <div className="right-comment-side">
                             <div className="name-buttons-container">
-                                <div className="comment-name-info">
-                                    {comment.user.first_name} {comment.user.last_name}
+                                <div className="comment-name-info" onClick={() => history.push(`/photos/users/${commentsArr[0].user_id}`)}>
+                                    {comment?.user.first_name} {comment?.user.last_name}
 
                                 </div>
                                 <div className="edit-delete-comment-button">
-                                    {sessionUser !== null && sessionUser.id === comment.user_id && editingCommentId !== comment.id ?
+                                    {sessionUser !== null && sessionUser?.id === comment?.user_id && editingCommentId !== comment?.id ?
                                     <>
                                         <i className="fas fa-edit edit-comment-button" onClick={() => setEditingCommentId(comment.id)}></i>
                                         <OpenModalButton

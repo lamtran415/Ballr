@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
 
     photo = db.relationship("Photo", back_populates="user")
     comment = db.relationship("Comment", back_populates="user")
+    albums = db.relationship("Album", back_populates="user")
 
     @property
     def password(self):
@@ -34,5 +35,6 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'email': self.email
+            'email': self.email,
+            'albums': [user_album.to_dict() for user_album in self.albums]
         }

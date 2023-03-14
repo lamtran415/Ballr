@@ -14,6 +14,13 @@ class Photo(db.Model):
 
     user = db.relationship("User", back_populates="photo")
     comment = db.relationship("Comment", back_populates="photo", cascade="all, delete")
+    album = db.relationship("Album", secondary="album_photos", back_populates="photos")
+
+    if environment == "production":
+        __table_args__ = {"schema": SCHEMA}
+        albums = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", back_populates="photos")
+    else:
+        album = db.relationship('Album', secondary='album_photos', back_populates="photos")
 
     def to_dict(self):
         return {
@@ -23,6 +30,6 @@ class Photo(db.Model):
             "description": self.description,
             "url": self.url,
 
-            "user": {"first_name": self.user.first_name, "last_name": self.user.last_name},
+            "user": {"first_name": self.user.first_name, "last_name": self.user.last_name, "email": self.user.email},
             "comment": [comment.to_dict() for comment in self.comment]
         }

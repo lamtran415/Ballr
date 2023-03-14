@@ -22,7 +22,12 @@
 
 .comment-name-info {
     width: 200px;
-    color: gray;
+    color: #128FDC;
+    cursor: pointer;
+}
+
+.comment-name-info:hover {
+    text-decoration: underline;
 }
 
 .edit-delete-comment-button {

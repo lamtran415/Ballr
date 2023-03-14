@@ -10,10 +10,10 @@ const DeletePhoto = ({individualPhoto, sessionUser}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const confirmed = window.confirm(`Hey ${sessionUser.first_name}! This photo will be permanently removed, are you sure?`);
+        const confirmed = window.confirm(`Hey ${sessionUser?.first_name}! This photo will be permanently removed, are you sure?`);
         if (confirmed) {
-            await dispatch(deletePhotoThunk(individualPhoto.id))
-                .then(() => window.alert(`${individualPhoto.title} Photo ID:${individualPhoto.id} has been deleted.`))
+            await dispatch(deletePhotoThunk(individualPhoto?.id))
+                .then(() => window.alert(`${individualPhoto?.title} Photo ID:${individualPhoto?.id} has been deleted.`))
                 .then(() => history.push('/photos'))
                 .then(() => closeModal())
         }
