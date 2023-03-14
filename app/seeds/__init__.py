@@ -2,8 +2,8 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .photos import seed_photos, undo_photos
 from .comments import seed_comments, undo_comments
-from .albums import seed_albums, undo_albums
-from .albums_photos import seed_album_photos, undo_seed_album_photos
+from .albums import seed_albums
+from .albums_photos import seed_album_photos
 
 from app.models.db import db, environment, SCHEMA
 
