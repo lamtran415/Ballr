@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getUserAlbumDetailsThunk, getUserAlbumsThunk } from "../../../store/albumsReducer";
+import OpenModalButton from "../../OpenModalButton";
+import DeleteAlbum from "../DeleteAlbum";
 import './IndividualAlbum.css'
 
 const IndividualAlbum = () => {
@@ -10,6 +12,7 @@ const IndividualAlbum = () => {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const individualAlbum = useSelector(state => state.albums[albumId])
+    const sessionUser = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(getUserAlbumsThunk(userId))
@@ -43,6 +46,16 @@ const IndividualAlbum = () => {
                 </div>
             </div>
         </div>
+            {sessionUser.id !== null && sessionUser.id === individualAlbum?.user_id ?
+            <>
+                <OpenModalButton
+                    className="delete-comment-modal delete-album-modal"
+                    buttonText={<i className="fas fa-trash-alt"></i>}
+                    modalComponent={<DeleteAlbum individualAlbum={individualAlbum} sessionUser={sessionUser}/>}
+                />
+            </>
+            : null
+            }
             <div className="individual-album-container">
                 <div className="all-album-photo-container">
                     {individualAlbum?.photos.map((image) => (

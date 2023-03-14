@@ -92,3 +92,11 @@
     overflow: hidden;
     margin-left: 10.49%;
 }
+
+.delete-album-modal {
+    position: absolute;
+    color: white;
+    margin-left: 11%;
+    top: 375px;
+    font-size: 30px;
+}

@@ -12,13 +12,13 @@ class Album(db.Model):
     description = db.Column(db.String)
 
     user = db.relationship("User", back_populates="albums")
-    photos = db.relationship("Photo", secondary="album_photos", back_populates="album")
+    photos = db.relationship("Photo", secondary="album_photos", back_populates="album", cascade="all, delete")
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
-        photos = db.relationship('Photo', secondary=f"{SCHEMA}.album_photos", back_populates="album")
+        photos = db.relationship('Photo', secondary=f"{SCHEMA}.album_photos", back_populates="album", cascade="all, delete")
     else:
-        photos = db.relationship('Photo', secondary='album_photos', back_populates="album")
+        photos = db.relationship('Photo', secondary='album_photos', back_populates="album", cascade="all, delete")
 
     def to_dict(self):
         return {

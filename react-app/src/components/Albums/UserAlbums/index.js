@@ -1,4 +1,3 @@
-import { useId } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
@@ -6,6 +5,7 @@ import { getUserAlbumsThunk } from "../../../store/albumsReducer";
 import { loadUserPhotoThunk } from "../../../store/photoReducer";
 import OpenModalButton from "../../OpenModalButton";
 import CreateAlbum from "../CreateAlbum";
+import DeleteAlbum from "../DeleteAlbum";
 import './UserAlbums.css'
 
 const UserAlbums = () => {
@@ -21,6 +21,7 @@ const UserAlbums = () => {
 
     const userPhotos = Object.values(useSelector(state => state.photos));
     const userAlbums = Object.values(useSelector(state => state.albums));
+    console.log(userAlbums)
 
     return (
         <>
@@ -60,27 +61,29 @@ const UserAlbums = () => {
             </div>
             <div className="all-albums-container">
                 <div className="album-wrapper-all-albums">
-                    {userAlbums.map((album) => (
-                        <NavLink style={{textDecoration: 'none'}} className="photo-card-wrapper" key={album.id} to={`/photos/users/${userId}/albums/${album.id}`}>
-                            <div
-                                className='photo-card'
-                                >
-                                <img
-                                    className="album-each-photo"
-                                    src={album.photos[0]?.url}
-                                    alt=""
-                                    onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
-                                    />
-                                <div className="album-information">
-                                        <div className="photo-title">{album?.name}</div>
-                                        <div className="album-user-comment-section">
-                                            <div className="user-name-div">by {album?.user.first_name} {album?.user.last_name}</div>
-                                            <div className="number-of-comments"><span className="album-photo-number">{album.photos?.length} Photo(s)</span></div>
-                                        </div>
+                        {userAlbums.map((album) => (
+                            <>
+                            <NavLink style={{textDecoration: 'none'}} className="photo-card-wrapper" key={album.id} to={`/photos/users/${userId}/albums/${album.id}`}>
+                                <div
+                                    className='photo-card'
+                                    >
+                                    <img
+                                        className="album-each-photo"
+                                        src={album.photos[0]?.url}
+                                        alt=""
+                                        onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
+                                        />
+                                    <div className="album-information">
+                                            <div className="photo-title">{album?.name}</div>
+                                            <div className="album-user-comment-section">
+                                                <div className="user-name-div">by {album?.user.first_name} {album?.user.last_name}</div>
+                                                <div className="number-of-comments"><span className="album-photo-number">{album.photos?.length} {album.photos?.length > 1 ? 'Photos' : 'Photo'}</span></div>
+                                            </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </NavLink>
-                    ))}
+                            </NavLink>
+                        </>
+                        ))}
                 </div>
             </div>
         </>

@@ -55,14 +55,14 @@ const UserPhotos = () => {
                                 className='photo-card'
                                 >
                                 <img
-                                    className="each-photo"
+                                    className="user-each-photo"
                                     src={photo?.url}
                                     alt=""
                                     onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
                                     />
                                 <div className="photo-information">
                                         <div className="photo-title">{photo?.title}</div>
-                                        <div className="user-comment-section">
+                                        <div className="user-comment-section-photostream">
                                             <div className="user-name-div">by {photo?.user.first_name} {photo?.user.last_name}</div>
                                             <div className="number-of-comments"><i className="far fa-comment fa-2x"></i><span className="comment-length">{photo?.comment.length}</span></div>
                                         </div>
