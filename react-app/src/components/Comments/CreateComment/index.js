@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
+import { getPhotoDetailsThunk } from "../../../store/photoReducer";
 import "./CreateComment.css"
 
 const CreateComment = ({ individualPhoto, sessionUser }) => {
@@ -29,7 +30,7 @@ const CreateComment = ({ individualPhoto, sessionUser }) => {
       const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
       setErrors(formattedErrorMessages);
     } else {
-      history.push(`/photos/${individualPhoto.id}`);
+      // history.push(`/photos/${individualPhoto.id}`);
       setIsLoaded(true)
     }
 
@@ -39,6 +40,7 @@ const CreateComment = ({ individualPhoto, sessionUser }) => {
   useEffect(() => {
       return () => {
         dispatch(getAllCommentsThunk(individualPhoto.id));
+        dispatch(getPhotoDetailsThunk(individualPhoto.id));
         setIsLoaded(false);
       }
   }, [dispatch, individualPhoto.id, isLoaded])

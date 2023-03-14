@@ -1,0 +1,77 @@
+.photo-album-navlink-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.margin-div {
+  margin-left: 10%;
+}
+
+.photo-album-navlink {
+  font-weight: bold;
+  font-size: 15px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-left: 15px;
+  text-decoration: none;
+  color: black;
+}
+
+.photo-album-navlink:hover {
+  color: #128FDC;
+}
+
+.new-album-button-container {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 1725px;
+  padding: 5px 0;
+}
+
+.new-album-text {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 17px;
+  color: rgb(90, 90, 90);
+}
+
+.new-album-button {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.all-albums-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    margin-left: 10%;
+}
+
+.album-wrapper-all-albums {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.album-information {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin-bottom: 5px;
+    margin-left: 7px;
+    font-size: 15px;
+    padding: 10px 10px;
+  }
+
+  .album-photo-number {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* .album-information {
+    background-color: rgb(10, 7, 7);
+  } */

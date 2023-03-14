@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { deletePhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
+import { getPhotoDetailsThunk } from "../../../store/photoReducer";
 import "./DeleteComment.css";
 
 const DeleteComment = ({individualPhoto, commentInfo}) => {
@@ -14,14 +15,15 @@ const DeleteComment = ({individualPhoto, commentInfo}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         return await dispatch(deletePhotoCommentThunk(commentInfo.id))
-            .then(() => history.push(`/photos/${individualPhoto.id}`))
+            // .then(() => history.push(`/photos/${individualPhoto.id}`))
             .then(() => setIsLoaded(true))
             .then(() => closeModal())
     }
 
     useEffect(() => {
         return () => {
-            dispatch(getAllCommentsThunk(individualPhoto.id))
+            dispatch(getAllCommentsThunk(individualPhoto.id));
+            dispatch(getPhotoDetailsThunk(individualPhoto.id));
             setIsLoaded(false)
         }
     }, [dispatch, individualPhoto.id, isLoaded])
