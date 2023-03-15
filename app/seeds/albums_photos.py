@@ -31,6 +31,8 @@ def seed_album_photos():
     album_join_photo14 = AlbumPhoto(photo_id=9, album_id=3)
     album_join_photo15 = AlbumPhoto(photo_id=12, album_id=3)
     album_join_photo16 = AlbumPhoto(photo_id=15, album_id=3)
+    album_join_photo17 = AlbumPhoto(photo_id=17, album_id=2)
+    album_join_photo18 = AlbumPhoto(photo_id=18, album_id=3)
 
     db.session.add(album_join_photo1)
     db.session.add(album_join_photo2)
@@ -48,6 +50,8 @@ def seed_album_photos():
     db.session.add(album_join_photo14)
     db.session.add(album_join_photo15)
     db.session.add(album_join_photo16)
+    db.session.add(album_join_photo17)
+    db.session.add(album_join_photo18)
     db.session.commit()
 
 
@@ -58,10 +62,10 @@ def seed_album_photos():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-# def undo_seed_album_photos():
-#     if environment == "production":
-#         db.session.execute(f"TRUNCATE table {SCHEMA}.album_photos RESTART IDENTITY CASCADE;")
-#     else:
-#         db.session.execute("DELETE FROM album_photos")
+def undo_seed_album_photos():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.album_photos RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM album_photos")
 
-#     db.session.commit()
+    db.session.commit()

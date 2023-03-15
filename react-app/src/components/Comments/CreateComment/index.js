@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { createPhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
 import { getPhotoDetailsThunk } from "../../../store/photoReducer";
 import "./CreateComment.css"
 
 const CreateComment = ({ individualPhoto, sessionUser }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const [comment, setComment] = useState("");
   const [errors, setErrors] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);

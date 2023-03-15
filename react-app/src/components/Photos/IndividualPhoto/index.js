@@ -67,10 +67,10 @@ const IndividualPhoto = () => {
                 {newAlbumArr.map((album) => (
                         <NavLink style={{textDecoration: 'none'}} className="album-card-wrapper" key={album?.id} to={`/photos/users/${album.user_id}/albums/${album.id}`}>
                             <div className="album-pic-name-container">
-                                <img className="album-cover-pic" src={album.photos[0].url}/>
+                                <img className="album-cover-pic" src={album.photos[0].url} alt=""/>
                                 <div className="album-info-right-of-pic">
                                     <span className="album-name-color">{album.name}</span>
-                                    <div className="album-photo-length-div">{`${album.photos.length} ${album.photos.length > 1 ? 'photos' : 'photo'}`}</div>
+                                    <div className="album-photo-length-div">{`${album.photos.length} ${album.photos.length > 1 ? 'items' : 'item'}`}</div>
                                 </div>
                             </div>
                         </NavLink>

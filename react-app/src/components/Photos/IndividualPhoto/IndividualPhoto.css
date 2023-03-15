@@ -119,13 +119,15 @@
 
 .photo-in-album-text {
     font-size: 14px;
+    margin-top: 5px;
 }
 
 .album-navlink-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, auto);
-    gap: 20px;
+    column-gap: 20px;
+    border-bottom: 1px rgb(190, 190, 190) solid;
 }
 
 .album-pic-name-container {
@@ -157,4 +159,8 @@
 
 .album-photo-length-div {
     margin-top: 3px;
+}
+
+.comments-text {
+    border-bottom: 1px rgb(190, 190, 190) solid;
 }

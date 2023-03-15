@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
 import { deletePhotoCommentThunk, getAllCommentsThunk } from "../../../store/commentReducer";
 import { getPhotoDetailsThunk } from "../../../store/photoReducer";
@@ -8,7 +7,6 @@ import "./DeleteComment.css";
 
 const DeleteComment = ({individualPhoto, commentInfo}) => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const { closeModal } = useModal();
     const [isLoaded, setIsLoaded] = useState(false);
 

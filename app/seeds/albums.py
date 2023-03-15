@@ -22,10 +22,10 @@ def seed_albums():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-# def undo_albums():
-#     if environment == "production":
-#         db.session.execute(f"TRUNCATE table {SCHEMA}.albums RESTART IDENTITY CASCADE;")
-#     else:
-#         db.session.execute("DELETE FROM albums")
+def undo_albums():
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.albums RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM albums")
 
-#     db.session.commit()
+    db.session.commit()
