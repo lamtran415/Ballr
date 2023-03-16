@@ -1,6 +1,7 @@
 const GET_USER_ALBUMS = 'albums/GET_USER_ALBUMS';
 const LOAD_ALBUM_PHOTOS = 'albums/LOAD_ALBUM_PHOTOS';
 const CREATE_NEW_ALBUM = 'albums/CREATE_NEW_ALBUM';
+const EDIT_USER_ALBUM = 'albums/EDIT_USER_ALBUM';
 const DELETE_USER_ALBUM = 'albums/DELETE_USER_ALBUM'
 
 // Action Creators
@@ -16,6 +17,11 @@ const loadAlbumsPhoto = (album) => ({
 
 const createNewAlbum = (album) => ({
     type: CREATE_NEW_ALBUM,
+    album
+})
+
+const editUserAlbum = (album) => ({
+    type: EDIT_USER_ALBUM,
     album
 })
 
@@ -71,13 +77,35 @@ export const createUserAlbumThunk = (userId, albumDetails) => async (dispatch) =
     return res;
 }
 
+export const editUserAlbumThunk = (albumId, albumDetails) => async (dispatch) => {
+    const res = await fetch(`/api/albums/${albumId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(albumDetails)
+    })
+
+    if (res.ok) {
+        const editAlbum = await res.json();
+        dispatch(editUserAlbum(editAlbum));
+        return editAlbum;
+    } else if (res.status < 500) {
+        const data = await res.json();
+        if (data.errors) {
+            return data.errors;
+        }
+    } else {
+        return ["An error occurred. Please try again."]
+    }
+
+    return res;
+}
+
 export const deleteUserAlbumThunk = (albumId) => async (dispatch) => {
     const res = await fetch(`/api/albums/${albumId}`, {
         method: "DELETE"
     })
 
     if (res.ok) {
-        console.log("==========================>", res)
         dispatch(deleteUserAlbum(albumId))
     }
 
@@ -105,9 +133,13 @@ const albumsReducer = (state = initialState, action) => {
             createNewAlbum[action.album.id] = action.album;
             return createNewAlbum;
         }
+        case EDIT_USER_ALBUM: {
+            const editUserAlbum = {...state};
+            editUserAlbum[action.album.id] = action.album;
+            return editUserAlbum;
+        }
         case DELETE_USER_ALBUM: {
             const removeUserAlbum = {...state};
-            console.log("DO I GET IN THE REDUCER ??? =============>", removeUserAlbum)
             delete removeUserAlbum[action.albumId];
             return removeUserAlbum;
         }

@@ -46,7 +46,7 @@
 }
 
 .photo-select-label.selected {
-  outline: 2px solid #128FDC;
+  outline: 3.5px solid #128FDC;
   border-radius: 5px;
 }
 

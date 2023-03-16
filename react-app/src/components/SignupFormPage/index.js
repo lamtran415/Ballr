@@ -93,7 +93,7 @@ function SignupFormPage() {
           />
         </label>
         <button type="submit">Sign Up</button>
-        <div className="policy-div">By signing up, you agree with Ballr's <a className="tos-privacy" href="https://www.flickr.com/help/terms" target='_blank'>Terms of Services</a> and <a className="tos-privacy" href="https://www.flickr.com/help/privacy" target='_blank'>Privacy Policy.</a> </div>
+        <div className="policy-div">By signing up, you agree with Ballr's <a className="tos-privacy" href="https://www.flickr.com/help/terms" target='_blank' rel="noreferrer">Terms of Services</a> and <a className="tos-privacy" href="https://www.flickr.com/help/privacy" target='_blank' rel="noreferrer">Privacy Policy.</a> </div>
         <div className="not-a-member-div">Already a Flickr member? <NavLink exact to='/login' style={{ textDecoration: "none", color: "#006DAC"}}>Log in here</NavLink></div>
       </form>
     </div>
