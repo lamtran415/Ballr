@@ -4,6 +4,8 @@ from .photos import seed_photos, undo_photos
 from .comments import seed_comments, undo_comments
 from .albums import seed_albums, undo_albums
 from .albums_photos import seed_album_photos, undo_seed_album_photos
+from .tags import seed_tags, undo_tags
+from .tags_photos import seed_tag_photos, undo_tag_photos
 
 from app.models.db import db, environment, SCHEMA
 
@@ -25,18 +27,24 @@ def seed():
         undo_comments()
         undo_albums()
         undo_seed_album_photos()
+        undo_tags()
+        undo_tag_photos()
     # Add other seed functions here
     seed_users()
     seed_photos()
     seed_comments()
     seed_albums()
     seed_album_photos()
+    seed_tags()
+    seed_tag_photos()
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
     # Add other undo functions here
+    undo_tag_photos()
+    undo_tags()
     undo_seed_album_photos()
     undo_albums()
     undo_comments()

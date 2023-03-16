@@ -15,12 +15,15 @@ class Photo(db.Model):
     user = db.relationship("User", back_populates="photo")
     comment = db.relationship("Comment", back_populates="photo", cascade="all, delete")
     album = db.relationship("Album", secondary="album_photos", back_populates="photos")
+    tag = db.relationship("Tag", secondary="tag_photos", cascade="all, delete")
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
-        album = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", back_populates="photos")
+        album = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", cascade="all, delete")
+        tag = db.relationship('Tag', secondary=f"{SCHEMA}.tag_photos", back_populates="photos")
     else:
         album = db.relationship('Album', secondary='album_photos', back_populates="photos")
+        tag = db.relationship('Tag', secondary='tag_photos', cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -31,5 +34,10 @@ class Photo(db.Model):
             "url": self.url,
 
             "user": {"first_name": self.user.first_name, "last_name": self.user.last_name, "email": self.user.email},
-            "comment": [comment.to_dict() for comment in self.comment]
+            "comment": [comment.to_dict() for comment in self.comment],
+        }
+
+    def tag_to_dict(self):
+        return {
+            "tags": [tag.to_dict() for tag in self.tag]
         }

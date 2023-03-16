@@ -72,7 +72,7 @@ const UserAlbums = () => {
                                     <div className="album-information">
                                             <div className="photo-title">{album?.name}</div>
                                             <div className="album-user-comment-section">
-                                                <div className="user-name-div">by {album?.user.first_name} {album?.user.last_name}</div>
+                                                {/* <div className="user-name-div">by {album?.user.first_name} {album?.user.last_name}</div> */}
                                                 <div className="number-of-comments"><span className="album-photo-number">{album.photos?.length} {album.photos?.length > 1 ? 'Photos' : 'Photo'}</span></div>
                                             </div>
                                     </div>

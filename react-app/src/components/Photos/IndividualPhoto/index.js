@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import { getUserAlbumsThunk } from "../../../store/albumsReducer";
 import { getPhotoDetailsThunk } from "../../../store/photoReducer";
+import { loadTagsforPhotoThunk } from "../../../store/tagsReducer";
 import AllComments from "../../Comments/AllComments";
 import CreateComment from "../../Comments/CreateComment";
 import OpenModalButton from "../../OpenModalButton";
+import CreateTag from "../../Tags/CreateTag";
+import DeleteTag from "../../Tags/DeleteTag";
 import DeletePhoto from "../DeletePhoto";
 import EditPhoto from "../EditPhoto";
 import './IndividualPhoto.css';
@@ -46,6 +49,7 @@ const IndividualPhoto = () => {
             await dispatch(getPhotoDetailsThunk(photoId))
             .then(() => setIsLoaded(true))
             .then(() => dispatch(getUserAlbumsThunk(individualPhoto?.user_id)))
+            .then(() => dispatch(loadTagsforPhotoThunk(photoId)))
         };
         fetchPhotoDetailsAndUserAlbums();
     }, [dispatch, photoId, individualPhoto?.user_id]);
@@ -83,8 +87,23 @@ const IndividualPhoto = () => {
         showAlbums = null;
     }
 
+    const photoTag = Object.values(useSelector(state => state.tags))
+    let showPhotoTag;
+    if (photoTag.length) {
+        {showPhotoTag = (
+            <div className="whole-tags-container">
+                {photoTag.map((tag) => (
+                    <div className="each-tag-div" key={tag.id}>
+                        <button className="tag-names">
+                                <div className="tag-name-text">{tag.tag_name}</div>{sessionUser !== null && sessionUser.id === individualPhoto.user_id ? <DeleteTag individualPhoto={individualPhoto} tag={tag} /> : null}
+                        </button>
+                    </div>
+                ))}
+            </div>
+        )}
+    } else showPhotoTag = null
 
-    if (!individualPhoto) {
+    if (!individualPhoto && isLoaded) {
         return (
             <div className="whole-error-page-container">
             {sessionUser ? <Link className="error-home-link" to='/photos'>Go Home</Link> : <Link className="error-home-link" to="/">Go Home</Link>}
@@ -131,6 +150,9 @@ const IndividualPhoto = () => {
                             <div className="comments-text">{individualPhoto.comment.length > 1 ? `comments` : `comment`}</div>
                             <div className="photo-in-album-text">This photo is in {newAlbumArr.length > 1 ? `${newAlbumArr.length} albums` : `${newAlbumArr.length} album`}</div>
                             {showAlbums}
+                            <div className="tags-word-title">Tags</div>
+                            {sessionUser !== null && sessionUser.id === individualPhoto.user_id ? <CreateTag individualPhoto={individualPhoto}/> : null}
+                            {showPhotoTag}
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,10 @@
+.delete-tag-btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    width: 10px;
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 4px;
+}

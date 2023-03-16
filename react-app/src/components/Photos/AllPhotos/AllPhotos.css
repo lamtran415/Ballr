@@ -24,7 +24,7 @@
 }
 
 .each-photo {
-    width: 500px;
+    width: 508px;
     height: 300px;
     object-fit: cover;
     object-position:center;
@@ -36,15 +36,17 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
     color: white;
     display: flex;
     flex-direction: column;
     opacity: 0;
     margin-left: 4px;
     font-size: 10px;
+    padding-top: 5px;
     padding-left: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
   }
 
 .photo-card:hover .photo-information {
@@ -60,7 +62,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 480px;
+    width: 490px;
 }
 
 .user-name-div {
