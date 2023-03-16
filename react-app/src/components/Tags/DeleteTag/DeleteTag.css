@@ -1,10 +1,31 @@
 .delete-tag-btn {
+    opacity: 0;
     cursor: pointer;
     background-color: transparent;
     border: none;
-    width: 10px;
-    color: red;
+    color: white;
     font-weight: bold;
     font-size: 14px;
-    margin-left: 4px;
+    /* margin-left: 4px; */
+    transition: all 0.5s ease-in-out;
+}
+
+.user-tag-names {
+    display: flex;
+    word-wrap: break-word;
+    background-color: rgb(221, 221, 221);
+    border: none;
+    border-radius: 7px;
+    padding: 5px 0 5px 10px;
+}
+
+.user-tag-names:hover .delete-tag-btn{
+    opacity: 1;
+    width: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.user-tag-names:hover {
+    background-color: rgb(134, 134, 134);
+    color: white;
 }

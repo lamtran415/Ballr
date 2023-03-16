@@ -1,4 +1,3 @@
-
 .tag-input-field {
     padding: 5px 10px;
     border-radius: 5px;
@@ -9,12 +8,12 @@
 .add-tag-btn {
     position: static;
     padding: 5px 10px;
-    background-color: #128FDC;;
+    background-color: transparent;
+    color: #006dac;
     border: none;
     border-radius: 2px;
     border-color: lightgray;
     cursor: pointer;
-    color: white;
     font-size: 13px;
     height: 25px;
     font-weight: 600;
@@ -23,5 +22,5 @@
 }
 
 .add-tag-btn:hover {
-    background-color: #199fe2;
+    text-decoration: underline;
 }
