@@ -24,6 +24,7 @@
     width: 200px;
     color: #128FDC;
     cursor: pointer;
+    font-size: 14px;
 }
 
 .comment-name-info:hover {
@@ -51,4 +52,6 @@
 .actual-comment {
     width: 540px;
     word-wrap: break-word;
+    font-size: 14px;
+    margin-top: 4px;
 }
