@@ -25,7 +25,7 @@ const DeleteAlbum = ({individualAlbum, sessionUser}) => {
             dispatch(getUserAlbumsThunk(sessionUser.id))
             setIsLoaded(false)
         }
-    }, [dispatch])
+    }, [dispatch, sessionUser.id])
 
     return (
         <div className="delete-modal-container">

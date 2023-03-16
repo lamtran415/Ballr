@@ -20,7 +20,7 @@ const SplashPage = () => {
 
     ]
 
-
+    // eslint-disable-next-line
     useEffect(() => {
         const backgroundInterval = setInterval(() => {
             setBackgroundImage((prevNum) => ++prevNum % backgroundArr.length);

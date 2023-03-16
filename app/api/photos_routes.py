@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, request, session, redirect
 from flask_login import login_required, current_user
-from app.models import Photo, Comment, Album, AlbumPhoto, db
+from app.models import Photo, Comment, Album, AlbumPhoto, Tag, TagPhoto, db
 from app.forms.photo_form import PhotoForm
 from app.forms.comment_form import CommentForm
 from app.forms.album_form import AlbumForm
+from app.forms.tag_form import TagForm
 from .auth_routes import validation_errors_to_error_messages
 
 photos_routes = Blueprint('photos_routes', __name__)
@@ -116,10 +117,6 @@ def albums_photos(userId, albumId):
         return album.to_dict(), 200
     else:
         return {'message': 'Album not found'}, 404
-    # album = Album.query.get(albumId)
-    # if album is None:
-    #     return {"error": "Album not found"}, 404
-    # return album.to_dict(), 200
 
 # POST / CREATE new Album for User -- /photos/users/:userId/albums
 @photos_routes.route('/users/<int:userId>/albums', methods=['POST'])
@@ -150,3 +147,64 @@ def create_album(userId):
 
         return album.to_dict(), 200
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# GET Tags for Photo -- /photos/:photoId/tags
+@photos_routes.route('/<int:photoId>/tags')
+def get_tag_photo(photoId):
+    photo = Photo.query.get(photoId)
+    if photo is None:
+        return {"error": "Photo not found"}, 404
+    return photo.tag_to_dict(), 200
+
+# POST Tags for Photo -- /photos/:photoId/tags
+@photos_routes.route('/<int:photoId>/tags', methods=['POST'])
+@login_required
+def create_tags(photoId):
+    photo = Photo.query.get(photoId)
+    form = TagForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    data = request.get_json()
+    tag_data = request.json.get('tag_name')
+
+    old_tag = Tag.query.filter_by(tag_name=tag_data).first()
+
+    if form.validate_on_submit():
+        if old_tag:
+            tag_photo = TagPhoto(photo_id=photoId, tag_id=old_tag.id)
+            db.session.add(tag_photo)
+            photo.tag.append(old_tag)
+            db.session.commit()
+
+            return old_tag.to_dict(), 200
+        else:
+            new_tag = Tag(
+                tag_name = data["tag_name"]
+            )
+            db.session.add(new_tag)
+            db.session.commit()
+
+            tag_photo = TagPhoto(photo_id=photoId, tag_id=new_tag.id)
+            db.session.add(tag_photo)
+            db.session.commit()
+
+            photo.tag.append(new_tag)
+            db.session.commit()
+
+            return new_tag.to_dict(), 200
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+# DELETE Tags for Photo -- /photos/:photoId/tags/:tagId
+@photos_routes.route('/<int:photoId>/tags/<int:tagId>', methods=['DELETE'])
+@login_required
+def delete_photo_tag(photoId, tagId):
+    find_tag_for_photo = TagPhoto.query.filter_by(tag_id=tagId, photo_id=photoId).first()
+    check_tag_photo_exist = TagPhoto.query.filter_by(tag_id=tagId).all()
+
+    db.session.delete(find_tag_for_photo)
+    check_tag_entry = Tag.query.get(tagId)
+
+    if check_tag_photo_exist is None:
+        db.session.delete(check_tag_entry)
+
+    db.session.commit()
+    return 'Tag deleted successfully', 200

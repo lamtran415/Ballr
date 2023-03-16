@@ -8,14 +8,14 @@ const Footer = () => {
             <div className='my-name-footer'>
                 Austin Lam-Tran
             </div>
-            <a href='https://github.com/lamtran415' target='_blank'>
+            <a href='https://github.com/lamtran415' target='_blank' rel="noreferrer">
                 <img
                     className='github-logo'
                     src={GitHubLogo}
                     alt=""
                 />
             </a>
-            <a href='https://www.linkedin.com/in/austin-lam-tran-93881a155/' target='_blank'>
+            <a href='https://www.linkedin.com/in/austin-lam-tran-93881a155/' target='_blank' rel="noreferrer">
                 <img
                     className='linkedin-logo'
                     src={LinkedInLogo}

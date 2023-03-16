@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getUserAlbumDetailsThunk, getUserAlbumsThunk } from "../../../store/albumsReducer";
+import { loadUserPhotoThunk } from "../../../store/photoReducer";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteAlbum from "../DeleteAlbum";
+import EditAlbum from "../EditAlbum";
 import './IndividualAlbum.css'
 
 const IndividualAlbum = () => {
     const history = useHistory()
     const { userId, albumId } = useParams();
     const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
     const individualAlbum = useSelector(state => state.albums[albumId])
     const sessionUser = useSelector(state => state.session.user)
 
     useEffect(() => {
         dispatch(getUserAlbumsThunk(userId))
         dispatch(getUserAlbumDetailsThunk(+userId, +albumId))
+        dispatch(loadUserPhotoThunk(userId))
     }, [dispatch, userId, albumId])
 
     return (
@@ -28,7 +30,7 @@ const IndividualAlbum = () => {
         </div>
         <div className="whole-album-details-container">
             <div className="album-header-container" style={{ backgroundImage: `url(https://wallpaper.dog/large/20539383.jpg)` }}>
-                <div className="user-header-width-div">
+                <div className="album-header-width-div">
                     <div className="album-header-information-container">
                         <div className="user-header-name-div">
                             {individualAlbum?.name}
@@ -37,7 +39,24 @@ const IndividualAlbum = () => {
                             {individualAlbum?.description}
                         </div>
                         <div className="album-photo-length">
-                            {individualAlbum?.photos?.length} Photo(s)
+                            {individualAlbum?.photos?.length} {individualAlbum?.photos?.length ? "Photos" : "Photo"}
+                        </div>
+                        <div className="delete-edit-album-button-container">
+                            {sessionUser.id !== null && sessionUser.id === individualAlbum?.user_id ?
+                            <>
+                                <OpenModalButton
+                                    className="delete-comment-modal edit-album-modal"
+                                    buttonText={<i className="fas fa-edit"></i>}
+                                    modalComponent={<EditAlbum individualAlbum={individualAlbum} sessionUser={sessionUser}/>}
+                                />
+                                <OpenModalButton
+                                    className="delete-comment-modal delete-album-modal"
+                                    buttonText={<i className="fas fa-trash-alt"></i>}
+                                    modalComponent={<DeleteAlbum individualAlbum={individualAlbum} sessionUser={sessionUser}/>}
+                                />
+                            </>
+                            : null
+                            }
                         </div>
                         <div className="album-user-names">
                             By: {individualAlbum?.user?.first_name} {individualAlbum?.user?.last_name}
@@ -46,16 +65,6 @@ const IndividualAlbum = () => {
                 </div>
             </div>
         </div>
-            {sessionUser.id !== null && sessionUser.id === individualAlbum?.user_id ?
-            <>
-                <OpenModalButton
-                    className="delete-comment-modal delete-album-modal"
-                    buttonText={<i className="fas fa-trash-alt"></i>}
-                    modalComponent={<DeleteAlbum individualAlbum={individualAlbum} sessionUser={sessionUser}/>}
-                />
-            </>
-            : null
-            }
             <div className="individual-album-container">
                 <div className="all-album-photo-container">
                     {individualAlbum?.photos.map((image) => (

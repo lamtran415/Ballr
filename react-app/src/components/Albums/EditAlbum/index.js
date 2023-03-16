@@ -2,18 +2,20 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../../context/Modal";
-import { createUserAlbumThunk } from "../../../store/albumsReducer";
-import './CreateAlbum.css'
+import { editUserAlbumThunk } from "../../../store/albumsReducer";
 
-const CreateAlbum = ({userPhotos, userId}) => {
+
+const EditAlbum = ({individualAlbum, sessionUser}) => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const [ name, setName ] = useState("");
-    const [ description, setDescription ] = useState("");
-    const [selectedPhotos, setSelectedPhotos] = useState([]);
+    const [ name, setName ] = useState(individualAlbum.name);
+    const [ description, setDescription ] = useState(individualAlbum.description);
+    const [ selectedPhotos, setSelectedPhotos ] = useState(individualAlbum.photos);
     const [ errors, setErrors ] = useState([]);
     const { closeModal } = useModal();
-    const sessionUser = useSelector(state => state.session.user)
+
+    const userPhotos = Object.values(useSelector(state => state.photos));
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,13 +28,13 @@ const CreateAlbum = ({userPhotos, userId}) => {
             photo_ids: selectedPhotos.map(photo => photo.id)
         }
 
-        const album = await dispatch(createUserAlbumThunk(userId, albumDetails))
+        const album = await dispatch(editUserAlbumThunk(individualAlbum.id, albumDetails))
         if (Array.isArray(album)) {
             const errorMessages = Object.values(album);
             const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
             setErrors(formattedErrorMessages);
             } else {
-                history.push(`/photos/users/${userId}/albums/${album.id}`)
+                history.push(`/photos/users/${sessionUser.id}/albums/${album.id}`)
                 closeModal()
             }
     }
@@ -54,7 +56,7 @@ const CreateAlbum = ({userPhotos, userId}) => {
     return (
         <div className="album-modal-container">
             <div className="edit-header-close-button">
-                <div className="edit-photo-header">New Album</div>
+                <div className="edit-photo-header">Edit Album</div>
                 <span className="close-edit-button" onClick={() => closeModal()}><i className="fas fa-times"></i></span>
             </div>
                 <form className="album-form-container" onSubmit={handleSubmit}>
@@ -105,11 +107,11 @@ const CreateAlbum = ({userPhotos, userId}) => {
                             ))}
                         </div>
                         </label>
-                        <button className={`create-album-submit ${selectedPhotos.length > 0 ? "" : "grayed-out"}`} type="submit" disabled={selectedPhotos.length === 0}>Create Album</button>
+                        <button className={`create-album-submit ${selectedPhotos.length > 0 ? "" : "grayed-out"}`} type="submit" disabled={selectedPhotos.length === 0}>Edit Album</button>
                 </div>
             </form>
         </div>
     )
 }
 
-export default CreateAlbum;
+export default EditAlbum;
