@@ -14,7 +14,7 @@ const EditAlbum = ({individualAlbum, sessionUser}) => {
     const [ errors, setErrors ] = useState([]);
     const { closeModal } = useModal();
 
-    const userPhotos = Object.values(useSelector(state => state.photos));
+    const userPhotos = Object.values(useSelector(state => state.photos.userPhotos));
 
 
     const handleSubmit = async (e) => {

@@ -11,7 +11,7 @@ const AllPhotos = () => {
         dispatch(getAllPhotosThunk());
     }, [dispatch]);
 
-    const allPhotos = Object.values(useSelector((state) => state.photos))
+    const allPhotos = Object.values(useSelector((state) => state.photos.allPhotos))
 
     if (!allPhotos) {
         return null;
@@ -34,10 +34,10 @@ const AllPhotos = () => {
                                     onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
                                     />
                                 <div className="photo-information">
-                                        <div className="photo-title">{photo.title}</div>
+                                        <div className="photo-title">{photo?.title}</div>
                                         <div className="user-comment-section">
-                                            <div className="user-name-div">by {photo.user.first_name} {photo.user.last_name}</div>
-                                            <div className="number-of-comments"><i className="far fa-comment fa-2x"></i><span className="comment-length">{photo.comment.length}</span></div>
+                                            <div className="user-name-div">by {photo.user?.first_name} {photo.user?.last_name}</div>
+                                            <div className="number-of-comments"><i className="far fa-comment fa-2x"></i><span className="comment-length">{photo.comment?.length}</span></div>
                                         </div>
                                 </div>
                             </div>

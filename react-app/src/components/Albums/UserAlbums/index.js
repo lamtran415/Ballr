@@ -17,7 +17,7 @@ const UserAlbums = () => {
         dispatch(getUserAlbumsThunk(userId));
     }, [dispatch, userId])
 
-    const userPhotos = Object.values(useSelector(state => state.photos));
+    const userPhotos = Object.values(useSelector(state => state.photos.userPhotos));
     const userAlbums = Object.values(useSelector(state => state.albums));
 
     return (
