@@ -15,7 +15,6 @@ class Photo(db.Model):
     user = db.relationship("User", back_populates="photo")
     comment = db.relationship("Comment", back_populates="photo", cascade="all, delete")
     album = db.relationship("Album", secondary="album_photos", back_populates="photos")
-    tag = db.relationship("Tag", secondary="tag_photos", cascade="all, delete")
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
