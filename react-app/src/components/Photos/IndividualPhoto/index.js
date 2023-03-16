@@ -94,7 +94,7 @@ const IndividualPhoto = () => {
             <div className="whole-tags-container">
                 {photoTag.map((tag) => (
                     <div className="each-tag-div" key={tag.id}>
-                        <button className="tag-names">
+                        <button className={sessionUser !== null && sessionUser.id === individualPhoto?.user_id ? "user-tag-names" : "tag-names"}>
                                 <div className="tag-name-text">{tag?.tag_name}</div>{sessionUser !== null && sessionUser?.id === individualPhoto?.user_id ? <DeleteTag individualPhoto={individualPhoto} tag={tag} /> : null}
                         </button>
                     </div>
@@ -151,7 +151,7 @@ const IndividualPhoto = () => {
                             <div className="photo-in-album-text">This photo is in {newAlbumArr.length > 1 ? `${newAlbumArr.length} albums` : `${newAlbumArr.length} album`}</div>
                             {showAlbums}
                             <div className="tags-word-title">{photoTag.length || sessionUser.id === individualPhoto.user_id ? "Tags" : null}</div>
-                            {sessionUser !== null && sessionUser.id === individualPhoto.user_id ? <CreateTag individualPhoto={individualPhoto}/> : null}
+                            {sessionUser !== null && sessionUser.id === individualPhoto.user_id ? <CreateTag individualPhoto={individualPhoto} sessionUser={sessionUser}/> : null}
                             {showPhotoTag}
                         </div>
                     </div>

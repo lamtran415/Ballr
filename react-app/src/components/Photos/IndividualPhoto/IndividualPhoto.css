@@ -189,5 +189,6 @@
     background-color: rgb(221, 221, 221);
     border: none;
     border-radius: 7px;
-    padding: 3px 12px;
+    padding: 5px 10px 5px 10px;
+    font-weight: 500;
 }
