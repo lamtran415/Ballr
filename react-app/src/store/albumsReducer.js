@@ -32,7 +32,7 @@ const deleteUserAlbum = (albumId) => ({
 
 // Thunks
 export const getUserAlbumsThunk = (userId) => async (dispatch) => {
-    const res = await fetch(`/api/photos/users/${userId}/albums`);
+    const res = await fetch(`/api/photos/users/${+userId}/albums`);
 
     if (res.ok) {
         const albumsFromUser = await res.json();
