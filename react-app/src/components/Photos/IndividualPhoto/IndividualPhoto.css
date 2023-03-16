@@ -76,6 +76,8 @@
 .actual-description-div {
     max-width: 550px;
     word-wrap: break-word;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .edit-delete-button {

@@ -9,12 +9,16 @@
     bottom: 0;
     width: 100%;
     text-align: center;
+    flex-wrap: nowrap;
 }
 
 .my-name-footer {
+    display: flex;
+    flex-wrap: nowrap;
     color: white;
     font-weight: bold;
     margin-right: 10px;
+    min-width: 150px;
 }
 
 .github-logo {
@@ -25,4 +29,23 @@
 .linkedin-logo {
     height: 33px;
     margin-right: 10px;
+}
+
+.language-framework {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-right: auto;
+    padding-left: 10px;
+}
+
+
+.language-framework img {
+    height: 27px;
+    padding: 0 5px;
+}
+
+.sql-icon, .flask-icon {
+    font-size: 35px;
+    color: white;
 }
