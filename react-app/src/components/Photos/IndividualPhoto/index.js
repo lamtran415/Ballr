@@ -46,10 +46,10 @@ const IndividualPhoto = () => {
     }
     useEffect(() => {
         const fetchPhotoDetailsAndUserAlbums = async () => {
-            await dispatch(getPhotoDetailsThunk(photoId))
-            .then(() => setIsLoaded(true))
-            .then(() => dispatch(getUserAlbumsThunk(individualPhoto?.user_id)))
-            .then(() => dispatch(loadTagsforPhotoThunk(photoId)))
+            const photo = await dispatch(getPhotoDetailsThunk(+photoId))
+            await dispatch(getUserAlbumsThunk(+photo.user_id))
+            await dispatch(loadTagsforPhotoThunk(+photoId))
+            setIsLoaded(true)
         };
         fetchPhotoDetailsAndUserAlbums();
     }, [dispatch, photoId, individualPhoto?.user_id]);
@@ -69,12 +69,12 @@ const IndividualPhoto = () => {
         {showAlbums = (
             <div className="album-navlink-container">
                 {newAlbumArr.map((album) => (
-                        <NavLink style={{textDecoration: 'none'}} className="album-card-wrapper" key={album?.id} to={`/photos/users/${album.user_id}/albums/${album.id}`}>
+                        <NavLink style={{textDecoration: 'none'}} className="album-card-wrapper" key={album?.id} to={`/photos/users/${album?.user_id}/albums/${album?.id}`}>
                             <div className="album-pic-name-container">
-                                <img className="album-cover-pic" src={album.photos[0].url} alt=""/>
+                                <img className="album-cover-pic" src={album?.photos[0]?.url} alt=""/>
                                 <div className="album-info-right-of-pic">
-                                    <span className="album-name-color">{album.name}</span>
-                                    <div className="album-photo-length-div">{`${album.photos.length} ${album.photos.length > 1 ? 'items' : 'item'}`}</div>
+                                    <span className="album-name-color">{album?.name}</span>
+                                    <div className="album-photo-length-div">{`${album?.photos?.length} ${album?.photos?.length > 1 ? 'items' : 'item'}`}</div>
                                 </div>
                             </div>
                         </NavLink>

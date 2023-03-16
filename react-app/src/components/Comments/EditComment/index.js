@@ -29,7 +29,7 @@ const EditComment = ({ individualPhoto, sessionUser, commentInfo, setEditingComm
       const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
       setErrors(formattedErrorMessages);
     } else {
-        history.push(`/photos/${individualPhoto.id}`);
+        // history.push(`/photos/${individualPhoto.id}`);
         setEditingCommentId(null)
         setIsLoaded(true)
     }
