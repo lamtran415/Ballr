@@ -131,43 +131,44 @@ export const loadUserPhotoThunk = (userId) => async (dispatch) => {
     return res;
 }
 
-const initialState = {};
+const initialState = { allPhotos: {}, userPhotos: {}};
 
 const photosReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_ALL_PHOTOS: {
-            const loadAllPhotos = {};
+            const loadAllPhotos = {allPhotos: {}, userPhotos: {}};
             action.photos.photos.forEach(photo => {
-                loadAllPhotos[photo.id] = photo;
+                loadAllPhotos.allPhotos[photo.id] = photo;
             })
+            // console.log(action.photos.photos)
             return loadAllPhotos;
         }
         case LOAD_PHOTO: {
             const loadPhotoById = {...state};
-            loadPhotoById[action.photo.id] = action.photo;
+            loadPhotoById.allPhotos[action.photo.id] = action.photo;
             return loadPhotoById;
         }
         case CREATE_PHOTO: {
             const newPhotoState = {...state};
-            newPhotoState[action.photo.id] = action.photo;
+            newPhotoState.allPhotos[action.photo.id] = action.photo;
             return newPhotoState;
         }
         case EDIT_PHOTO: {
             const editPhotoState = {...state};
-            editPhotoState[action.photo.id] = action.photo;
+            editPhotoState.allPhotos[action.photo.id] = action.photo;
             return editPhotoState;
         }
         case DELETE_PHOTO: {
             const deletePhotoState = {...state};
-            delete deletePhotoState[action.photo.id];
+            delete deletePhotoState.allPhotos[action.photo.id];
             return deletePhotoState;
         }
         case LOAD_USER_PHOTOS: {
-            const userPhotos = {};
+            const userObj = {...state, userPhotos: {}};
             action.photos.photos.forEach(photo => {
-                userPhotos[photo.id] = photo;
+                userObj.userPhotos[photo.id] = photo;
             })
-            return userPhotos
+            return userObj
           }
         default: {
             return state;

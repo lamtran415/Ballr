@@ -14,7 +14,7 @@ const UserPhotos = () => {
         dispatch(loadUserPhotoThunk(userId))
     }, [dispatch, userId])
 
-    const userPhotos = Object.values(useSelector(state => state.photos));
+    const userPhotos = Object.values(useSelector(state => state.photos.userPhotos));
 
     if (userPhotos?.length === 0 && sessionUser?.id !== +userId) {
         return <ErrorPage />
