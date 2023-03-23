@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/session";
 // import OpenModalButton from "../OpenModalButton";
 // import LoginFormModal from "../LoginFormModal";
@@ -11,6 +11,7 @@ function ProfileButton({ user }) {
   const history = useHistory()
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const sessionUser = useSelector(state => state.session.user)
 
   const openMenu = () => {
     if (showMenu) return;
@@ -47,8 +48,8 @@ function ProfileButton({ user }) {
       <div className={`${ulClassName} user-list`} ref={ulRef}>
         {user ? (
           <div>
-            <div className="greeting-div">{`Hello ${user.first_name}!`}</div>
-            <div className="email-div">{user.email}</div>
+            <div className="greeting-div" onClick={() => history.push(`/photos/users/${sessionUser.id}`)}>{`Hello ${user.first_name}!`}</div>
+            <div className="email-div" onClick={() => history.push(`/photos/users/${sessionUser.id}`)}>{user.email}</div>
             <div>
               <div className="log-out-button" onClick={handleLogout}>Log Out</div>
             </div>

@@ -18,7 +18,7 @@ def edit_album(albumId):
 
     if form.validate_on_submit():
         album = Album.query.get(albumId)
-        album.title = data['name']
+        album.name = data['name']
         album.description = data['description']
 
         db.session.commit()

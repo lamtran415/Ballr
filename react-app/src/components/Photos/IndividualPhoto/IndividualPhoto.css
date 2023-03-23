@@ -68,6 +68,8 @@
 }
 
 .photo-title-div {
+    max-width: 550px;
+    word-wrap: break-word;
     font-size: 15px;
     font-weight: bold;
     padding: 9px 0;
