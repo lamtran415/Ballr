@@ -11,7 +11,7 @@ const AllPhotos = () => {
         dispatch(getAllPhotosThunk());
     }, [dispatch]);
 
-    const allPhotos = Object.values(useSelector((state) => state.photos.allPhotos))
+    const allPhotos = Object.values(useSelector((state) => state.photos.allPhotos)).reverse()
 
     if (!allPhotos) {
         return null;
@@ -19,7 +19,6 @@ const AllPhotos = () => {
 
     return (
         <>
-            {/* <div className="explore-div"><span className="explore-word">Explore</span></div> */}
             <div className="all-photos-container">
                 <div className="wrapper-all-photos">
                     {allPhotos.map((photo) => (
