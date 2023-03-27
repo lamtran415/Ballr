@@ -128,13 +128,17 @@
 }
 
 .greeting-div:hover, .email-div:hover {
+  background-color: rgb(235, 235, 235);
   color:#128FDC;
 }
 
+.greeting-div:hover {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
 .email-div {
-  padding-bottom: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 5px 10px;
   cursor: pointer;
 }
 
