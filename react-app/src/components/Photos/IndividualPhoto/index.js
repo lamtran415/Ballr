@@ -6,6 +6,7 @@ import { getPhotoDetailsThunk } from "../../../store/photoReducer";
 import { loadTagsforPhotoThunk } from "../../../store/tagsReducer";
 import AllComments from "../../Comments/AllComments";
 import CreateComment from "../../Comments/CreateComment";
+import ErrorPage from "../../ErrorPage";
 import OpenModalButton from "../../OpenModalButton";
 import CreateTag from "../../Tags/CreateTag";
 import DeleteTag from "../../Tags/DeleteTag";
@@ -103,16 +104,12 @@ const IndividualPhoto = () => {
         )}
     } else showPhotoTag = null
 
-    if (!individualPhoto && isLoaded) {
-        return (
-            <div className="whole-error-page-container">
-            {sessionUser ? <Link className="error-home-link" to='/photos'>Go Home</Link> : <Link className="error-home-link" to="/">Go Home</Link>}
-        </div>
-        )
-    };
+    if (!individualPhoto) {
+        return <ErrorPage />
+    }
 
-        return (
-        <div className="whole-individual-photo-container">
+    return (
+    <div className="whole-individual-photo-container">
         {isLoaded && (
                 <div className="photo-details-container">
                     <div className="explore-button" onClick={() => history.goBack()}><i className="fas fa-arrow-left fa-inverse fa-s"></i> <span className="back-explore-button">Back to previous</span></div>
@@ -156,7 +153,7 @@ const IndividualPhoto = () => {
                         </div>
                     </div>
                 </div>
-        )}
+            )}
         </div>
     )
 }

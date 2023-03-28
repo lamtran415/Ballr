@@ -141,7 +141,6 @@ const photosReducer = (state = initialState, action) => {
             action.photos.photos.forEach(photo => {
                 loadAllPhotos.allPhotos[photo.id] = photo;
             })
-            // console.log(action.photos.photos)
             return loadAllPhotos;
         }
         case LOAD_PHOTO: {
