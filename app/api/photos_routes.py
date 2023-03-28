@@ -5,6 +5,7 @@ from app.forms.photo_form import PhotoForm
 from app.forms.comment_form import CommentForm
 from app.forms.album_form import AlbumForm
 from app.forms.tag_form import TagForm
+from app.s3_helpers import upload_file_to_s3, allowed_file, get_unique_filename
 from .auth_routes import validation_errors_to_error_messages
 
 photos_routes = Blueprint('photos_routes', __name__)
@@ -23,20 +24,43 @@ def photo_details(photoId):
         return {"error": "Photo not found"}, 404
     return photo.to_dict(), 200
 
+@photos_routes.route("/upload", methods=["POST"])
+@login_required
+def upload_image():
+
+    if "image" not in request.files:
+        return {"errors": "image required"}, 400
+
+    image = request.files["image"]
+
+    if not allowed_file(image.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image.filename = get_unique_filename(image.filename)
+
+    upload = upload_file_to_s3(image)
+
+    if "url" not in upload:
+        return upload, 400
+
+    url = upload["url"]
+
+    return {"url": url}
+
 # POST Photo Route --- /photos
 @photos_routes.route('/', methods = ['POST'])
 @login_required
 def create_photo():
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    data = form.data
+    data = request.get_json()
 
     if form.validate_on_submit():
         photo = Photo(
             user_id = current_user.id,
             title = data['title'],
             description = data['description'],
-            url = data['url']
+            url = data["url"]
         )
 
         db.session.add(photo)
@@ -50,7 +74,7 @@ def create_photo():
 def edit_photo(photoId):
     form = PhotoForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    data = form.data
+    data = request.get_json()
 
     if form.validate_on_submit():
         photo = Photo.query.get(photoId)

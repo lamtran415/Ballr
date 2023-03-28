@@ -6,4 +6,4 @@ class PhotoForm(FlaskForm):
     user_id  = IntegerField("user_id", validators=[DataRequired()])
     title = StringField("Title", validators=[DataRequired(), Length(min=3, max=255, message='Title must be 3 - 255 characters long')])
     description = StringField("Description")
-    url = StringField("URL", validators=[DataRequired()])
+    # url = StringField("URL", validators=[DataRequired()])

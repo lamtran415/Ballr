@@ -1,6 +1,6 @@
 .whole-error-page-container {
     background-size: cover;
-    background-image: url("https://static.vecteezy.com/system/resources/previews/017/605/581/original/404-error-page-not-found-computer-web-page-failure-concept-illustration-vector.jpg");
+    background-image: url("https://freefrontend.com/assets/img/html-css-404-page-templates/HTML-404-Typed-Message.gif");
     height: 93.7vh;
     background-position: center;
     margin-top: 50px;
@@ -13,7 +13,7 @@
 
 .error-home-link {
     text-decoration: none;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     height: 50px;
     width: 200px;
     display: flex;
@@ -22,6 +22,8 @@
     color: white;
     font-weight: bold;
     margin-top: 35px;
+    background-color: rgb(56, 56, 56);
+    border-radius: 5px;
 }
 
 .error-home-link:hover {

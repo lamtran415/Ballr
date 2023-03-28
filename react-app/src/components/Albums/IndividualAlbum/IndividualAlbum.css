@@ -2,10 +2,18 @@
     margin-top: 50px;
     padding: 20px 0;
     color: black;
-    cursor: pointer;
     margin-left: 10.6%;
     display: flex;
     align-items: center;
+}
+
+.album-arrow {
+    color: black;
+}
+
+.back-albums-list:hover, .back-albums-list:hover i {
+    cursor: pointer;
+    color: #128FDC;
 }
 
 .back-albums-list {

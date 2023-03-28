@@ -61,11 +61,12 @@ export const getPhotoDetailsThunk = (photoId) => async (dispatch) => {
     return res;
 }
 
-export const createPhotoThunk = (photo) => async (dispatch) => {
+export const createPhotoThunk = (photo, url) => async (dispatch) => {
+
     const res = await fetch('/api/photos/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(photo)
+        body: JSON.stringify({...photo, url})
     });
 
     if (res.ok) {

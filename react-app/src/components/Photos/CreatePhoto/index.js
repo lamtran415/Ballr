@@ -10,7 +10,8 @@ const CreatePhoto = () => {
     const history = useHistory();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [url, setUrl] = useState("")
+    const [image, setImage] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 	const sessionUser = useSelector(state => state.session.user);
 
@@ -18,14 +19,35 @@ const CreatePhoto = () => {
         e.preventDefault();
         setErrors([]);
 
+        const formData = new FormData();
+        formData.append("image", image);
+        setImageLoading(true);
+
+        let url;
+
+        const res = await fetch('/api/photos/upload', {
+          method: "POST",
+          body: formData,
+        });
+
+        if (res.ok) {
+            url = await res.json();
+            url = url["url"]
+            setImageLoading(false);
+        }
+        else {
+          setImageLoading(false);
+          const errors = await res.json().errors
+          setErrors([errors])
+        }
+
         const newPhoto = {
             user_id: sessionUser.id,
             title,
             description,
-            url
         }
 
-    const photo = await dispatch(createPhotoThunk(newPhoto))
+    const photo = await dispatch(createPhotoThunk(newPhoto, url))
     if (Array.isArray(photo)) {
         const errorMessages = Object.values(photo);
         const formattedErrorMessages = errorMessages.map(error => error.split(": ")[1]);
@@ -33,6 +55,11 @@ const CreatePhoto = () => {
         } else {
             history.push(`/photos/${photo.id}`)
         }
+    }
+
+    const updateImage = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
     }
 
     return (
@@ -46,6 +73,7 @@ const CreatePhoto = () => {
                     <label >
                         Title
                         <input
+                            className="title-input-field"
                             type="text"
                             name="title"
                             value={title}
@@ -64,16 +92,18 @@ const CreatePhoto = () => {
                             onChange={(e) => setDescription(e.target.value)}
                         />
                     </label>
-                    <label>
-                        Image URL
+                    <label className="image-upload-container">
+                        <div>Image Upload</div>
+                        {/* <i class="fa fa-2x fa-camera"></i> */}
                         <input
-                            type="url"
-                            name="url"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            placeholder="Enter an image URL (http://www.example.com/)"
+                            className="image-upload-input"
+                            type="file"
+                            name="image"
+                            accept="image/*"
+                            onChange={updateImage}
                             required
                         />
+                        {(imageLoading) && <p>Loading...</p>}
                     </label>
                 </div>
                 <button className="create-photo-btn" type="submit">Upload</button>
