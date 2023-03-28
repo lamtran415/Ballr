@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getUserAlbumDetailsThunk, getUserAlbumsThunk } from "../../../store/albumsReducer";
 import { loadUserPhotoThunk } from "../../../store/photoReducer";
+import ErrorPage from "../../ErrorPage";
 import OpenModalButton from "../../OpenModalButton";
 import DeleteAlbum from "../DeleteAlbum";
 import EditAlbum from "../EditAlbum";
@@ -21,12 +22,14 @@ const IndividualAlbum = () => {
         dispatch(loadUserPhotoThunk(userId))
     }, [dispatch, userId, albumId])
 
+    if (!individualAlbum) {
+        return <ErrorPage />
+    }
+
     return (
         <>
-        <div className="albums-back-button" onClick={() => history.push(`/photos/users/${userId}/albums`)}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-            <path fill="black" d="M14.707,18.707C14.52,18.894,14.266,19,14,19s-0.52-0.106-0.707-0.293L8.414,13H20c0.553,0,1-0.447,1-1s-0.447-1-1-1H8.414l5.293-5.293C13.488,6.902,13.512,6.754,13.512,6.598c0-0.156-0.024-0.304-0.07-0.445c-0.095-0.246-0.267-0.449-0.483-0.617C12.678,5.271,12.427,5.177,12.165,5.177c-0.262,0-0.513,0.094-0.707,0.293l-7,7c-0.391,0.391-0.391,1.023,0,1.414l7,7C11.902,18.902,12.049,19,12.165,19c0.116,0,0.232-0.035,0.336-0.105C14.232,18.354,14.612,18.112,14.707,18.707z"/>
-            </svg><span className="back-albums-list">Back to albums list</span>
+        <div className="albums-back-button">
+            <span className="back-albums-list" onClick={() => history.push(`/photos/users/${userId}/albums`)}><i className="fas fa-arrow-left fa-inverse fa-s album-arrow"></i>{" "}Back to albums list</span>
         </div>
         <div className="whole-album-details-container">
             <div className="album-header-container" style={{ backgroundImage: `url(https://wallpaper.dog/large/20539383.jpg)` }}>
