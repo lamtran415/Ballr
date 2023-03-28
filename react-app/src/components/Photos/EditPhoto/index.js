@@ -48,8 +48,6 @@ const EditPhoto = ({individualPhoto}) => {
 
         let updateUrl = photoUrl
 
-        console.log("====================>", url)
-
         if (url !== undefined) {
             updateUrl = url
         }
