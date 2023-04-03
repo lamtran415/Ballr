@@ -95,7 +95,7 @@ const IndividualPhoto = () => {
             <div className="whole-tags-container">
                 {photoTag.map((tag) => (
                     <div className="each-tag-div" key={tag.id}>
-                        <button className={sessionUser !== null && sessionUser.id === individualPhoto?.user_id ? "user-tag-names" : "tag-names"}>
+                        <button className={sessionUser !== null && sessionUser?.id === individualPhoto?.user_id ? "user-tag-names" : "tag-names"}>
                                 <div className="tag-name-text">{tag?.tag_name}</div>{sessionUser !== null && sessionUser?.id === individualPhoto?.user_id ? <DeleteTag individualPhoto={individualPhoto} tag={tag} /> : null}
                         </button>
                     </div>
@@ -124,9 +124,9 @@ const IndividualPhoto = () => {
                     <div className="flex-user-info-albums">
                         <div className="user-info-and-comment-section">
                             <div className="photo-description-container">
-                                <i className="fas fa-user fa-2x" style={{"color": "orange", "cursor": "pointer"}} onClick={() => history.push(`/photos/users/${individualPhoto.user_id}`)}/>
+                                <i className="fas fa-user fa-2x" style={{"color": "orange", "cursor": "pointer"}} onClick={() => history.push(`/photos/users/${individualPhoto?.user_id}`)}/>
                                 <div className="photo-description-user">
-                                    <div className="photo-user-name" onClick={() => history.push(`/photos/users/${individualPhoto.user_id}`)}>
+                                    <div className="photo-user-name" onClick={() => history.push(`/photos/users/${individualPhoto?.user_id}`)}>
                                         {`${individualPhoto?.user.first_name} ${individualPhoto?.user.last_name}`}
                                     </div>
                                     <div className="photo-title-div">
@@ -143,12 +143,12 @@ const IndividualPhoto = () => {
                             </div>
                         </div>
                         <div className="whole-tags-albums-right-side">
-                            <span className="right-side-comment-number">{individualPhoto.comment.length}</span>
-                            <div className="comments-text">{individualPhoto.comment.length > 1 ? `comments` : `comment`}</div>
-                            <div className="photo-in-album-text">This photo is in {newAlbumArr.length > 1 ? `${newAlbumArr.length} albums` : `${newAlbumArr.length} album`}</div>
+                            <span className="right-side-comment-number">{individualPhoto?.comment?.length}</span>
+                            <div className="comments-text">{individualPhoto?.comment?.length > 1 ? `comments` : `comment`}</div>
+                            <div className="photo-in-album-text">This photo is in {newAlbumArr?.length > 1 ? `${newAlbumArr?.length} albums` : `${newAlbumArr?.length} album`}</div>
                             {showAlbums}
-                            <div className="tags-word-title">{photoTag.length || sessionUser.id === individualPhoto.user_id ? "Tags" : null}</div>
-                            {sessionUser !== null && sessionUser.id === individualPhoto.user_id ? <CreateTag individualPhoto={individualPhoto} sessionUser={sessionUser}/> : null}
+                            <div className="tags-word-title">{photoTag?.length || sessionUser?.id === individualPhoto?.user_id ? "Tags" : null}</div>
+                            {sessionUser !== null && sessionUser?.id === individualPhoto.user_id ? <CreateTag individualPhoto={individualPhoto} sessionUser={sessionUser}/> : null}
                             {showPhotoTag}
                         </div>
                     </div>
