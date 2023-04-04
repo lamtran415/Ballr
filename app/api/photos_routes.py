@@ -91,6 +91,17 @@ def edit_photo(photoId):
 @login_required
 def delete_photo(photoId):
     photo = Photo.query.get(photoId)
+
+    # check if photo exists in any album
+    album_photos = AlbumPhoto.query.filter_by(photo_id=photoId).all()
+    for album_photo in album_photos:
+        db.session.delete(album_photo)
+
+        # check if album is empty after deleting the photo
+        album = Album.query.get(album_photo.album_id)
+        if len(album.photos) == 0:
+            db.session.delete(album)
+
     db.session.delete(photo)
     db.session.commit()
     return 'Photo deleted successfully', 200
