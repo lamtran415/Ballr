@@ -9,7 +9,7 @@
 }
 
 .user-header-width-div {
-    width: 1500px;
+    max-width: 1500px;
     display: flex;
     align-items: center;
     margin: auto;
@@ -44,24 +44,18 @@
 .all-user-photos-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 50px;
+    margin-left: 10%;
 }
 
 .user-wrapper-all-photos {
-    max-width: 1550px;
     display: flex;
     flex-wrap: wrap;
-    /* justify-content:space-around; */
-    align-items: center;
-    overflow: hidden;
-    /* padding-top: 10px; */
 }
 
 .user-each-photo {
     width: 300px;
-    height: 300px;
+    height: 325px;
     object-fit: cover;
     object-position:center;
     padding-left: 5px;

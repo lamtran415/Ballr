@@ -34,7 +34,7 @@ class Photo(db.Model):
             "url": self.url,
 
             "user": {"first_name": self.user.first_name, "last_name": self.user.last_name, "email": self.user.email},
-            "comment": [comment.to_dict() for comment in self.comment],
+            "comment": [comment.to_dict() for comment in self.comment]
         }
 
     def tag_to_dict(self):
