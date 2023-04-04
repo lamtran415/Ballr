@@ -1,24 +1,34 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import './SplashPage.css'
+import image1 from './SplashPhotos/baseball_stadium.jpg';
+import image2 from './SplashPhotos/jump_girl.jpg';
+import image3 from './SplashPhotos/barbell.jpg';
+import image4 from './SplashPhotos/football.jpg';
+import image5 from './SplashPhotos/kobe_dunk.jpg';
+import image6 from './SplashPhotos/lebron.jpg';
+import image7 from './SplashPhotos/maye_football.jpg';
+import image8 from './SplashPhotos/nike_logo.jpg';
+import image9 from './SplashPhotos/soccer.jpg';
+import image10 from './SplashPhotos/tennis.jpg';
+
 
 const SplashPage = () => {
     const history = useHistory();
     const [backgroundImage, setBackgroundImage] = useState(0);
 
     const backgroundArr = [
-        "url(https://www.hdwallpapers.in/download/baseball_stadium_under_black_clouds_white_sky_hd_baseball-HD.jpg)",
-        "url(https://wallpaper.dog/large/10960158.jpg)",
-        "url(https://s1.1zoom.me/b5366/772/Men_Black_background_Barbell_Beard_516649_1920x1080.jpg)",
-        "url(https://pbs.twimg.com/ext_tw_video_thumb/1591158939047149568/pu/img/o8jhqN7ZBVBZ-ttq.jpg:large)",
-        "url(https://images4.alphacoders.com/284/thumb-1920-284804.jpg)",
-        "url(https://cdn.wallpapersafari.com/12/42/LCsOv1.jpg)",
-        "url(https://wallpaperaccess.com/full/1150721.jpg)",
-        "url(https://wallpaperset.com/w/full/8/1/8/119912.jpg)",
-        "url(https://images5.alphacoders.com/436/436417.jpg)",
-        "url(https://www.zastavki.com/pictures/originals/2018_American_football_player_with_ball_on_black_background_130685_.jpg)",
-
-    ]
+        `url(${image1})`,
+        `url(${image2})`,
+        `url(${image3})`,
+        `url(${image4})`,
+        `url(${image5})`,
+        `url(${image6})`,
+        `url(${image7})`,
+        `url(${image8})`,
+        `url(${image9})`,
+        `url(${image10})`
+    ];
 
     // eslint-disable-next-line
     useEffect(() => {
@@ -32,7 +42,7 @@ const SplashPage = () => {
     },[])
 
     return (
-        <div className="whole-splash-page-container" style={{"backgroundImage": backgroundArr[backgroundImage], transition: "background-image 4s ease-in-out"}}>
+        <div className="whole-splash-page-container" style={{"backgroundImage": backgroundArr[backgroundImage], transition: "background-image 1s ease-out"}}>
             <div className="center-page-info">
                 <div className="inspiration-header">Find your inspiration.</div>
                 <div className="ballr-community">Join the Ballr community, home to tens of billions of photos and 2 million groups</div>
