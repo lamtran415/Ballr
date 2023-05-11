@@ -200,3 +200,12 @@
     padding: 5px 10px 5px 10px;
     font-weight: 500;
 }
+
+.tag-names, .user-tag-names {
+    cursor: pointer;
+}
+
+.tag-names:hover {
+    background-color: rgb(134, 134, 134);
+    color: white;
+}

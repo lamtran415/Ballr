@@ -1,4 +1,5 @@
 const GET_PHOTO_TAGS = 'tags/GET_PHOTO_TAGS';
+const LOAD_ALL_TAG_PHOTOS = 'tags/LOAD_ALL_TAG_PHOTOS'
 const CREATE_PHOTO_TAGS = 'tags/CREATE_PHOTO_TAGS';
 const DELETE_PHOTO_TAGS = 'tags/DELETE_PHOTO_TAGS';
 
@@ -6,6 +7,11 @@ const DELETE_PHOTO_TAGS = 'tags/DELETE_PHOTO_TAGS';
 const loadTagsforPhoto = (tags) => ({
     type: GET_PHOTO_TAGS,
     tags
+})
+
+const loadAllTagPhotos = (tag) => ({
+    type: LOAD_ALL_TAG_PHOTOS,
+    tag
 })
 
 const createNewTag = (tag) => ({
@@ -28,6 +34,18 @@ export const loadTagsforPhotoThunk = (photoId) => async (dispatch) => {
     }
 
     return res;
+}
+
+export const loadAllPhotosForTagThunk = (tagId) => async (dispatch) => {
+    const res = await fetch(`/api/tags/${tagId}`)
+
+    if (res.ok) {
+        const loadTag = await res.json();
+        dispatch(loadAllTagPhotos(loadTag))
+        return loadTag
+    }
+
+    return res
 }
 
 export const createNewTagThunk = (photoId, tagDetails) => async (dispatch) => {
@@ -68,6 +86,11 @@ const tagsReducer = (state = initialState, action) => {
                 getAllTagsState[tag.id] = tag
             })
             return getAllTagsState;
+        }
+        case LOAD_ALL_TAG_PHOTOS: {
+            const loadAllTagPhotosState = {...state}
+            loadAllTagPhotosState[action.tag.id] = action.tag
+            return loadAllTagPhotosState
         }
         case CREATE_PHOTO_TAGS: {
             const createNewTag = {...state};

@@ -94,7 +94,7 @@ const IndividualPhoto = () => {
         {showPhotoTag = (
             <div className="whole-tags-container">
                 {photoTag.map((tag) => (
-                    <div className="each-tag-div" key={tag.id}>
+                    <div className="each-tag-div" key={tag.id} onClick={() => history.push(`/tags/${tag.id}`)}>
                         <button className={sessionUser !== null && sessionUser?.id === individualPhoto?.user_id ? "user-tag-names" : "tag-names"}>
                                 <div className="tag-name-text">{tag?.tag_name}</div>{sessionUser !== null && sessionUser?.id === individualPhoto?.user_id ? <DeleteTag individualPhoto={individualPhoto} tag={tag} /> : null}
                         </button>
