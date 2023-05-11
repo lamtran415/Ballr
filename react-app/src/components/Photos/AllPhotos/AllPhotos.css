@@ -5,6 +5,7 @@
     align-items: center;
     background-color: rgb(224, 224, 224);
     margin-bottom: 50px;
+
 }
 
 .wrapper-all-photos {
@@ -16,7 +17,6 @@
     overflow: hidden;
     padding-top: 60px;
 }
-
 
 .photo-card {
     position: relative;
