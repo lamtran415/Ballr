@@ -16,9 +16,9 @@ const Footer = () => {
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt=""/>
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" />
             </div>
-            <div className='my-name-footer'>
+            <a className='my-name-footer' href='https://lamtran415.github.io'>
                 Austin Lam-Tran
-            </div>
+            </a>
             <a href='https://github.com/lamtran415' target='_blank' rel="noreferrer">
                 <img
                     className='github-logo'
