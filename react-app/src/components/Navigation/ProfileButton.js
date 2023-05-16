@@ -48,8 +48,8 @@ function ProfileButton({ user }) {
       <div className={`${ulClassName} user-list`} ref={ulRef}>
         {user ? (
           <div>
-            <div className="greeting-div" onClick={() => history.push(`/photos/users/${sessionUser.id}`)}>{`Hello ${user.first_name}!`}</div>
-            <div className="email-div" onClick={() => history.push(`/photos/users/${sessionUser.id}`)}>{user.email}</div>
+            <div className="greeting-div" onClick={() => {history.push(`/photos/users/${sessionUser.id}`); setShowMenu(false)}}>{`Hello ${user.first_name}!`}</div>
+            <div className="email-div" onClick={() => {history.push(`/photos/users/${sessionUser.id}`); setShowMenu(false)}}>{user.email}</div>
             <div>
               <div className="log-out-button" onClick={handleLogout}>Log Out</div>
             </div>

@@ -15,6 +15,7 @@ import UserPhotos from "./components/Photos/UserPhotos";
 import UserAlbums from "./components/Albums/UserAlbums";
 import IndividualAlbum from "./components/Albums/IndividualAlbum";
 import IndividualTag from "./components/Tags/IndividualTag";
+import SearchPage from "./components/SearchPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +58,9 @@ function App() {
           </Route>
           <Route exact path ="/tags/:tagId">
             <IndividualTag />
+          </Route>
+          <Route>
+            <SearchPage />
           </Route>
           <Route>
             <ErrorPage />
