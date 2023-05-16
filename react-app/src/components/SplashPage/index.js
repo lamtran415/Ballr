@@ -30,7 +30,7 @@ const SplashPage = () => {
     },[])
 
     return (
-        <div className="whole-splash-page-container" style={{"backgroundImage": backgroundArr[backgroundImage], "transition": "background-image 1s ease-out"}}>
+        <div className="whole-splash-page-container" style={{"backgroundImage": backgroundArr[backgroundImage]}}>
             <div className="center-page-info">
                 <div className="inspiration-header">Find your inspiration.</div>
                 <div className="ballr-community">Join the Ballr community, home to tens of billions of photos and 2 million groups</div>
