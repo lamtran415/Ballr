@@ -4,7 +4,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User
+from .models import db, User, Photo
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.photos_routes import photos_routes
@@ -41,6 +41,12 @@ Migrate(app, db)
 
 # Application Security
 CORS(app)
+
+@app.route("/api/search/<string:q>")
+def search_route(q):
+    results = Photo.query.filter(Photo.title.ilike(f'%{q}%')).all()
+    results_dicts = [result.to_dict() for result in results]
+    return results_dicts, 200
 
 
 # Since we are deploying with Docker and Flask,

@@ -4,9 +4,16 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import MainLogo from './LogoIcon/main-ballr-logo.png'
+import SearchBar from './SearchBar';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
+	const location = useLocation()
+
+	const isRootPage = location.pathname === '/';
+	const isSignUpPage = location.pathname === '/signup';
+	const isLogInPage = location.pathname === '/login';
 
 	return (
 		<div className='whole-navigation-container'>
@@ -31,6 +38,7 @@ function Navigation({ isLoaded }){
 					<NavLink exact to="/" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/></NavLink>
 				}
 			</div>
+
 			{isLoaded && (
 				<>
 					{!sessionUser ?
@@ -47,6 +55,7 @@ function Navigation({ isLoaded }){
 					}
 					{sessionUser ?
 						<div className='navlink-profile-button'>
+							{!isRootPage && !isSignUpPage && !isLogInPage ? <SearchBar /> : null}
 							<NavLink exact to="/photos/upload" className="upload-icon"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 							<ProfileButton user={sessionUser} />
 						</div>
