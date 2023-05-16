@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import './SearchBar.css'
 import { loadAllSearchThunk } from "../../../store/searchReducer";
-import { getAllPhotosThunk } from "../../../store/photoReducer";
 
 const SearchBar = () => {
   const dispatch = useDispatch()
