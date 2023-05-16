@@ -14,6 +14,7 @@ function Navigation({ isLoaded }){
 	const isRootPage = location.pathname === '/';
 	const isSignUpPage = location.pathname === '/signup';
 	const isLogInPage = location.pathname === '/login';
+	const isUploadPage = location.pathname === '/photos/upload'
 
 	return (
 		<div className='whole-navigation-container'>
@@ -55,7 +56,7 @@ function Navigation({ isLoaded }){
 					}
 					{sessionUser ?
 						<div className='navlink-profile-button'>
-							{!isRootPage && !isSignUpPage && !isLogInPage ? <SearchBar /> : null}
+							{!isRootPage && !isSignUpPage && !isLogInPage && !isUploadPage ? <SearchBar /> : null}
 							<NavLink exact to="/photos/upload" className="upload-icon"><i className="fas fa-cloud-upload-alt"></i></NavLink>
 							<ProfileButton user={sessionUser} />
 						</div>
