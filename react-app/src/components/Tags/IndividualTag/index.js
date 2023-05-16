@@ -15,8 +15,6 @@ const IndividualTag = () => {
 
     const tag = useSelector(state => state.tags)[tagId]
 
-    console.log(tag)
-
     if (!tag || tag?.photos.length === 0) {
         return <ErrorPage />
     }
