@@ -11,12 +11,12 @@ function importAll(context) {
 }
 
 const images = importAll(require.context('./SplashPhotos', false, /\.(png|jpe?g|svg)$/));
+const backgroundArr = Object.values(images).map((image) => `url(${image.default})`);
 
 const SplashPage = () => {
     const history = useHistory();
     const [backgroundImage, setBackgroundImage] = useState(0);
 
-    const backgroundArr = Object.values(images).map((image) => `url(${image.default})`);
 
     // eslint-disable-next-line
     useEffect(() => {
