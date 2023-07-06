@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import './SplashPage.css'
 
@@ -17,17 +17,18 @@ const SplashPage = () => {
     const history = useHistory();
     const [backgroundImage, setBackgroundImage] = useState(0);
 
+    const changeBackground = useCallback(() => {
+        setBackgroundImage((prevNum) => ++prevNum % backgroundArr.length);
+    }, [])
 
     // eslint-disable-next-line
     useEffect(() => {
-        const backgroundInterval = setInterval(() => {
-            setBackgroundImage((prevNum) => ++prevNum % backgroundArr.length);
-        }, 5000)
+        const backgroundInterval = setInterval(changeBackground, 5000)
 
         return () => {
             clearInterval(backgroundInterval)
         }
-    },[])
+    },[changeBackground])
 
     return (
         <div className="whole-splash-page-container" style={{"backgroundImage": backgroundArr[backgroundImage]}}>
