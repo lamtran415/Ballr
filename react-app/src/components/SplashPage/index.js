@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
 import './SplashPage.css'
 
@@ -12,11 +11,6 @@ function importAll(context) {
 
 const images = importAll(require.context('./SplashPhotos', false, /\.(png|jpe?g|svg)$/));
 const backgroundArr = Object.values(images).map((image) => `url(${image.default})`);
-console.log(backgroundArr)
-{backgroundArr.map((background, index) => (
-    console.log(index)
-
-    ))}
 
 const SplashPage = () => {
     const history = useHistory();
@@ -29,7 +23,9 @@ const SplashPage = () => {
                     key={`image-slide${index}`}
                     className="image-slide"
                     id={`image-slide${backgroundArr.length - index}`}
-                    style={{ backgroundImage: background }}
+                    style={{
+                        backgroundImage: background
+                    }}
                 />
                 ))}
             </div>

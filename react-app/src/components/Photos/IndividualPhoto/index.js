@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, useHistory, useParams } from "react-router-dom";
+import { NavLink, useHistory, useParams } from "react-router-dom";
 import { getUserAlbumsThunk } from "../../../store/albumsReducer";
 import { getPhotoDetailsThunk } from "../../../store/photoReducer";
 import { loadTagsforPhotoThunk } from "../../../store/tagsReducer";
