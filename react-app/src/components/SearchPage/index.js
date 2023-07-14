@@ -17,7 +17,7 @@ const SearchPage = () => {
   return (
     <div>
       {searchedPhotosArr.length ?
-        <div className="all-photos-container">
+        <div className="all-search-photos-container">
         <div className="wrapper-all-photos">
           {searchedPhotosArr.map((photo) => (
             <NavLink
