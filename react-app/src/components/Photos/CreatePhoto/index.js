@@ -73,7 +73,7 @@ const CreatePhoto = () => {
         // This section defines the main container for the upload page.
         <div className="upload-page-container">
             <form className="upload-form-container" onSubmit={handleSubmit}>
-                // The BallrIcon logo, which is clickable and navigates to the '/photos' page
+                {/*  The BallrIcon logo, which is clickable and navigates to the '/photos' page */}
                 <img className="logo-image-form" src={BallrIcon} alt="" onClick={() => history.push('/photos')} />
 
                 <div className="errors-map upload-error-map">
@@ -85,7 +85,7 @@ const CreatePhoto = () => {
                 </div>
 
                 <div className="label-tag-container">
-                    // Input field for the photo title
+                    {/* Input field for the photo title */}
                     <label>
                         Title
                         <input
@@ -99,7 +99,7 @@ const CreatePhoto = () => {
                         />
                     </label>
 
-                    // Text area for photo description (optional)
+                    {/*  Text area for photo description (optional) */}
                     <label>
                         Description
                         <textarea
@@ -111,7 +111,7 @@ const CreatePhoto = () => {
                         />
                     </label>
 
-                    // Input field for uploading an image
+                    {/*  Input field for uploading an image */}
                     <label className="image-upload-container">
                         <div>Image Upload</div>
                         <input
@@ -126,7 +126,7 @@ const CreatePhoto = () => {
                     </label>
                 </div>
 
-                // Submit button to upload the photo
+                {/*  Submit button to upload the photo */}
                 <button className="create-photo-btn" type="submit">Upload</button>
             </form>
         </div>

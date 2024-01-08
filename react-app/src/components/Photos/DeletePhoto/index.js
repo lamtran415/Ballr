@@ -33,22 +33,22 @@ const DeletePhoto = ({ individualPhoto, sessionUser }) => {
 
     return (
         <div className="delete-modal-container">
-            // Container for the delete confirmation dialog
+            {/* Container for the delete confirmation dialog */}
             <div className="delete-pop-up">
                 <div className="delete-header-close-button">
-                    // Header section with the title and a close button
+                    {/* Header section with the title and a close button */}
                     <div className="delete-header">Delete Photo</div>
-                    // Close button
+                    {/* Close button */}
                     <span className="close-edit-button" onClick={() => closeModal()}>
                         <i className="fas fa-times"></i>
                     </span>
                 </div>
-                // Confirmation message
+                {/* Confirmation message */}
                 <p className="delete-text-p-tag">Are you sure you want to delete this photo?</p>
                 <form className="delete-form-container" onSubmit={handleSubmit}>
-                    // "Cancel" button to cancel the delete operation
+                    {/*  "Cancel" button to cancel the delete operation */}
                     <button className="cancel-button" onClick={() => closeModal()}>Cancel</button>
-                    // "Delete" button to confirm and initiate the deletion
+                    {/*  "Delete" button to confirm and initiate the deletion */}
                     <button className="delete-button" type="submit">Delete</button>
                 </form>
             </div>
