@@ -34,12 +34,13 @@ Once logged in, you are able to view all the photos avaiable on the website as w
 ![image](https://user-images.githubusercontent.com/114116854/227386697-efd879cd-4992-487f-8f04-e148634d36d3.png)
 
 ## Create a Photo
-By clicking on the upload button on the top right hand corner, you are able to create a new photo.
-![image](https://user-images.githubusercontent.com/114116854/222051624-a34a8bd6-7965-4014-adbf-9cf5500efc60.png)
+By clicking on the upload button on the top right hand corner, you are able to create a new photo utilizing AWS S3
+![image](https://github.com/lamtran415/Ballr/assets/114116854/13d4a2cb-1aed-4e45-9041-f918c62fc5a0)
+
 
 ## Edit/Delete a Photo
 As an owner of the photo, you are allowed to edit/delete your photo details on the individual photo page.
-![image](https://user-images.githubusercontent.com/114116854/222051785-690f87f1-0aae-49e6-9a07-af219198a3b9.png)
+![image](https://github.com/lamtran415/Ballr/assets/114116854/46f987a7-d300-4184-b424-08c2dae2c1fd)
 ![image](https://user-images.githubusercontent.com/114116854/222051834-f9f6579f-e2f8-44cf-a0f0-396bcd83d300.png)
 
 ## View All Comments/Add a Comment
@@ -65,11 +66,12 @@ As a user, you are able to navigate to other user's albums as well as Create/Edi
 You are able to view all tags on each photos and users are able to Create/Delete tags on their own photos
 ![image](https://user-images.githubusercontent.com/114116854/227387043-f9a30ac6-8f60-4a93-8d34-90f56c5c5b29.png)
 
-
+## Search
+You are able to search by photo titles using the search bar on the top right
+![image](https://github.com/lamtran415/Ballr/assets/114116854/5c5a375b-31e0-403e-a7d5-65ff4b39834c)
 
 ## To Do List for Future Features
-- AWS Upload
-- Download Image
+- Likes
 
 # Getting Started:
 1. Download the starter by cloning this repo.
