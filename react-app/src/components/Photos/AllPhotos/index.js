@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllPhotosThunk } from "../../../store/photoReducer";
+import Masonry from "react-masonry-css";
 import './AllPhotos.css'
 
 const AllPhotos = () => {
@@ -33,7 +34,9 @@ const AllPhotos = () => {
                 key={photo?.id}
                 to={`/photos/${photo?.id}`}
               >
-                <div className="photo-card">
+                <div
+                  className="photo-card"
+                >
                   <div className="photo-image">
                     <img
                       className="each-photo"
