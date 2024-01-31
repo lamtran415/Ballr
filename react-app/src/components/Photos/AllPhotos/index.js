@@ -2,32 +2,41 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getAllPhotosThunk } from "../../../store/photoReducer";
+import Masonry from "react-masonry-css";
 import './AllPhotos.css'
 
 const AllPhotos = () => {
+    // Initialize the Redux dispatch function
     const dispatch = useDispatch();
 
+    // Use the useEffect hook to dispatch an action to fetch all photos when the component mounts
     useEffect(() => {
         dispatch(getAllPhotosThunk());
     }, [dispatch]);
 
+    // Retrieve the list of all photos from the Redux store, turn to an array and show in reverse
     const allPhotos = Object.values(useSelector((state) => state.photos.allPhotos)).reverse()
 
+    // If there are no photos, return nothing (null)
     if (!allPhotos) {
         return null;
     }
 
+    // Render the list of photos as links
     return (
         <div className="all-photos-container">
           <div className="wrapper-all-photos">
             {allPhotos.map((photo) => (
+              // Create a link for each photo
               <NavLink
                 style={{ textDecoration: "none" }}
                 className="photo-card-wrapper"
                 key={photo?.id}
                 to={`/photos/${photo?.id}`}
               >
-                <div className="photo-card">
+                <div
+                  className="photo-card"
+                >
                   <div className="photo-image">
                     <img
                       className="each-photo"
@@ -58,4 +67,4 @@ const AllPhotos = () => {
       );
 }
 
-export default AllPhotos
+export default AllPhotos;
