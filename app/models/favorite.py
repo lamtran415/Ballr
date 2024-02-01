@@ -14,9 +14,9 @@ class Favorite(db.Model):
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
-        photos = db.relationship('Photo', secondary=f"{SCHEMA}.favorite_photos", back_populates="favorite", cascade="all, delete")
+        photo = db.relationship('Photo', secondary=f"{SCHEMA}.favorite_photos", back_populates="favorite", cascade="all, delete")
     else:
-        photos = db.relationship('Photo', secondary='favorite_photos', back_populates="favorite", cascade="all, delete")
+        photo = db.relationship('Photo', secondary='favorite_photos', back_populates="favorite", cascade="all, delete")
 
 
     def to_dict(self):

@@ -16,7 +16,7 @@ class Photo(db.Model):
     comment = db.relationship("Comment", back_populates="photo", cascade="all, delete")
     album = db.relationship("Album", secondary="album_photos", back_populates="photos")
     tag = db.relationship('Tag', secondary='tag_photos', cascade="all, delete")
-    favorite = db.relationship('Tag', secondary='favorite_photos', cascade="all, delete")
+    favorite = db.relationship('Tag', secondary='favorite_photos', back_populates="photo", cascade="all, delete")
 
 
     if environment == "production":
@@ -28,7 +28,7 @@ class Photo(db.Model):
     else:
         album = db.relationship('Album', secondary='album_photos', back_populates="photos")
         tag = db.relationship('Tag', secondary='tag_photos', cascade="all, delete")
-        favorite = db.relationship('Favorite', secondary='favorite_photos', cascade="all, delete")
+        favorite = db.relationship('Favorite', secondary='favorite_photos', back_populates="photo", cascade="all, delete")
 
 
     def to_dict(self):

@@ -352,7 +352,7 @@ def delete_photo_tag(photoId, tagId):
 # As a logged-in user, I want to favorites of a user.
 # GET /api/photos/users/:userId/favorites
 @photos_routes.route('/users/<int:userId>/favorites')
-def albums_photos(userId):
+def favorite_photos(userId):
     # Retrieve the album with the specified 'albumId' associated with the given 'userId'
     favorite = Favorite.query.filter_by(user_id=userId, id=userId).first()
 

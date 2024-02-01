@@ -1,7 +1,7 @@
 from app.models import db, FavoritePhoto, environment, SCHEMA
 # from .photos import photo1, photo2, photo3, photo4, photo5, photo6, photo7, photo8, photo9, photo10, photo11, photo12, photo13, photo14, photo15, photo16
 
-def seed_album_photos():
+def seed_favorite_photos():
     favorite_join_photo1 = FavoritePhoto(photo_id=1, favorite_id=3)
     favorite_join_photo2 = FavoritePhoto(photo_id=4, favorite_id=3)
     favorite_join_photo3 = FavoritePhoto(photo_id=7, favorite_id=3)
@@ -49,7 +49,7 @@ def seed_album_photos():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_seed_album_photos():
+def undo_seed_favorite_photos():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.favorite_photos RESTART IDENTITY CASCADE;")
     else:

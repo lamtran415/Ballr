@@ -1,6 +1,6 @@
 from app.models import db, Favorite, environment, SCHEMA
 
-def seed_albums():
+def seed_favorites():
     favorite1 = Favorite(
         user_id=1)
     favorite2 = Favorite(
@@ -21,7 +21,7 @@ def seed_albums():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_albums():
+def undo_favorites():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.favorites RESTART IDENTITY CASCADE;")
     else:
