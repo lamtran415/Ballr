@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request, session, redirect
 from flask_login import login_required, current_user
-from app.models import Photo, Comment, Album, AlbumPhoto, Tag, TagPhoto, db
+from app.models import Photo, Comment, Album, AlbumPhoto, Tag, TagPhoto, Favorite, FavoritePhoto, db
 from app.forms.photo_form import PhotoForm
 from app.forms.comment_form import CommentForm
 from app.forms.album_form import AlbumForm
@@ -341,3 +341,24 @@ def delete_photo_tag(photoId, tagId):
 
     # Return a success message upon successful tag deletion
     return 'Tag deleted successfully', 200
+
+
+# Add Favorite
+# As a logged-in user, I want to add photo to favorites
+# POST /api/photos/users/:userId/favorites
+
+
+# View Favorites
+# As a logged-in user, I want to favorites of a user.
+# GET /api/photos/users/:userId/favorites
+@photos_routes.route('/users/<int:userId>/favorites')
+def albums_photos(userId):
+    # Retrieve the album with the specified 'albumId' associated with the given 'userId'
+    favorite = Favorite.query.filter_by(user_id=userId, id=userId).first()
+
+    if favorite:
+        # Return a JSON response containing the details of the retrieved album
+        return favorite.to_dict(), 200
+    else:
+        # Return a 404 error message if the album is not found
+        return {'message': 'Album not found'}, 404
