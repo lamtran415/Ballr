@@ -16,14 +16,20 @@ class Photo(db.Model):
     comment = db.relationship("Comment", back_populates="photo", cascade="all, delete")
     album = db.relationship("Album", secondary="album_photos", back_populates="photos")
     tag = db.relationship('Tag', secondary='tag_photos', cascade="all, delete")
+    favorite = db.relationship('Tag', secondary='favorite_photos', back_populates="photo", cascade="all, delete")
+
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
         album = db.relationship('Album', secondary=f"{SCHEMA}.album_photos", cascade="all, delete")
-        tag = db.relationship('Tag', secondary=f"{SCHEMA}.tag_photos")
+        # added the cascade delete here
+        tag = db.relationship('Tag', secondary=f"{SCHEMA}.tag_photos", cascade="all, delete")
+        favorite = db.relationship('Favorite', secondary=f"{SCHEMA}.favorite_photos", cascade="all, delete")
     else:
         album = db.relationship('Album', secondary='album_photos', back_populates="photos")
         tag = db.relationship('Tag', secondary='tag_photos', cascade="all, delete")
+        favorite = db.relationship('Favorite', secondary='favorite_photos', back_populates="photo", cascade="all, delete")
+
 
     def to_dict(self):
         return {
