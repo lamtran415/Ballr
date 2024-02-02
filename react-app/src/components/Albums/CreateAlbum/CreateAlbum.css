@@ -40,7 +40,7 @@
 
 .select-photo-img {
   width: 110px;
-  height: 100px;
+  height: 135px;
   object-fit: cover;
   border-radius: 5px;
 }

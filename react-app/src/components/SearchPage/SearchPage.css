@@ -1,9 +1,10 @@
 .all-search-photos-container {
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 50px; */
+  margin: 4rem 10.5% 50px;
 
 }
 
