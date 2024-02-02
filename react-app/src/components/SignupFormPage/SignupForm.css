@@ -11,10 +11,10 @@
     align-items: center;
     background-color: white;
     position: relative;
-    height: 605px;
+    height: 585px;
     width: 352px;
     margin: auto;
-    bottom: -20%;
+    top: 15%;
     border-radius: 5px;
     padding: 10px 0;
 }

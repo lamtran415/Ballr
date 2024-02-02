@@ -68,6 +68,12 @@
     padding-left: 5px;
 }
 
+.album-each-photo:hover {
+    transform: scale(1.10);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .album-user-comment-section {
     display: flex;
     justify-content: space-between;

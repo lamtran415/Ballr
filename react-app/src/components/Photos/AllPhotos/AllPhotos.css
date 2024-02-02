@@ -1,111 +1,3 @@
-/* .all-photos-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(224, 224, 224);
-    margin-bottom: 50px;
-
-}
-
-.wrapper-all-photos {
-    max-width: 1550px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding-top: 60px;
-}
-
-.photo-card {
-    position: relative;
-    overflow: hidden;
-}
-
-.each-photo {
-    width: 508px;
-    height: 300px;
-    object-fit: cover;
-    object-position:center;
-    padding-left: 5px;
-}
-
-.photo-information {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    margin-left: 4px;
-    font-size: 10px;
-    padding-top: 5px;
-    padding-left: 10px;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-  }
-
-.photo-card:hover .photo-information {
-    opacity: 1;
-  }
-
-.photo-title {
-    font-weight: bold;
-    padding-bottom: 3px;
-    word-wrap: break-word;
-}
-
-.user-comment-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 490px;
-}
-
-.user-name-div {
-    color: rgb(190, 190, 190);
-}
-
-.number-of-comments {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3px;
-}
-
-.comment-length {
-    margin-left: 4px;
-    font-size: 14px;
-}
-
-.explore-div {
-    background-color: rgb(241, 241, 241);
-    display: flex;
-    align-items: center;
-    height: 50px;
-    padding-left: 200px;
-    width: 100%;
-    position: fixed;
-    top: 50px;
-    z-index: 1;
-}
-
-.explore-word {
-    align-items: center;
-    box-sizing: border-box;
-    color: #000;
-    display: flex;
-    font-size: 12pt;
-    font-weight: 600;
-    line-height: 170%;
-    opacity: .75;
-} */
-
-
 .all-photos-container {
     /* background-color: rgb(224, 224, 224); */
     margin: 4rem 10.5% 50px;
@@ -124,10 +16,10 @@
   .each-photo {
     width: 100%;
     height: auto;
-    max-height: 550px;
     object-fit:cover;
     object-position: top;
     padding-left: 0;
+    border-radius: 8px;
   }
 
   .photo-card {
@@ -137,10 +29,10 @@
 
   .photo-information {
     position: absolute;
-    bottom: 0; /* Adjusted to position at the bottom */
+    bottom: -5px; /* Adjusted to position at the bottom */
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.45);
     color: white;
     display: flex;
     flex-direction: column;
@@ -185,30 +77,6 @@
     font-size: 14px;
   }
 
-  .explore-div {
-    background-color: rgb(241, 241, 241);
-    display: flex;
-    align-items: center;
-    height: 50px;
-    padding-left: 200px;
-    width: 100%;
-    position: fixed;
-    top: 50px;
-    z-index: 1;
-  }
-
-  .explore-word {
-    align-items: center;
-    box-sizing: border-box;
-    color: #000;
-    display: flex;
-    font-size: 12pt;
-    font-weight: 600;
-    line-height: 170%;
-    opacity: .75;
-  }
-
-
 /* Media query for smaller screens (e.g., mobile) */
 @media (max-width: 768px) {
     .wrapper-all-photos {
@@ -224,3 +92,9 @@
       max-height: none;
     }
   }
+
+.each-photo:hover {
+    transform: scale(1.10);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
