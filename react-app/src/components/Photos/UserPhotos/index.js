@@ -5,6 +5,7 @@ import { loadUserPhotoThunk } from "../../../store/photoReducer";
 import ErrorPage from "../../ErrorPage";
 import "./UserPhotos.css";
 import LoadingPage from "../../LoadingPage/LoadingPage";
+import { getUserFavoritesThunk } from "../../../store/favoritesReducer";
 
 const UserPhotos = () => {
   const { userId } = useParams();
@@ -14,6 +15,7 @@ const UserPhotos = () => {
 
   useEffect(() => {
     dispatch(loadUserPhotoThunk(userId)).then(() => setIsLoaded(true));
+    dispatch(getUserFavoritesThunk(userId))
   }, [dispatch, userId]);
 
   const userPhotos = Object.values(

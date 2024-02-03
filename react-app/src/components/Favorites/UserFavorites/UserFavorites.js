@@ -21,7 +21,7 @@ const UserFavorites = () => {
   const userPhotos = Object.values(useSelector(state => state.photos.userPhotos));
   const userFavorites = Object.values(useSelector(state => state.favorites))
 
-  console.log(userFavorites, "CHECKING FJAFJSAIOFDIASOPJFISAOPJFIPOSAJFPO")
+  console.log("CHECKING THIS ============================>", userFavorites)
 
   return (
     <>
