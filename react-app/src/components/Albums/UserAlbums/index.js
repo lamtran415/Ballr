@@ -65,7 +65,8 @@ const UserAlbums = () => {
                                     >
                                     <img
                                         className="album-each-photo"
-                                        src={album.photos[0]?.url}
+                                        // src={album.photos[0]?.url}
+                                        src={album.photos[Math.floor(Math.random() * album.photos.length)].url}
                                         alt=""
                                         onError={e => { e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg"; }}
                                         />
