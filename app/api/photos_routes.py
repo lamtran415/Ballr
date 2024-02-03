@@ -343,20 +343,14 @@ def delete_photo_tag(photoId, tagId):
     return 'Tag deleted successfully', 200
 
 # View Favorites
-# As a logged-in user, I want to favorites of a user.
+# As a logged-in user, I want to view favorites of a user.
 # GET /api/photos/users/:userId/favorites
 @photos_routes.route('/users/<int:userId>/favorites')
 def favorite_photos(userId):
     # Retrieve the album with the specified 'albumId' associated with the given 'userId'
-    favorite = Favorite.query.filter_by(user_id=userId, id=userId).first()
+    favorites = Favorite.query.filter_by(user_id=userId, id=userId).all()
 
-    # if favorite:
-    #     # Return a JSON response containing the details of the retrieved album
-    #     return favorite.to_dict(), 200
-    # else:
-    #     # Return a 404 error message if the favorite is not found
-    #     return {'message': 'Favorites not found'}, 404
-    if not favorite:
+    if not favorites:
         # If favorite doesn't exist, create a new one for the user
         new_favorite = Favorite(user_id=userId)
         db.session.add(new_favorite)
@@ -364,10 +358,15 @@ def favorite_photos(userId):
 
         # Refresh the favorite instance to get the updated id
         db.session.refresh(new_favorite)
-        favorite = new_favorite
+        favorites = new_favorite
 
-    # Return a JSON response containing the details of the retrieved favorite
-    return favorite.to_dict(), 200
+    if favorites:
+        # If there are multiple favorites, you might want to return a list of dictionaries
+        favorites_data = [favorite.to_dict() for favorite in favorites]
+        return {'favorites': favorites_data}, 200
+    else:
+        # Return a 404 error message if no favorites are found
+        return {'message': 'Favorites not found'}, 404
 
 
 # Add Favorite

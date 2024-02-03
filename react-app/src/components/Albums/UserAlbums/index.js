@@ -73,7 +73,7 @@ const UserAlbums = () => {
                                             className='photo-card'
                                             >
                                             <img
-                                                className="album-each-photo"
+                                                className="user-album-each-photo"
                                                 // src={album.photos[0]?.url}
                                                 src={album.photos[Math.floor(Math.random() * album.photos.length)].url}
                                                 alt=""
