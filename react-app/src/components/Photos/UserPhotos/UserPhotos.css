@@ -47,15 +47,17 @@
     flex-wrap: wrap;
     margin-bottom: 50px;
     margin-left: 10%;
+    justify-content: space-between;
 }
 
 .user-wrapper-all-photos {
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .user-each-photo {
-    width: 400px;
+    width: 375px;
     height: 325px;
     object-fit: cover;
     object-position:top;
