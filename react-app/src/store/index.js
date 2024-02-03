@@ -6,6 +6,7 @@ import commentsReducer from './commentReducer';
 import albumsReducer from './albumsReducer';
 import tagsReducer from './tagsReducer';
 import searchReducer from './searchReducer';
+import favoritesReducer from './favoritesReducer';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   comments: commentsReducer,
   albums: albumsReducer,
   tags: tagsReducer,
-  search: searchReducer
+  search: searchReducer,
+  favorites: favoritesReducer
 });
 
 

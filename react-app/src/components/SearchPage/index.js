@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import Masonry from "react-masonry-css";
 import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
 import './SearchPage.css';
-import LoadingPage from "../LoadingPage/LoadingPage";
 
 const breakpointColumnsObj = {
   default: 4, // Default number of columns for screens over 1500px
@@ -14,24 +13,17 @@ const breakpointColumnsObj = {
 
 const SearchPage = () => {
   const [searchedPhotosArr, setSearchedPhotosArr] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
   const reduxSearch = useSelector((state) => state.search);
 
   useEffect(() => {
     const searchData = localStorage.getItem('searchData');
     if (searchData) {
       setSearchedPhotosArr(JSON.parse(searchData))
-      setIsLoaded(true)
     }
   }, [reduxSearch]);
 
   return (
     <>
-      {!isLoaded && (
-        <LoadingPage />
-      )}
-
-      {isLoaded && (
         <div>
           {searchedPhotosArr.length ?
             <div className="all-search-photos-container">
@@ -82,7 +74,6 @@ const SearchPage = () => {
             </div>
           }
         </div>
-      )}
     </>
   );
 };

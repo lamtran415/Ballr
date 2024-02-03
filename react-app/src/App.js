@@ -16,6 +16,7 @@ import UserAlbums from "./components/Albums/UserAlbums";
 import IndividualAlbum from "./components/Albums/IndividualAlbum";
 import IndividualTag from "./components/Tags/IndividualTag";
 import SearchPage from "./components/SearchPage";
+import UserFavorites from "./components/Favorites/UserFavorites/UserFavorites";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,10 +57,13 @@ function App() {
           <Route exact path="/photos/users/:userId/albums/:albumId">
             <IndividualAlbum />
           </Route>
+          <Route exact path="/photos/users/:userId/favorites">
+            <UserFavorites />
+          </Route>
           <Route exact path ="/tags/:tagId">
             <IndividualTag />
           </Route>
-          <Route>
+          <Route exact path="/search/:q">
             <SearchPage />
           </Route>
           <Route>

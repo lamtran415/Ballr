@@ -53,6 +53,7 @@ const UserAlbums = () => {
                         <div className="margin-div">
                             <NavLink to={`/photos/users/${userId}`} className="photo-album-navlink">Photostream</NavLink>
                             <NavLink to={`/photos/users/${userId}/albums`} className="photo-album-navlink">Albums</NavLink>
+                            <NavLink to={`/photos/users/${userId}/favorites`} className="photo-album-navlink">Faves</NavLink>
                         </div>
                     </div>
                     <div className="new-album-button-container">
@@ -73,7 +74,7 @@ const UserAlbums = () => {
                                             className='photo-card'
                                             >
                                             <img
-                                                className="album-each-photo"
+                                                className="user-album-each-photo"
                                                 // src={album.photos[0]?.url}
                                                 src={album.photos[Math.floor(Math.random() * album.photos.length)].url}
                                                 alt=""
