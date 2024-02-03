@@ -21,7 +21,6 @@ const deleteUserFavorite = (favoriteId) => ({
 // Thunks
 export const getUserFavoritesThunk = (userId) => async (dispatch) => {
     const res = await fetch(`/api/photos/users/${userId}/favorites`);
-    console.log("CHECKING RES ====>", res.status)
 
     if (res.ok) {
         const favoritesFromUser = await res.json()

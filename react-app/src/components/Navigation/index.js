@@ -26,7 +26,8 @@ function Navigation({ isLoaded }){
 						<NavLink exact to="/photos" className="icon-navlink" style={{ textDecoration: "none" }}><img className='ballr-logo-icon' alt='' src={MainLogo}/>
 							<div className="dropdown-content">
 								<NavLink exact to={`/photos/users/${sessionUser.id}`} className="photostream-album-click photostream" style={{ textDecoration: "none" }}>Photostream</NavLink>
-								<NavLink exact to={`/photos/users/${sessionUser.id}/albums`} className="photostream-album-click photostream-album" style={{ textDecoration: "none" }}>Albums</NavLink>
+								<NavLink exact to={`/photos/users/${sessionUser.id}/albums`} className="photostream-album-click" style={{ textDecoration: "none" }}>Albums</NavLink>
+								<NavLink exact to={`/photos/users/${sessionUser.id}/favorites`} className="photostream-album-click photostream-album" style={{ textDecoration: "none" }}>Faves</NavLink>
 							</div>
 						</NavLink>
 

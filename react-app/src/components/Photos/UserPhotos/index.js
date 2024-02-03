@@ -76,6 +76,11 @@ const UserPhotos = () => {
                   >
                     Albums
                   </NavLink>
+                  <NavLink
+                    to={`/photos/users/${userId}/favorites`}
+                    className="photo-album-navlink">
+                        Faves
+                  </NavLink>
                 </div>
               </div>
               <div className="all-user-photos-container">
@@ -99,7 +104,7 @@ const UserPhotos = () => {
                         />
                         <div className="photo-information">
                           <div className="photo-title">{photo?.title}</div>
-                          <div className="user-comment-section-photostream">
+                          <div className="user-comment-section">
                             <div className="user-name-div">
                               by {photo?.user.first_name}{" "}
                               {photo?.user.last_name}

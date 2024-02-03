@@ -55,7 +55,7 @@
 }
 
 .user-each-photo {
-    width: 300px;
+    width: 400px;
     height: 325px;
     object-fit: cover;
     object-position:top;
@@ -68,12 +68,12 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.user-comment-section-photostream {
+/* .user-comment-section-photostream {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 280px;
-}
+} */
 
 .user-photo-information {
     position: absolute;
