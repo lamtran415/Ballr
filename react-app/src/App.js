@@ -59,7 +59,7 @@ function App() {
           <Route exact path ="/tags/:tagId">
             <IndividualTag />
           </Route>
-          <Route>
+          <Route exact path="/search/:q">
             <SearchPage />
           </Route>
           <Route>
