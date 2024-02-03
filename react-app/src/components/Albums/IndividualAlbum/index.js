@@ -45,7 +45,7 @@ const IndividualAlbum = () => {
                             {individualAlbum?.photos?.length} {individualAlbum?.photos?.length ? "Photos" : "Photo"}
                         </div>
                         <div className="delete-edit-album-button-container">
-                            {sessionUser.id !== null && sessionUser.id === individualAlbum?.user_id ?
+                            {sessionUser?.id !== null && sessionUser?.id === individualAlbum?.user_id ?
                             <>
                                 <OpenModalButton
                                     className="delete-comment-modal edit-album-modal"

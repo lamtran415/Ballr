@@ -34,6 +34,34 @@ def seed_album_photos():
     album_join_photo17 = AlbumPhoto(photo_id=17, album_id=2)
     album_join_photo18 = AlbumPhoto(photo_id=18, album_id=3)
 
+    # New relationships for each of the new albums
+    album_join_photo19 = AlbumPhoto(photo_id=19, album_id=4)
+    album_join_photo20 = AlbumPhoto(photo_id=20, album_id=5)
+    album_join_photo21 = AlbumPhoto(photo_id=21, album_id=6)
+    album_join_photo22 = AlbumPhoto(photo_id=22, album_id=4)
+    album_join_photo23 = AlbumPhoto(photo_id=23, album_id=5)
+    album_join_photo24 = AlbumPhoto(photo_id=24, album_id=6)
+    album_join_photo25 = AlbumPhoto(photo_id=25, album_id=4)
+    album_join_photo26 = AlbumPhoto(photo_id=26, album_id=5)
+    album_join_photo27 = AlbumPhoto(photo_id=27, album_id=6)
+    album_join_photo28 = AlbumPhoto(photo_id=28, album_id=6)
+    album_join_photo29 = AlbumPhoto(photo_id=29, album_id=4)
+    album_join_photo30 = AlbumPhoto(photo_id=30, album_id=5)
+    album_join_photo31 = AlbumPhoto(photo_id=31, album_id=4)
+    album_join_photo32 = AlbumPhoto(photo_id=32, album_id=5)
+    album_join_photo33 = AlbumPhoto(photo_id=1, album_id=4)
+    album_join_photo34 = AlbumPhoto(photo_id=2, album_id=5)
+    album_join_photo35 = AlbumPhoto(photo_id=3, album_id=6)
+    album_join_photo36 = AlbumPhoto(photo_id=4, album_id=4)
+    album_join_photo37 = AlbumPhoto(photo_id=5, album_id=5)
+    album_join_photo38 = AlbumPhoto(photo_id=6, album_id=6)
+    album_join_photo39 = AlbumPhoto(photo_id=7, album_id=4)
+    album_join_photo40 = AlbumPhoto(photo_id=8, album_id=5)
+    album_join_photo41 = AlbumPhoto(photo_id=9, album_id=6)
+    album_join_photo42 = AlbumPhoto(photo_id=10, album_id=4)
+    album_join_photo43 = AlbumPhoto(photo_id=11, album_id=5)
+    album_join_photo44 = AlbumPhoto(photo_id=32, album_id=2)
+
     db.session.add(album_join_photo1)
     db.session.add(album_join_photo2)
     db.session.add(album_join_photo3)
@@ -52,6 +80,18 @@ def seed_album_photos():
     db.session.add(album_join_photo16)
     db.session.add(album_join_photo17)
     db.session.add(album_join_photo18)
+
+    extra_join_album = [album_join_photo19, album_join_photo20, album_join_photo21,
+                        album_join_photo22, album_join_photo23, album_join_photo24,
+                        album_join_photo25, album_join_photo26, album_join_photo27,
+                        album_join_photo28, album_join_photo29, album_join_photo30,
+                        album_join_photo31, album_join_photo32, album_join_photo33,
+                        album_join_photo34, album_join_photo35, album_join_photo36,
+                        album_join_photo37, album_join_photo38, album_join_photo39,
+                        album_join_photo40, album_join_photo41, album_join_photo42,
+                        album_join_photo43, album_join_photo44]
+
+    add_album_join_photos = [db.session.add(album_join) for album_join in extra_join_album]
     db.session.commit()
 
 
