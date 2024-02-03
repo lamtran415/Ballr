@@ -47,7 +47,7 @@ const UserAlbums = () => {
                 </div>
             </div>
             <div className="new-album-button-container">
-                {sessionUser.id === +userId ?
+                {sessionUser?.id === +userId ?
                     <OpenModalButton
                         className="new-album-button"
                         buttonText={<><i className="fas fa-plus-square" style={{color: 'gray', fontSize: "22px", marginRight: "5px"}}></i> <span className="new-album-text">New album</span></>}

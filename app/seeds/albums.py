@@ -8,9 +8,15 @@ def seed_albums():
     album3 = Album(
         name='Bobbie Team', user_id=3, description="My favorite sport athletes")
 
-    db.session.add(album1)
-    db.session.add(album2)
-    db.session.add(album3)
+    album4 = Album(
+        name='Top Performers', user_id=1, description="The best in the game!")
+    album5 = Album(
+        name="Sports Legends", user_id=2, description="Icons of the sports world!")
+    album6 = Album(
+        name='Inspiring Moments', user_id=3, description="Defining moments in sports")
+
+    all_albums = [album1, album2, album3, album4, album5, album6]
+    add_albums = [db.session.add(album) for album in all_albums]
     db.session.commit()
 
 

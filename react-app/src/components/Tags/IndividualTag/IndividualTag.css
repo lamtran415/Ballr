@@ -1,8 +1,9 @@
 .all-tag-photos-container {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    /* background-color: rgb(224, 224, 224); */
-    margin-bottom: 50px;
+    background-color: rgb(224, 224, 224);
+    margin-bottom: 50px; */
+    margin: 4rem 10.5% 50px;
 }

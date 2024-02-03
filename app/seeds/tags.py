@@ -7,10 +7,27 @@ def seed_tags():
         )
     tag3 = Tag(tag_name ="elite"
         )
+    tag4 = Tag(tag_name="champion")
+    tag5 = Tag(tag_name="fan-favorite")
+    tag6 = Tag(tag_name="playmaker")
+    tag7 = Tag(tag_name="rising-star")
+    tag8 = Tag(tag_name="record-holder")
+    tag9 = Tag(tag_name="defensive-master")
+    tag10 = Tag(tag_name="all-star")
+    tag11 = Tag(tag_name="basketball-icon")
 
     db.session.add(tag1)
     db.session.add(tag2)
     db.session.add(tag3)
+    db.session.add(tag4)
+    db.session.add(tag5)
+    db.session.add(tag6)
+    db.session.add(tag7)
+    db.session.add(tag8)
+    db.session.add(tag9)
+    db.session.add(tag10)
+    db.session.add(tag11)
+
     db.session.commit()
 
 
