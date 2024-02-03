@@ -13,6 +13,7 @@ import DeleteTag from "../../Tags/DeleteTag";
 import DeletePhoto from "../DeletePhoto";
 import EditPhoto from "../EditPhoto";
 import './IndividualPhoto.css';
+import LoadingPage from "../../LoadingPage/LoadingPage";
 
 const IndividualPhoto = () => {
     const { photoId } = useParams();
@@ -72,7 +73,7 @@ const IndividualPhoto = () => {
                 {newAlbumArr.map((album) => (
                         <NavLink style={{textDecoration: 'none'}} className="album-card-wrapper" key={album?.id} to={`/photos/users/${album?.user_id}/albums/${album?.id}`}>
                             <div className="album-pic-name-container">
-                                <img className="album-cover-pic" src={album?.photos[0]?.url} alt=""/>
+                                <img className="album-cover-pic" src={album.photos[Math.floor(Math.random() * album.photos.length)].url} alt=""/>
                                 <div className="album-info-right-of-pic">
                                     <span className="album-name-color">{album?.name}</span>
                                     <div className="album-photo-length-div">{`${album?.photos?.length} ${album?.photos?.length > 1 ? 'items' : 'item'}`}</div>
@@ -109,8 +110,13 @@ const IndividualPhoto = () => {
     }
 
     return (
-    <div className="whole-individual-photo-container">
-        {isLoaded && (
+    <>
+        {(!individualPhoto || !isLoaded) && (
+            <LoadingPage />
+        )}
+
+        <div className="whole-individual-photo-container">
+            {isLoaded && (
                 <div className="photo-details-container">
                     <div className="explore-button" onClick={() => history.goBack()}><i className="fas fa-arrow-left fa-inverse fa-s"></i> <span className="back-explore-button">Back to previous</span></div>
                     <div className="upper-photo-details-page">
@@ -155,6 +161,7 @@ const IndividualPhoto = () => {
                 </div>
             )}
         </div>
+    </>
     )
 }
 
