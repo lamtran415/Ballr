@@ -13,6 +13,7 @@ import DeleteTag from "../../Tags/DeleteTag";
 import DeletePhoto from "../DeletePhoto";
 import EditPhoto from "../EditPhoto";
 import './IndividualPhoto.css';
+import LoadingPage from "../../LoadingPage/LoadingPage";
 
 const IndividualPhoto = () => {
     const { photoId } = useParams();
@@ -109,8 +110,13 @@ const IndividualPhoto = () => {
     }
 
     return (
-    <div className="whole-individual-photo-container">
-        {isLoaded && (
+    <>
+        {(!individualPhoto || !isLoaded) && (
+            <LoadingPage />
+        )}
+
+        <div className="whole-individual-photo-container">
+            {isLoaded && (
                 <div className="photo-details-container">
                     <div className="explore-button" onClick={() => history.goBack()}><i className="fas fa-arrow-left fa-inverse fa-s"></i> <span className="back-explore-button">Back to previous</span></div>
                     <div className="upper-photo-details-page">
@@ -155,6 +161,7 @@ const IndividualPhoto = () => {
                 </div>
             )}
         </div>
+    </>
     )
 }
 

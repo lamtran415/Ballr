@@ -1,9 +1,10 @@
 // Import necessary libraries and components
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Masonry from "react-masonry-css"; // Import Masonry component
 import { getAllPhotosThunk } from "../../../store/photoReducer";
+import LoadingPage from "../../LoadingPage/LoadingPage";
 import './AllPhotos.css';
 
 const breakpointColumnsObj = {
@@ -16,10 +17,12 @@ const breakpointColumnsObj = {
 const AllPhotos = () => {
   // Initialize the Redux dispatch function
   const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Use the useEffect hook to dispatch an action to fetch all photos when the component mounts
   useEffect(() => {
-    dispatch(getAllPhotosThunk());
+    dispatch(getAllPhotosThunk())
+      .then(() => setIsLoaded(true))
   }, [dispatch]);
 
   // Retrieve the list of all photos from the Redux store, turn to an array and show in reverse
@@ -32,50 +35,59 @@ const AllPhotos = () => {
 
   // Render the list of photos as links in a Masonry grid layout
   return (
-    <div className="all-photos-container">
-      <Masonry
-        breakpointCols={breakpointColumnsObj}
-        className="wrapper-all-photos"
-        columnClassName="masonry-column"
-      >
-        {allPhotos.map((photo) => (
-          // Create a link for each photo
-          <NavLink
-            style={{ textDecoration: "none" }}
-            className="photo-card-wrapper"
-            key={photo?.id}
-            to={`/photos/${photo?.id}`}
+    <>
+      {!isLoaded && (
+        <LoadingPage />
+      )}
+
+      {isLoaded && allPhotos && (
+        <div className="all-photos-container">
+          <Masonry
+            breakpointCols={breakpointColumnsObj}
+            className="wrapper-all-photos"
+            columnClassName="masonry-column"
           >
-            <div
-              className="photo-card"
-            >
-              <div className="photo-image">
-                <img
-                  className="each-photo"
-                  src={photo.url}
-                  alt=""
-                  onError={(e) => {
-                    e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg";
-                  }}
-                />
-              </div>
-              <div className="photo-information">
-                <div className="photo-title">{photo?.title}</div>
-                <div className="user-comment-section">
-                  <div className="user-name-div">
-                    by {photo.user?.first_name} {photo.user?.last_name}
+            {allPhotos.map((photo) => (
+              // Create a link for each photo
+              <NavLink
+                style={{ textDecoration: "none" }}
+                className="photo-card-wrapper"
+                key={photo?.id}
+                to={`/photos/${photo?.id}`}
+              >
+                <div
+                  className="photo-card"
+                >
+                  <div className="photo-image">
+                    <img
+                      className="each-photo"
+                      src={photo.url}
+                      alt=""
+                      onError={(e) => {
+                        e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg";
+                      }}
+                    />
                   </div>
-                  <div className="number-of-comments">
-                    <i className="far fa-comment fa-2x"></i>
-                    <span className="comment-length">{photo.comment?.length}</span>
+                  <div className="photo-information">
+                    <div className="photo-title">{photo?.title}</div>
+                    <div className="user-comment-section">
+                      <div className="user-name-div">
+                        by {photo.user?.first_name} {photo.user?.last_name}
+                      </div>
+                      <div className="number-of-comments">
+                        <i className="far fa-comment fa-2x"></i>
+                        <span className="comment-length">{photo.comment?.length}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </NavLink>
-        ))}
-      </Masonry>
-    </div>
+              </NavLink>
+            ))}
+          </Masonry>
+        </div>
+      )}
+
+    </>
   );
 }
 

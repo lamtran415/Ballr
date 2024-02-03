@@ -89,7 +89,10 @@
   color: white;
 }
 
-.log-in-button:hover,
+.log-in-button:hover {
+  color: rgb(179, 175, 175);
+}
+
 .sign-up-button:hover {
   color: rgb(179, 175, 175);
   box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* Optional: Add a box shadow on hover */
