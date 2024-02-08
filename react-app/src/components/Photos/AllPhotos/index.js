@@ -3,30 +3,38 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Masonry from "react-masonry-css"; // Import Masonry component
-import { getAllPhotosThunk } from "../../../store/photoReducer";
+import { getAllPhotosThunk, loadUserPhotoThunk } from "../../../store/photoReducer";
 import LoadingPage from "../../LoadingPage/LoadingPage";
-import './AllPhotos.css';
+import "./AllPhotos.css";
+import AddFavorites from "../../Favorites/AddFavorites/AddFavorites";
 
 const breakpointColumnsObj = {
   default: 4, // Default number of columns for screens over 1500px
-  1500: 3,    // 3 columns for screens 1500px and under
-  1000: 2,    // 2 columns for screens 1000px and under
-  500: 1      // 1 column for screens 500px and under
+  1500: 3, // 3 columns for screens 1500px and under
+  1000: 2, // 2 columns for screens 1000px and under
+  500: 1, // 1 column for screens 500px and under
 };
 
 const AllPhotos = () => {
   // Initialize the Redux dispatch function
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const sessionUser = useSelector((state) => state.session.user);
 
   // Use the useEffect hook to dispatch an action to fetch all photos when the component mounts
   useEffect(() => {
-    dispatch(getAllPhotosThunk())
-      .then(() => setIsLoaded(true))
-  }, [dispatch]);
+    dispatch(getAllPhotosThunk()).then(() => setIsLoaded(true));
+
+    if (sessionUser) {
+      dispatch(loadUserPhotoThunk(sessionUser.id));
+    }
+
+  }, [dispatch, sessionUser]);
 
   // Retrieve the list of all photos from the Redux store, turn to an array and show in reverse
-  const allPhotos = Object.values(useSelector((state) => state.photos.allPhotos)).reverse()
+  const allPhotos = Object.values(
+    useSelector((state) => state.photos.allPhotos)
+  ).reverse();
 
   // If there are no photos, return nothing (null)
   if (!allPhotos) {
@@ -36,9 +44,7 @@ const AllPhotos = () => {
   // Render the list of photos as links in a Masonry grid layout
   return (
     <>
-      {!isLoaded && (
-        <LoadingPage />
-      )}
+      {!isLoaded && <LoadingPage />}
 
       {isLoaded && allPhotos && (
         <div className="all-photos-container">
@@ -55,16 +61,15 @@ const AllPhotos = () => {
                 key={photo?.id}
                 to={`/photos/${photo?.id}`}
               >
-                <div
-                  className="photo-card"
-                >
+                <div className="photo-card">
                   <div className="photo-image">
                     <img
                       className="each-photo"
                       src={photo.url}
                       alt=""
                       onError={(e) => {
-                        e.currentTarget.src = "http://wallpaperset.com/w/full/5/8/c/119900.jpg";
+                        e.currentTarget.src =
+                          "http://wallpaperset.com/w/full/5/8/c/119900.jpg";
                       }}
                     />
                   </div>
@@ -75,8 +80,11 @@ const AllPhotos = () => {
                         by {photo.user?.first_name} {photo.user?.last_name}
                       </div>
                       <div className="number-of-comments">
+                        <AddFavorites photoId = {photo.id}/>
                         <i className="far fa-comment fa-2x"></i>
-                        <span className="comment-length">{photo.comment?.length}</span>
+                        <span className="comment-length">
+                          {photo.comment?.length}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -86,9 +94,8 @@ const AllPhotos = () => {
           </Masonry>
         </div>
       )}
-
     </>
   );
-}
+};
 
 export default AllPhotos;

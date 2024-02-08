@@ -42,6 +42,7 @@ export const createUserFavoritesThunk = (userId, photoId) => async (dispatch) =>
 
     if (res.ok) {
       const { favorite, photo } = await res.json();
+      console.log(favorite, photo)
       dispatch(addNewFavorite(favorite, photo));
       return favorite;
     } else if (res.status < 500) {

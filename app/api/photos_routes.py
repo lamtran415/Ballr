@@ -398,10 +398,13 @@ def create_favorite_photos(userId):
         db.session.add(favorite_photo)
         db.session.commit()
 
+        print("CHECKING =============>", favorite)
+        print("CHECKING FAVORITE DICT =============>", favorite.to_dict())
+        print("CHECKING PHOTO DICT =============>", photo.to_dict())
         # Add the photo to the favorites photo list
-        favorite.photos.append(photo)
+        # favorite.photos.append(photo)
         db.session.commit()
-        # Return a JSON response containing the details of the retrieved album
+        # Return a JSON response containing the details of the retrieved favorite photo
         return {'favorite': favorite.to_dict(), 'photo': photo.to_dict()}, 200
     else:
         # Return a 404 error message if the favorites is not found

@@ -183,13 +183,23 @@ const photosReducer = (state = initialState, action) => {
 
         case LOAD_ALL_PHOTOS: {
             // Create a new object to update the state
-            const loadAllPhotos = { allPhotos: {}, userPhotos: {} };
-            action.photos.photos.forEach(photo => {
-                // Populate the "allPhotos" object with photos using their IDs as keys
-                loadAllPhotos.allPhotos[photo.id] = photo;
-            });
-            // Return the updated state
-            return loadAllPhotos;
+            // const loadAllPhotos = { allPhotos: {}, userPhotos: {} };
+            // action.photos.photos.forEach(photo => {
+            //     // Populate the "allPhotos" object with photos using their IDs as keys
+            //     loadAllPhotos.allPhotos[photo.id] = photo;
+            // });
+            // // Return the updated state
+            // return loadAllPhotos;
+            return {
+                ...state,
+                allPhotos: {
+                    ...state.allPhotos,
+                    ...action.photos.photos.reduce((acc, photo) => {
+                        acc[photo.id] = photo;
+                        return acc;
+                    }, {})
+                }
+            };
         }
 
         case LOAD_PHOTO: {
