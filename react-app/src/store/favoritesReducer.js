@@ -14,9 +14,10 @@ const addNewFavorite = (favorite, photo) => ({
   photo
 });
 
-const deleteUserFavorite = (favoriteId) => ({
+const deleteUserFavorite = (favoriteId, photoId) => ({
   type: DELETE_USER_FAVORITES,
   favoriteId,
+  photoId,
 });
 
 // Thunks
@@ -42,7 +43,6 @@ export const createUserFavoritesThunk = (userId, photoId) => async (dispatch) =>
 
     if (res.ok) {
       const { favorite, photo } = await res.json();
-      console.log(favorite, photo)
       dispatch(addNewFavorite(favorite, photo));
       return favorite;
     } else if (res.status < 500) {
@@ -57,19 +57,42 @@ export const createUserFavoritesThunk = (userId, photoId) => async (dispatch) =>
     return res;
   };
 
+export const deleteUserFavoritesThunk = (favoriteId, photoId) => async (dispatch) => {
+    const res = await fetch(`/api/favorites/${favoriteId}`, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ photoId })
+    });
+
+    if (res.ok) {
+      dispatch(deleteUserFavorite(favoriteId, photoId))
+    }
+}
+
 const initialState = {};
 
 const favoritesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_USER_FAVORITES: {
-        const getAllFavoritesState = {};
-        getAllFavoritesState[action.favorites.id] = action.favorites;
-        return getAllFavoritesState;
+        // const getAllFavoritesState = {};
+        // getAllFavoritesState[action.favorites.id] = action.favorites;
+        // return getAllFavoritesState;
+        return {
+          ...state,
+          [action.favorites.id]: action.favorites
+      };
     }
     case ADD_USER_FAVORITES: {
         const addUserFavorites = {...state}
         addUserFavorites[action.favorite.id].photos.push(action.photo);
         return addUserFavorites
+    }
+    case DELETE_USER_FAVORITES: {
+        const deleteUserFavorites = { ...state };
+        deleteUserFavorites[action.favoriteId].photos.filter(photo => photo.id !== action.photoId);
+        return deleteUserFavorites;
     }
     default: {
       return state;

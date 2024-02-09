@@ -7,6 +7,7 @@ import { getAllPhotosThunk, loadUserPhotoThunk } from "../../../store/photoReduc
 import LoadingPage from "../../LoadingPage/LoadingPage";
 import "./AllPhotos.css";
 import AddFavorites from "../../Favorites/AddFavorites/AddFavorites";
+import { getUserFavoritesThunk } from "../../../store/favoritesReducer";
 
 const breakpointColumnsObj = {
   default: 4, // Default number of columns for screens over 1500px
@@ -27,6 +28,7 @@ const AllPhotos = () => {
 
     if (sessionUser) {
       dispatch(loadUserPhotoThunk(sessionUser.id));
+      dispatch(getUserFavoritesThunk(sessionUser.id))
     }
 
   }, [dispatch, sessionUser]);
