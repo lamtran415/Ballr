@@ -1,20 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { createUserFavoritesThunk } from "../../../store/favoritesReducer";
+import "./AddFavorites.css"
 
-const AddFavorites = ( { photoId } ) => {
+const AddFavorites = ( { photoId, setFavoritesChanged } ) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
 
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const newFavorite = await dispatch(createUserFavoritesThunk(sessionUser.id, photoId))
-
+        await dispatch(createUserFavoritesThunk(sessionUser.id, photoId))
+        setFavoritesChanged(true); // Set favoritesChanged to true after adding a new favorite
     }
 
     return (
         <>
-            <i className="far fa-star fa-2x" onClick={handleSubmit}></i>
+            <i className="far fa-star fa-2x star-icon" onClick={handleSubmit}></i>
         </>
     )
 

@@ -342,7 +342,7 @@ def delete_photo_tag(photoId, tagId):
     # Return a success message upon successful tag deletion
     return 'Tag deleted successfully', 200
 
-# View Favorites
+# View User Favorites
 # As a logged-in user, I want to view favorites of a user.
 # GET /api/photos/users/:userId/favorites
 @photos_routes.route('/users/<int:userId>/favorites')

@@ -26,6 +26,11 @@ def delete_favorite(favoriteId):
         db.session.delete(favorite_photo)
         db.session.commit()
 
-    # Manually update the favorite.photos list to remove the corresponding photo
-    favorite.photo = [photo for photo in favorite.photos if photo.id != favorite_photo.photo_id]
-    return 'Favorite deleted successfully', 200
+        # Manually update the favorite.photos list to remove the corresponding photo
+        if favorite.photo:  # Check if favorite.photo is not None
+            favorite.photo = [photo for photo in favorite.photo if photo.id != photoId]
+            db.session.commit()  # Commit the changes to the database
+
+        return 'Favorite deleted successfully', 200
+    else:
+        return 'Favorite photo not found', 404

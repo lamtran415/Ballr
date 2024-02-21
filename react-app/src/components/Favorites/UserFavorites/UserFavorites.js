@@ -59,7 +59,7 @@ const UserFavorites = () => {
 
                 <div className="all-user-photos-container">
                     <div className="user-wrapper-all-photos">
-                        {userFavorites[0].photos.map((photo) => (
+                        {userFavorites[0].photos?.map((photo) => (
                             <NavLink
                             style={{ textDecoration: "none" }}
                             className="photo-card-wrapper"
