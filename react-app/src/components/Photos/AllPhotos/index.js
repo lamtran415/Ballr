@@ -102,7 +102,9 @@ const AllPhotos = () => {
                         by {photo.user?.first_name} {photo.user?.last_name}
                       </div>
                       <div className="number-of-comments">
-                          {!photoIds.has(photo.id) ?
+                      {
+                        sessionUser ?
+                          (!photoIds.has(photo.id) ?
                             <AddFavorites
                               photoId={photo.id}
                               setFavoritesChanged={setFavoritesChanged}
@@ -112,7 +114,9 @@ const AllPhotos = () => {
                               photoId={photo.id}
                               setFavoritesChanged={setFavoritesChanged}
                             />
-                        }
+                          )
+                          : null
+                      }
                         <i className="far fa-comment fa-2x"></i>
                         <span className="comment-length">
                           {photo.comment?.length}

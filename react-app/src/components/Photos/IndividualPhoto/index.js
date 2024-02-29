@@ -14,6 +14,9 @@ import DeletePhoto from "../DeletePhoto";
 import EditPhoto from "../EditPhoto";
 import './IndividualPhoto.css';
 import LoadingPage from "../../LoadingPage/LoadingPage";
+import { getUserFavoritesThunk } from "../../../store/favoritesReducer";
+import AddFavorites from "../../Favorites/AddFavorites/AddFavorites";
+import DeleteFavorites from "../../Favorites/DeleteFavorites/DeleteFavorites";
 
 const IndividualPhoto = () => {
     const { photoId } = useParams();
@@ -23,10 +26,60 @@ const IndividualPhoto = () => {
     const individualPhoto = useSelector(state => state.photos.allPhotos[photoId]);
 	const sessionUser = useSelector(state => state.session.user);
 
+    useEffect(() => {
+        const fetchPhotoDetailsAndUserAlbums = async () => {
+            const photo = await dispatch(getPhotoDetailsThunk(+photoId))
+            await dispatch(getUserAlbumsThunk(+photo.user_id))
+            await dispatch(loadTagsforPhotoThunk(+photoId))
+            setIsLoaded(true)
+        };
+        fetchPhotoDetailsAndUserAlbums();
+
+        if (sessionUser) {
+            dispatch(getUserFavoritesThunk(sessionUser.id))
+        }
+    }, [dispatch, photoId, individualPhoto?.user_id, sessionUser]);
+
+    // State variable to trigger rerender when userFavorites change
+    const [favoritesChanged, setFavoritesChanged] = useState(false);
+
+    useEffect(() => {
+        if (favoritesChanged) {
+        // Refetch userFavorites or any other necessary data
+        dispatch(getUserFavoritesThunk(sessionUser.id))
+        // Reset the state variable
+        setFavoritesChanged(false);
+        }
+    }, [favoritesChanged, dispatch, sessionUser]);
+
+    const userFavorites = useSelector(
+        (state) => state.favorites[sessionUser?.id]?.photos);
+
+    const photoIds = new Set(userFavorites?.map((photo) => photo.id));
+
+    console.log(photoIds)
+
     let session;
     if (sessionUser !== null) {
         session = (
             <div className="edit-delete-button">
+                {
+                    sessionUser ?
+                        (!photoIds.has(individualPhoto?.id) ?
+                        <AddFavorites
+                            photoId={individualPhoto?.id}
+                            setFavoritesChanged={setFavoritesChanged}
+                            className="custom-add-favorites-button"
+                        />
+                        :
+                        <DeleteFavorites
+                            photoId={individualPhoto?.id}
+                            setFavoritesChanged={setFavoritesChanged}
+                            className="custom-delete-favorites-button"
+                        />
+                        )
+                        : null
+                }
                 {sessionUser?.id === individualPhoto?.user_id ?
                     <OpenModalButton
                     className="edit-photo-modal-button"
@@ -46,15 +99,6 @@ const IndividualPhoto = () => {
             </div>
         )
     }
-    useEffect(() => {
-        const fetchPhotoDetailsAndUserAlbums = async () => {
-            const photo = await dispatch(getPhotoDetailsThunk(+photoId))
-            await dispatch(getUserAlbumsThunk(+photo.user_id))
-            await dispatch(loadTagsforPhotoThunk(+photoId))
-            setIsLoaded(true)
-        };
-        fetchPhotoDetailsAndUserAlbums();
-    }, [dispatch, photoId, individualPhoto?.user_id]);
 
     const photoAlbum = Object.values(useSelector(state => state.albums))
     const newAlbumArr = [];

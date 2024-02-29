@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserFavoritesThunk } from "../../../store/favoritesReducer";
 
-const DeleteFavorites = ( { photoId, setFavoritesChanged } ) => {
+const DeleteFavorites = ( { photoId, setFavoritesChanged, className } ) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -15,7 +15,7 @@ const DeleteFavorites = ( { photoId, setFavoritesChanged } ) => {
 
     return (
         <>
-            <i className="fas fa-star fa-2x star-icon" onClick={handleSubmit}></i>
+            <i className={`fas fa-star fa-2x star-icon ${className}`}onClick={handleSubmit}></i>
         </>
     )
 

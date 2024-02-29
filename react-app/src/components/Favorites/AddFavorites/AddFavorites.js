@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUserFavoritesThunk } from "../../../store/favoritesReducer";
 import "./AddFavorites.css"
 
-const AddFavorites = ( { photoId, setFavoritesChanged } ) => {
+const AddFavorites = ( { photoId, setFavoritesChanged, className } ) => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -15,7 +15,7 @@ const AddFavorites = ( { photoId, setFavoritesChanged } ) => {
 
     return (
         <>
-            <i className="far fa-star fa-2x star-icon" onClick={handleSubmit}></i>
+            <i className={`far fa-star fa-2x star-icon ${className}`} onClick={handleSubmit}></i>
         </>
     )
 
