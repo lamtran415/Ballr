@@ -95,20 +95,28 @@
     top: 770px;
     right: 15px;
     z-index: 1;
-    font-size: 11px;
+    font-size: 10px;
   }
 
 .custom-add-favorites-button, .custom-delete-favorites-button {
     color: white;
 }
 
-  .edit-photo-modal-button, .delete-photo-modal-button {
+.edit-photo-modal-button, .delete-photo-modal-button {
     font-size: 20px;
     color: white;
     background-color: transparent;
     border: none;
     cursor: pointer;
-  }
+}
+
+.edit-photo-modal-button:hover {
+    color: #128FDC;
+}
+
+.delete-photo-modal-button:hover {
+    color: rgb(247, 59, 59);
+}
 
 .flex-user-info-albums {
     display: flex;

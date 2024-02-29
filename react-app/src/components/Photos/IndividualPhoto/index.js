@@ -57,8 +57,6 @@ const IndividualPhoto = () => {
 
     const photoIds = new Set(userFavorites?.map((photo) => photo.id));
 
-    console.log(photoIds)
-
     let session;
     if (sessionUser !== null) {
         session = (
