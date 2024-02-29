@@ -342,13 +342,14 @@ def delete_photo_tag(photoId, tagId):
     # Return a success message upon successful tag deletion
     return 'Tag deleted successfully', 200
 
-# View Favorites
+# View User Favorites
 # As a logged-in user, I want to view favorites of a user.
 # GET /api/photos/users/:userId/favorites
 @photos_routes.route('/users/<int:userId>/favorites')
 def favorite_photos(userId):
     # Retrieve the album with the specified 'albumId' associated with the given 'userId'
-    favorites = Favorite.query.filter_by(user_id=userId, id=userId).all()
+    # favorites = Favorite.query.filter_by(user_id=userId, id=userId).all()
+    favorites = Favorite.query.filter_by(user_id=userId).first()
 
     if not favorites:
         # If favorite doesn't exist, create a new one for the user
@@ -361,9 +362,7 @@ def favorite_photos(userId):
         favorites = new_favorite
 
     if favorites:
-        # If there are multiple favorites, you might want to return a list of dictionaries
-        favorites_data = [favorite.to_dict() for favorite in favorites]
-        return {'favorites': favorites_data}, 200
+        return favorites.to_dict(), 200
     else:
         # Return a 404 error message if no favorites are found
         return {'message': 'Favorites not found'}, 404
@@ -374,7 +373,7 @@ def favorite_photos(userId):
 # POST /api/photos/users/:userId/favorites
 @photos_routes.route('/users/<int:userId>/favorites', methods=["POST"])
 @login_required
-def create_favorite_photos(userId, photoId):
+def create_favorite_photos(userId):
     # Retrieve the favorite with the specified 'userId' associated with the given 'userId'
     favorite = Favorite.query.filter_by(user_id=userId, id=userId).first()
 
@@ -389,19 +388,18 @@ def create_favorite_photos(userId, photoId):
         favorite = new_favorite
 
     if favorite:
+        data = request.get_json()
+        photoId = data.get('photoId')
         # Retrieve the photo with the specified 'photoId'
         photo = Photo.query.get(photoId)
 
-        # Create a new FavoritePhoto relationship
+        # Create a new FavoritePhoto relationship, SQLAlchemy auto handles the add in Favorite
         favorite_photo = FavoritePhoto(photo_id=photo.id, favorite_id=favorite.id)
         db.session.add(favorite_photo)
         db.session.commit()
 
-        # Add the photo to the favorites photo list
-        favorite.photos.append(photo)
-        db.session.commit()
-        # Return a JSON response containing the details of the retrieved album
-        return favorite.to_dict(), 200
+        # Return a JSON response containing the details of the retrieved favorite photo
+        return {'favorite': favorite.to_dict(), 'photo': photo.to_dict()}, 200
     else:
         # Return a 404 error message if the favorites is not found
         return {'message': 'Favorite not found'}, 404

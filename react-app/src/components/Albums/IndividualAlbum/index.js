@@ -70,7 +70,7 @@ const IndividualAlbum = () => {
                                         : null
                                         }
                                     </div>
-                                    <div className="album-user-names">
+                                    <div className="album-user-names" onClick={() => history.push(`/photos/users/${individualAlbum.user_id}`)}>
                                         By: {individualAlbum?.user?.first_name} {individualAlbum?.user?.last_name}
                                     </div>
                                 </div>

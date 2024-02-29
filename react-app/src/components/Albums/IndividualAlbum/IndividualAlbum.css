@@ -139,3 +139,16 @@
     color: white;
     font-size: 25px;
 }
+
+.edit-album-modal:hover {
+    color: #128FDC;
+}
+
+.delete-album-modal:hover {
+    color: rgb(247, 59, 59);
+}
+
+.album-user-names:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}

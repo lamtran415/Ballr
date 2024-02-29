@@ -1,0 +1,9 @@
+.star-icon {
+    cursor: pointer;
+    transition: color 0.3s ease; /* Define the transition property */
+    margin-right: 7px;
+}
+
+.star-icon:hover {
+    color: gold; /* Adjust the color when hovering if needed */
+}

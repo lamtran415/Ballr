@@ -11,18 +11,26 @@ favorites_routes = Blueprint('favorites_routes', __name__)
 
 @favorites_routes.route('/<int:favoriteId>', methods=['DELETE'])
 @login_required
-def delete_favorite(userId, photoId, favoriteId):
+def delete_favorite(favoriteId):
     # Retrieve the favorite with the specified 'userId' associated with the given 'userId'
-    favorite = Favorite.query.filter_by(user_id=userId, id=userId).first()
+    favorite = Favorite.query.filter_by(user_id=favoriteId, id=favoriteId).first()
+
+    data = request.get_json()
+    photoId = data.get('photoId')
 
     # Now you need to query the FavoritePhoto to get the specific entry to delete
-    favorite_photo = FavoritePhoto.query.filter_by(favorite_id=favoriteId, photo_id=photoId).first()
+    favorite_photo = FavoritePhoto.query.filter_by(favorite_id=favorite.id, photo_id=photoId).first()
 
     if favorite_photo:
         # Delete the entry from FavoritePhoto
         db.session.delete(favorite_photo)
         db.session.commit()
 
-    # Manually update the favorite.photos list to remove the corresponding photo
-    favorite.photos = [photo for photo in favorite.photos if photo.id != favorite_photo.photo_id]
-    return 'Favorite deleted successfully', 200
+        # Manually update the favorite.photos list to remove the corresponding photo
+        if favorite.photo:  # Check if favorite.photo is not None
+            favorite.photo = [photo for photo in favorite.photo if photo.id != photoId]
+            db.session.commit()  # Commit the changes to the database
+
+        return 'Favorite deleted successfully', 200
+    else:
+        return 'Favorite photo not found', 404
